@@ -2,9 +2,9 @@ define(["underscore"], function(_) {
     // Demonstrates pattern for creating class that can be instantiated with `new`.
     // Prototype has to be returned by module.
 
-    var PacMan = function() {};
+    var Game = function() {};
 
-    PacMan.prototype = {
+    Game.prototype = {
         run: function() {
             console.log("Pacman says:");
             _.each(["hello", "world"], function(w) {
@@ -18,5 +18,5 @@ define(["underscore"], function(_) {
         }
     };
 
-    return PacMan;
+    return Game;
 });

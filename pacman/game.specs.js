@@ -1,14 +1,14 @@
-define(["pacman"], function(PacMan) {
+define(["game"], function(Game) {
   describe("Pacman", function() {
       describe("demo", function() {
          it("should return some demo value", function() {
-            var pacMan = new PacMan();
-             expect(pacMan.demoValue()).toBe(123);
+            var game = new Game();
+             expect(game.demoValue()).toBe(123);
          });
 
          it("should not return some other value", function() {
-              var pacMan = new PacMan();
-              expect(pacMan.demoValue()).not.toBe(345);
+              var game = new Game();
+              expect(game.demoValue()).not.toBe(345);
          });
 
       });

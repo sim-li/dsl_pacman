@@ -24,7 +24,7 @@ require.config({
 
 require(['jasmine-boot'], function () {
   require([
-    './pacman.specs',
+    './game.specs',
     './figures/ghost.specs',
     './figures/pac.specs',
     './levels/level1.specs',

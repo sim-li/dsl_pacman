@@ -1,6 +1,6 @@
-requirejs(["requirejs_config/require_config.js", "pacman"], function(require_config, PacMan) {
+requirejs(["requirejs_config/require_config.js", "game"], function(require_config, Game) {
     requirejs([], function() {
-        var pacman = new PacMan();
-        pacman.run();
+        var game = new Game();
+        game.run();
     });
 });
