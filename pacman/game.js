@@ -38,6 +38,7 @@ define(["underscore", "figures/ghost", "figures/pac"], function (_, Ghost, Pac) 
         }
         ;
 
+
         function getInput(e)
         {
             if (!e) {
