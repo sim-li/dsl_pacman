@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Pacman</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Pacman</title>
 
-    <script type="text/javascript" data-main="main.js" src="./vendor/require.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css" />
 
-</head>
-<body>
-<div id="canvas-container">
-    <div id="canvas-overlay">
-        <div id="canvas-content">
-            <div id="title">Pacman</div>
-            <div><p id="text">Click & go</p></div>
+        <script type="text/javascript" src="./vendor/jquery-3.1.1.min.js"></script>
+        <script type="text/javascript" data-main="main.js" src="./vendor/require.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#text').click(function () {
+//                    game.run;
+                    $('#canvas-overlay').fadeOut('fast');
+                })
+            });
+
+        </script>
+    </head>
+    <body>
+        <div id="canvas-container">
+            <div id="canvas-overlay" style="">
+                <div id="canvas-content">
+                    <div id="title"></div>
+                    <div><p id="text">CLICK 2 GO</p></div>
+                </div>
+            </div>
+            <canvas id="canvas" width="600" height="600">
+                <p>Canvas not supported</p>
+            </canvas>
         </div>
-    </div>
-    <canvas id="canvas" width="540" height="390">
-        <p>Canvas not supported</p>
-    </canvas>
-</div>
-</body>
+    </body>
 </html>

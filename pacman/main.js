@@ -1,6 +1,11 @@
-requirejs(["requirejs_config/require_config.js", "game"], function(require_config, Game) {
-    requirejs([], function() {
+requirejs(["requirejs_config/require_config.js", "game"], function (require_config, Game) {
+    requirejs([], function () {
         var game = new Game();
-        game.run();
+        game.init();
+        
+       
+//        var startbutton = document.getElementById('text');
+//        startbutton.onclick = game.run;
+//        game.run();
     });
 });
