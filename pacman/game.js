@@ -1,9 +1,9 @@
-define(["underscore", "figures/ghost", "figures/pac","levels/level1"], function (_, Ghost, Pac, Level) {
+define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function (_, Ghost, Pac, Level) {
     // Demonstrates pattern for creating class that can be instantiated with `new`.
     // Prototype has to be returned by module.
 
     var Game = function () {
-        blockSize = 30;
+        var blockSize = 30;
         var Rows = 20;
         var Cols = 20;
         var canvas = document.getElementById('canvas');
@@ -11,15 +11,27 @@ define(["underscore", "figures/ghost", "figures/pac","levels/level1"], function 
         canvas.setAttribute("height", (blockSize * Rows) + "px");
 
         var ctx = canvas.getContext('2d');
-        
+        var imgLoader;
         var isGameOver = false;
 
         function init() {
             console.log(canvas);
             console.log(ctx);
+            
             document.onkeydown = getInput;
+            imgLoader = new BulkImageLoader();
+            imgLoader.addImage("blocks.png", "blocks");
+            imgLoader.onReadyCallback = onImagesLoaded;
+            imgLoader.loadImages();
+//            imgLoader.im
+//            imgLoader.addImage("blocks.png", "blocks");
+//            imgLoader.addImage("bg.png", "bg");
+//            imgLoader.addImage("over.png", "gameover");
+//            imgLoader.onReadyCallback = onImagesLoaded;
+//            imgLoader.loadImages();
             var level = new Level();
             level.draw();
+            console.log(Level.fruit);
         }
 
         function run() {
