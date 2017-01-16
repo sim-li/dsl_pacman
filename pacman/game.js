@@ -3,25 +3,31 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
     // Prototype has to be returned by module.
 
     var Game = function () {
-        var blockSize = 30;
-        var Rows = 20;
-        var Cols = 20;
+        var BLOCKSIZE = 30;
+        var ROWS = 20;
+        var COLS = 20;
         var canvas = document.getElementById('canvas');
-        canvas.setAttribute("width", (blockSize * Cols) + "px");
-        canvas.setAttribute("height", (blockSize * Rows) + "px");
+        canvas.setAttribute("width", (BLOCKSIZE * COLS) + "px");
+        canvas.setAttribute("height", (BLOCKSIZE * ROWS) + "px");
 
         var ctx = canvas.getContext('2d');
         var imgLoader;
         var isGameOver = false;
 
+        var fruitImg;
+        var wallImg;
+        var pointImg;
+
         function init() {
             console.log(canvas);
             console.log(ctx);
-            
+
             document.onkeydown = getInput;
             imgLoader = new BulkImageLoader();
-            imgLoader.addImage("blocks.png", "blocks");
-            imgLoader.onReadyCallback = onImagesLoaded;
+            imgLoader.addImage("cherry.png", "cherry");
+            imgLoader.addImage("wall.png", "wall");
+            imgLoader.addImage("Bitcoin_euro.png","Bitcoin_euro");
+            imgLoader.onReadyCallback = onImagesLoaded();
             imgLoader.loadImages();
 //            imgLoader.im
 //            imgLoader.addImage("blocks.png", "blocks");
@@ -30,8 +36,42 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
 //            imgLoader.onReadyCallback = onImagesLoaded;
 //            imgLoader.loadImages();
             var level = new Level();
-            level.draw();
-            console.log(Level.fruit);
+//            level.draw();
+//            console.log(Level.map);
+            ctx.clearRect(0, 0, 600, 600);
+            drawBoard();
+        }
+
+        function onImagesLoaded(e)
+        {
+            fruitImg = imgLoader.getImageAtIndex(0);
+            wallImg = imgLoader.getImageAtIndex(1);
+            pointImg = imgLoader.getImageAtIndex(2)
+            console.log(fruitImg);
+//            gameOverImg = imgLoader.getImageAtIndex(2);
+//                initGame();
+        }
+        function drawBoard() {
+            console.log(Level.map);
+            console.log(fruitImg);
+//            ctx.drawImage(bgImg, 0, 0, 320, 640, 0, 0, 320, 640);
+            for (var r = 0; r < ROWS; r++)
+            {
+                for (var c = 0; c < COLS; c++)
+                {
+                    if (Level.map[r][c] === 3)
+                    {
+                        ctx.drawImage(wallImg, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                    }
+                    else if (Level.map[r][c] === 2) {
+                        ctx.drawImage(fruitImg, 0, 0, BLOCKSIZE, BLOCKSIZE, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                    }
+                    else if (Level.map[r][c] === 1) {
+                        ctx.drawImage(pointImg, 0, 0, BLOCKSIZE+10, BLOCKSIZE+10, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                    }
+                }
+            }
+            console.log("hier passiert dass Zeichnen");
         }
 
         function run() {
