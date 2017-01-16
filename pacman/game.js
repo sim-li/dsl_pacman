@@ -1,24 +1,29 @@
-define(["underscore", "figures/ghost", "figures/pac"], function (_, Ghost, Pac) {
+define(["underscore", "figures/ghost", "figures/pac","levels/level1"], function (_, Ghost, Pac, Level) {
     // Demonstrates pattern for creating class that can be instantiated with `new`.
     // Prototype has to be returned by module.
 
     var Game = function () {
-
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
+        blockSize = 30;
         var Rows = 20;
         var Cols = 20;
-        var Size = 30;
+        var canvas = document.getElementById('canvas');
+        canvas.setAttribute("width", (blockSize * Cols) + "px");
+        canvas.setAttribute("height", (blockSize * Rows) + "px");
+
+        var ctx = canvas.getContext('2d');
+        
         var isGameOver = false;
 
         function init() {
             console.log(canvas);
             console.log(ctx);
             document.onkeydown = getInput;
+            var level = new Level();
+            level.draw();
         }
 
         function run() {
-            isGameOver=false;
+            isGameOver = false;
             var ghost = new Ghost("hulalala");
 
             //This will fail because private variable. Access via setter!
