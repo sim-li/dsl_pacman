@@ -14,6 +14,14 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
         var imgLoader;
         var isGameOver = false;
 
+        /*
+        var img = new Image();
+        img.src = "wall.png";
+        img.onload = function()
+        {
+            ctx.drawImage(img, 0, 0);
+        }*/
+        //setTimeout(ctx.drawImage(img, 0, 0), 5000);
         var fruitImg;
         var wallImg;
         var pointImg;
@@ -26,7 +34,7 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
             imgLoader = new BulkImageLoader();
             imgLoader.addImage("cherry.png", "cherry");
             imgLoader.addImage("wall.png", "wall");
-            imgLoader.addImage("Bitcoin_euro.png","Bitcoin_euro");
+            imgLoader.addImage("Bitcoin.png","Bitcoin");
             imgLoader.onReadyCallback = onImagesLoaded();
             imgLoader.loadImages();
 //            imgLoader.im
@@ -39,10 +47,13 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
 //            level.draw();
 //            console.log(Level.map);
             ctx.clearRect(0, 0, 600, 600);
-            drawBoard();
+            pointImg.onload = function() {
+                drawBoard();
+            }
+
         }
 
-        function onImagesLoaded(e)
+        function onImagesLoaded()
         {
             fruitImg = imgLoader.getImageAtIndex(0);
             wallImg = imgLoader.getImageAtIndex(1);
@@ -52,8 +63,8 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
 //                initGame();
         }
         function drawBoard() {
-            console.log(Level.map);
-            console.log(fruitImg);
+            //console.log(Level.map);
+            //console.log(fruitImg.src);
 //            ctx.drawImage(bgImg, 0, 0, 320, 640, 0, 0, 320, 640);
             for (var r = 0; r < ROWS; r++)
             {
@@ -61,17 +72,22 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
                 {
                     if (Level.map[r][c] === 3)
                     {
+                        //console.log("3")
                         ctx.drawImage(wallImg, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
                     }
                     else if (Level.map[r][c] === 2) {
+                        //console.log("2")
                         ctx.drawImage(fruitImg, 0, 0, BLOCKSIZE, BLOCKSIZE, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
                     }
                     else if (Level.map[r][c] === 1) {
-                        ctx.drawImage(pointImg, 0, 0, BLOCKSIZE+10, BLOCKSIZE+10, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                        //console.log("1")
+                        ctx.drawImage(pointImg, 0, 0, BLOCKSIZE, BLOCKSIZE, c * BLOCKSIZE+7.5, r * BLOCKSIZE+7.5, BLOCKSIZE/2, BLOCKSIZE/2);
                     }
                 }
+                //console.log("Durchgang " + r);
             }
             console.log("hier passiert dass Zeichnen");
+
         }
 
         function run() {
