@@ -38,14 +38,20 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
             wallImg = imgLoader.getImageAtIndex(1);
             pointImg = imgLoader.getImageAtIndex(2);
             drawBoard();
-            //setInterval(function(){ alert("Hello"); }, 3000);
+            var i = 0;
+            setInterval(function(){
+                ctx.drawImage(wallImg, i + 10 * BLOCKSIZE, 10 * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                i+=10;
+            }, 2000);
         }
 
         function drawBoard() {
             for (var r = 0; r < ROWS; r++) {
                 for (var c = 0; c < COLS; c++) {
                     if (level.map[r][c] === 3) {
+
                         ctx.drawImage(wallImg, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+
                     }
                     else if (level.map[r][c] === 2) {
                         ctx.drawImage(fruitImg, 0, 0, BLOCKSIZE, BLOCKSIZE, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
