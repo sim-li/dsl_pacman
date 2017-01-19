@@ -23,9 +23,9 @@ public class Controller {
         codeGenerator.createJavaFile("AiMoves", new AiArrayStrategy());
         System.out.println("Finished code generation... starting game...");
         Game game = new Game(
-                GameFieldBuilder.createGameField(),
-                //PlayFieldBuilder.createPlayfield(),
-                AiMovesBuilder.createAiMoves()
+            GameFieldBuilder.createGameField(),
+            //PlayFieldBuilder.createPlayfield(),
+            AiMovesBuilder.createAiMoves()
         );
         game.play();
     }
