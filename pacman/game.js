@@ -24,7 +24,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
 
         var gridx = 10;
         var gridy = 10;
-        
+
+        var cur_point;
+
 
         function init() {
             $('#text').click(function () {
@@ -32,6 +34,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
                 $('#canvas-overlay').fadeOut('fast');
                 run();
             });
+            setPoint("init");
             document.onkeydown = getInput;
             imgLoader = new BulkImageLoader();
             imgLoader.addImage("cherry.png", "cherry");
@@ -39,7 +42,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
             imgLoader.addImage("Bitcoin.png", "Bitcoin");
             imgLoader.onReadyCallback = onImagesLoaded;
             imgLoader.loadImages();
-            ctx.clearRect(0, 0, 600, 600);
+
         }
 
         function onImagesLoaded() {
@@ -50,10 +53,12 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
             drawPac();
 //            var i = 0;
             setInterval(function () {
-              
+
 
                 ctx_pac.clearRect(0, 0, 600, 600);
                 drawPac();
+                drawGhost(8, 9);
+
 
             }, 25);
         }
@@ -67,7 +72,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
             var hungry = 2;
             var dead = 3;
             var state = alive;
-            
+
             ctx_pac.drawImage(wallImg, 0, 0, BLOCKSIZE, BLOCKSIZE, drawX * BLOCKSIZE, drawY * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
         }
 //funktion Ã¼berprÃ¼ft mÃ¶gliche bewegeung nach links, recht und unten
@@ -82,12 +87,13 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
                 result = false;
             }
 
-            if (level.map[newy] != undefined && level.map[newy][newx] != 0)
+            if (level.map[newy] != undefined && level.map[newy][newx] != 0 && level.map[newy][newx] != 1 && level.map[newy][newx] != 2)
             {
                 result = false;
             }
-            
-            
+
+
+
 
             if (newy < 0 || newy > ROWS)
             {
@@ -98,6 +104,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
         }
 
         function drawBoard() {
+            ctx.clearRect(0, 0, 600, 600);
             for (var r = 0; r < ROWS; r++) {
                 for (var c = 0; c < COLS; c++) {
                     if (level.map[r][c] === 3) {
@@ -118,6 +125,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
         function run() {
             isGameOver = false;
             console.log("Got run");
+            setPoint("fruit");
         }
         ;
 
@@ -134,34 +142,77 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
 //                            if (checkMove(curPiece.gridx - 1, curPiece.gridy, curPiece.curState))
 //                                curPiece.gridx--;
                         console.log("left");
-                          e.preventDefault();
-                    if (checkMove(gridx - 1, gridy))
-                        gridx--;
-                       
+                        e.preventDefault();
+                        if (checkMove(gridx - 1, gridy))
+                            gridx--;
+
                         break;
                     case 39:
 //                            if (checkMove(curPiece.gridx + 1, curPiece.gridy, curPiece.curState))
 //                                curPiece.gridx++;
                         console.log("right");
                         if (checkMove(gridx + 1, gridy))
-                        gridx++;
-                        
+                            gridx++;
+
                         break;
                     case 38:
                         console.log("up");
                         if (checkMove(gridx, gridy - 1))
-                        gridy--;
-                        
+                            gridy--;
+
                         break;
                     case 40:
-                           if (checkMove(gridx, gridy + 1))
-                        gridy++;
+                        if (checkMove(gridx, gridy + 1))
+                            gridy++;
                         console.log("down");
                         break;
                 }
+                getField()
             }
         }
+        function getField() {
+            var index = level.map[gridy][gridx];
+            if (index == 1 || index == 2)
+            {
+                level.map[gridy][gridx] = 0;
+                drawBoard();
+                if (index == 1)
+                    setPoint("point");
+                else
+                    setPoint("fruit");
+            }
+        }
+        ;
 
+        function drawGhost(g_gridx, g_gridy)
+        {
+            var drawX = 8;
+            var drawY = 8;
+
+
+            ctx_pac.drawImage(wallImg, 0, 0, BLOCKSIZE, BLOCKSIZE, drawX * BLOCKSIZE, drawY * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+        }
+
+        function setPoint(condition) {
+
+            switch (condition) {
+                case "init":
+                    cur_point = 0;
+                    break;
+                case "point":
+                    cur_point = cur_point + 10;
+                    break;
+                case "fruit":
+                    cur_point = cur_point + 100;
+                    break;
+                case "ghost":
+                    cur_point = cur_point + 200;
+                    break;
+                default:
+                    console.log("falsche Punkte vergabe");
+            }
+            $('#points').html(cur_point);
+        }
 
         function demoValue() {
             return 123;
