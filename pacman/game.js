@@ -1,4 +1,4 @@
-define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function (_, Ghost, Pac, level) {
+define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"], function (_, $, Ghost, Pac, level) {
     // Demonstrates pattern for creating class that can be instantiated with `new`.
     // Prototype has to be returned by module.
 
@@ -18,6 +18,11 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
         var pointImg;
 
         function init() {
+            $('#text').click(function () {
+                console.log("Got click");
+                $('#canvas-overlay').fadeOut('fast');
+                run();
+            });
             document.onkeydown = getInput;
             imgLoader = new BulkImageLoader();
             imgLoader.addImage("cherry.png", "cherry");
@@ -33,13 +38,13 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
             wallImg = imgLoader.getImageAtIndex(1);
             pointImg = imgLoader.getImageAtIndex(2);
             drawBoard();
+            //setInterval(function(){ alert("Hello"); }, 3000);
         }
 
         function drawBoard() {
             for (var r = 0; r < ROWS; r++) {
                 for (var c = 0; c < COLS; c++) {
                     if (level.map[r][c] === 3) {
-                        console.log("Wallimg", wallImg);
                         ctx.drawImage(wallImg, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
                     }
                     else if (level.map[r][c] === 2) {
@@ -54,6 +59,7 @@ define(["underscore", "figures/ghost", "figures/pac", "levels/level1"], function
 
         function run() {
             isGameOver = false;
+            console.log("Got run");
         };
 
 
