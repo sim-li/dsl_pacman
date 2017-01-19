@@ -29,7 +29,16 @@ define(["underscore", "constants"], function(_, constants) {
             }
         }
 
-        function drawPac() {
+        function getGridX() {
+            return gridX;
+        }
+
+        function getGridY() {
+            return gridY;
+        }
+
+
+        function draw() {
             ctx.clearRect(0, 0, 600, 600);
             ctx.drawImage(
                 images.pac, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
@@ -37,8 +46,10 @@ define(["underscore", "constants"], function(_, constants) {
         }
 
         return {
-            drawPac: drawPac,
-            move: move
+            draw: draw,
+            move: move,
+            getGridX: getGridX,
+            getGridY: getGridY
         };
     };
 

@@ -23,6 +23,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
 
         var gameBoard;
         var pac;
+        var ghost;
+
+        var cur_point;
 
 
         function init() {
@@ -30,7 +33,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 $('#canvas-overlay').fadeOut('fast');
                 run();
             });
-
+            setPoint("init");
             document.onkeydown = getInput;
             ctxGameboard.clearRect(0, 0, 600, 600);
 
@@ -56,21 +59,23 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
             gameBoard.drawBoard();
 
             pac = new Pac(ctxPac, { pac: wallImg }, gameBoard);
-            pac.drawPac();
+            ghost = new Ghost(ctxPac, { ghost: wallImg }, gameBoard);
+
+            //pac.draw();
 
             setInterval(updateOnInterval, 25);
         }
 
-
         function updateOnInterval() {
-            pac.drawPac();
+            pac.draw();
+            ghost.draw();
         }
-
 
         function run() {
             isGameOver = false;
             console.log("Got run");
-        };
+            setPoint("fruit");
+        }
 
         function getDirectionFromKeyEvent(e) {
             e.preventDefault();
@@ -88,18 +93,51 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
             var direction = getDirectionFromKeyEvent(e);
             if (isGameOver != true) {
                 pac.move(direction);
+                getField();
             }
         }
 
+        function getField() {
+            var level = gameBoard.getLevel();
+            var index = level.map[pac.getGridY()][pac.getGridX()];
+            if (index == 1 || index == 2) {
+                //
+                level.map[pac.getGridY()][pac.getGridX()] = 0;
+                gameBoard.drawBoard();
+                if (index == 1) {
+                    setPoint("point");
+                } else {
+                    setPoint("fruit");
+                }
+            }
+        };
 
-        function demoValue() {
-            return 123;
+
+
+        function setPoint(condition) {
+            switch (condition) {
+                case "init":
+                    cur_point = 0;
+                    break;
+                case "point":
+                    cur_point = cur_point + 10;
+                    break;
+                case "fruit":
+                    cur_point = cur_point + 100;
+                    break;
+                case "ghost":
+                    cur_point = cur_point + 200;
+                    break;
+                default:
+                    console.log("falsche Punkte vergabe");
+            }
+            $('#points').html(cur_point);
         }
+
 
         return {
             init: init,
-            run: run,
-            demoValue: demoValue
+            run: run
         }
     };
 

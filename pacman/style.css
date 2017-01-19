@@ -75,4 +75,20 @@ and open the template in the editor.
     transform: translateX(-50%);
     z-index: 1;
 }
+.hud{
+    position: absolute;
+    top: 0;
+    right: -200px;
+    z-index: 3;
+    width: 200px;
+    background-color: black;
+    color: white;
+}
+.hud div{
+    padding: 10px;
+    
+}
+.hud span{
+    margin-left: 10px;
+}
 

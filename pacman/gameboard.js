@@ -7,12 +7,13 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         function checkMove(xPos, yPos) {
             var exceedsLevelHorizontally = xPos < 0 || xPos >= COLS;
             var exceedsLevelVertically = yPos < 0 || yPos > ROWS;
-            var NO_OBJECT = 0;
-            var fieldIsBlocked = level.map[yPos] == undefined || level.map[yPos][xPos] != NO_OBJECT;
+            var WALL = 3;
+            var fieldIsBlocked = level.map[yPos] == undefined || level.map[yPos][xPos] == WALL;
             return !(fieldIsBlocked || exceedsLevelHorizontally || exceedsLevelVertically);
         }
 
         function drawBoard() {
+            ctx.clearRect(0, 0, 600, 600);
             for (var r = 0; r < ROWS; r++) {
                 for (var c = 0; c < COLS; c++) {
                     if (level.map[r][c] === 3) {
@@ -28,9 +29,14 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             }
         }
 
+        function getLevel() {
+            return level;
+        }
+
         return {
             checkMove: checkMove,
-            drawBoard: drawBoard
+            drawBoard: drawBoard,
+            getLevel: getLevel
         }
     };
 
