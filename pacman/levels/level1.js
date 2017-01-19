@@ -1,12 +1,10 @@
-define(["underscore"], function (_) {
-    var Level = function () {
-
-        Level.floor = 0;
-        Level.point = 1;
-        Level.fruit = 2;
-        Level.wall = 3;
-
-        Level.map = [
+define([], function () {
+    return {
+        floor: 0,
+        point: 1,
+        fruit: 2,
+        wall: 3,
+        map: [
             [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], //1
             [3, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3], //2
             [3, 1, 3, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3], //3
@@ -27,26 +25,7 @@ define(["underscore"], function (_) {
             [3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3], //18
             [3, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3], //19
             [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]  //20
-        ];
+        ]
+    }
 
-        function draw() {
-//            ctx.drawImage(bgImg, 0, 0, 320, 640, 0, 0, 320, 640);
-//            for (var r = 0; r < ROWS; r++)
-//            {
-//                for (var c = 0; c < COLS; c++)
-//                {
-//                    if (gameData[r][c] != 0)
-//                    {
-//                        ctx.drawImage(blockImg, (gameData[r][c] - 1) * SIZE, 0, SIZE, SIZE, c * SIZE, r * SIZE, SIZE, SIZE);
-//                    }
-//                }
-//            }
-//            console.log("hier passiert dass Zeichnen");
-        }
-        ;
-        return{
-            draw: draw
-        };
-    };
-    return Level;
 });

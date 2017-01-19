@@ -21,7 +21,7 @@ function BulkImageLoader()
 		if(this.loader.imagesLoaded == this.loader.images.length)
 		{
 			this.loader.isReady = true;
-			this.loader.onReadyCallback;
+			this.loader.onReadyCallback();
 		}
 	};
 	
