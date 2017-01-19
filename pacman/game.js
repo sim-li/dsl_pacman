@@ -7,10 +7,15 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
         var ROWS = 20;
         var COLS = 20;
         var canvas = document.getElementById('canvas');
+        var canvas_pac = document.getElementById('canvas2');
         canvas.setAttribute("width", (BLOCKSIZE * COLS) + "px");
         canvas.setAttribute("height", (BLOCKSIZE * ROWS) + "px");
+        canvas_pac.setAttribute("width", (BLOCKSIZE * COLS) + "px");
+        canvas_pac.setAttribute("height", (BLOCKSIZE * ROWS) + "px");
+        
 
         var ctx = canvas.getContext('2d');
+        var ctx_pac = canvas_pac.getContext('2d');
         var imgLoader;
         var isGameOver = false;
         var fruitImg;
@@ -40,9 +45,28 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
             drawBoard();
             var i = 0;
             setInterval(function(){
-                ctx.drawImage(wallImg, i + 10 * BLOCKSIZE, 10 * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
-                i+=10;
-            }, 2000);
+                var WIDTH = 600;
+                var HEIGHT = 600; 
+                
+                ctx_pac.clearRect(0, 0, WIDTH, HEIGHT);
+                
+                var oneRowInPx = HEIGHT / ROWS;
+                var oneColInPx = WIDTH / COLS;
+                
+                0123
+                202122
+                
+                min(i, )
+                
+                10 20 30 40 50 
+                
+                ctx_pac.drawImage(wallImg, i, 10 * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                i+=1;
+            }, 25);
+        }
+        
+        function checkMove(){
+            
         }
 
         function drawBoard() {
@@ -50,7 +74,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1"]
                 for (var c = 0; c < COLS; c++) {
                     if (level.map[r][c] === 3) {
 
-                        ctx.drawImage(wallImg, c * BLOCKSIZE, r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
+                        ctx.drawImage(wallImg, c * BLOCKSIZE , r * BLOCKSIZE, BLOCKSIZE, BLOCKSIZE);
 
                     }
                     else if (level.map[r][c] === 2) {
