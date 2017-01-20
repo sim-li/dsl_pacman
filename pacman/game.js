@@ -99,10 +99,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
 
                 function getField() {
                     var level = gameBoard.getLevel();
-                    var index = level.map[pac.getGridY()][pac.getGridX()];
+                    var index = level.map[pac.gridY()][pac.gridX()];
                     if (index == 1 || index == 2) {
                         //
-                        level.map[pac.getGridY()][pac.getGridX()] = 0;
+                        level.map[pac.gridY()][pac.gridX()] = 0;
                         gameBoard.drawBoard();
                         if (index == 1) {
                             setPoint("point");

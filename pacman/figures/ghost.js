@@ -84,11 +84,11 @@ define(["underscore", "constants"], function(_, constants) {
             ctx.drawImage(images.ghost, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
 
-        function getGridX() {
+        function gridX() {
             return gridX;
         }
 
-        function getGridY() {
+        function gridY() {
             return gridY;
         }
 
@@ -96,8 +96,8 @@ define(["underscore", "constants"], function(_, constants) {
         return {
             type: "ghost",
             draw: draw,
-            getGridX: getGridX,
-            getGridY: getGridY,
+            gridX: gridX,
+            gridY: gridY,
             move: move
         };
     };
