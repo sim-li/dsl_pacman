@@ -1,12 +1,11 @@
 define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1", "constants", "gameboard"],
-    function (_, $, Ghost, Pac, level, constants, GameBoard) {
+        function (_, $, Ghost, Pac, level, constants, GameBoard) {
 
             var Game = function () {
                 var BLOCK_SIZE = constants.BLOCK_SIZE;
                 var ROWS = constants.ROWS;
                 var COLS = constants.COLS;
                 var isGameOver = false;
-
                 // Canvases
                 var canvasGameboard = document.getElementById('canvas');
                 var canvasPac = document.getElementById('canvas2');
@@ -16,20 +15,14 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 canvasPac.setAttribute("height", (BLOCK_SIZE * ROWS) + "px");
                 var ctxGameboard = canvasGameboard.getContext('2d');
                 var ctxPac = canvasPac.getContext('2d');
-
                 var imgLoader;
-
                 var gameBoard;
                 var pac;
                 var ghost;
-
                 var cur_point;
                 var buttonPressed = false;
-
                 var direction;
                 var next_direction;
-
-
                 function init() {
                     $('#text').click(function () {
                         $('#canvas-overlay').fadeOut('fast');
@@ -38,112 +31,37 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     setPoint("init");
                     document.onkeydown = getInput;
                     ctxGameboard.clearRect(0, 0, 600, 600);
-
                     loadImages();
-
-        }
-
-        function loadImages() {
-            loadMultipleImages({
-                cherry: "cherry.png",
-                wall: "wall.png",
-                bitcoin: "bitcoin.png",
-                ghost: "images/ghost.png"
-            });
-        }
-
-        function loadMultipleImages(images) {
-            imgLoader = new BulkImageLoader();
-            _.each(_.pairs(images), function(img) {
-                imgLoader.addImage(img[1], img[0]);
-            });
-            imgLoader.onReadyCallback = onImagesLoaded;
-            imgLoader.loadImages();
-        }
-
-        function onImagesLoaded() {
-            var cherryImg = imgLoader.getImageAtIndex(0);
-            var wallImg = imgLoader.getImageAtIndex(1);
-            var pointImg = imgLoader.getImageAtIndex(2);
-            var ghostImg = imgLoader.getImageAtIndex(3);
-
-            gameBoard = new GameBoard(ctxGameboard, { wall: wallImg, point: pointImg, fruit: cherryImg });
-            gameBoard.drawBoard();
-
-            pac = new Pac(ctxPac, { pac: wallImg }, gameBoard);
-            ghost = new Ghost(ctxPac, { ghost: ghostImg }, gameBoard);
-
-            gameBoard.registerFigures(pac, ghost);
-
-            setInterval(updateOnInterval, 25);
-        }
-
-        function updateOnInterval() {
-            pac.draw();
-            ghost.move();
-            ghost.draw();
-
-        }
-
-        function run() {
-            isGameOver = false;
-            setPoint("fruit");
-        }
-
-        function getInput(e) {
-            var direction = getDirectionFromKeyEvent(e);
-            if (isGameOver != true) {
-                pac.move(direction);
-                getField();
-            }
-        }
-
-        function getDirectionFromKeyEvent(e) {
-            e.preventDefault();
-            var mapping = {
-                37: "LEFT",
-                38: "UP",
-                39: "RIGHT",
-                40: "DOWN"
-            }
-            return mapping[e.keyCode]
-
-        }
-
-        function getField() {
-            var level = gameBoard.getLevel();
-            var index = level.map[pac.getGridY()][pac.getGridX()];
-            if (index == 1 || index == 2) {
-                level.map[pac.getGridY()][pac.getGridX()] = 0;
-                gameBoard.drawBoard();
-                if (index == 1) {
-                    setPoint("point");
-                } else {
-                    setPoint("fruit");
                 }
 
                 function loadImages() {
+                    loadMultipleImages({
+                        cherry: "cherry.png",
+                        wall: "wall.png",
+                        bitcoin: "bitcoin.png",
+                        ghost: "images/ghost.png"
+                    });
+                }
+
+                function loadMultipleImages(images) {
                     imgLoader = new BulkImageLoader();
-                    imgLoader.addImage("cherry.png", "cherry");
-                    imgLoader.addImage("wall.png", "wall");
-                    imgLoader.addImage("Bitcoin.png", "Bitcoin");
+                    _.each(_.pairs(images), function (img) {
+                        imgLoader.addImage(img[1], img[0]);
+                    });
                     imgLoader.onReadyCallback = onImagesLoaded;
                     imgLoader.loadImages();
                 }
 
                 function onImagesLoaded() {
-                    fruitImg = imgLoader.getImageAtIndex(0);
-                    wallImg = imgLoader.getImageAtIndex(1);
-                    pointImg = imgLoader.getImageAtIndex(2);
-
-                    gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: fruitImg});
+                    var cherryImg = imgLoader.getImageAtIndex(0);
+                    var wallImg = imgLoader.getImageAtIndex(1);
+                    var pointImg = imgLoader.getImageAtIndex(2);
+                    var ghostImg = imgLoader.getImageAtIndex(3);
+                    gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg});
                     gameBoard.drawBoard();
-
                     pac = new Pac(ctxPac, {pac: wallImg}, gameBoard);
-                    ghost = new Ghost(ctxPac, {ghost: wallImg}, gameBoard);
-
-                    //pac.draw();
-
+                    ghost = new Ghost(ctxPac, {ghost: ghostImg}, gameBoard);
+                    gameBoard.registerFigures(pac, ghost);
                     setInterval(updateOnInterval, 100);
                 }
 
@@ -152,9 +70,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         direction = next_direction;
                     }
                     pac.move(direction);
-                    ghost1.move(random_direction);
                     getField();
                     pac.draw();
+                    ghost.move();
                     ghost.draw();
                 }
 
@@ -194,8 +112,6 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     }
                 }
                 ;
-
-
                 function setPoint(condition) {
                     switch (condition) {
                         case "init":
@@ -222,6 +138,5 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     run: run
                 }
             };
-
             return Game;
         });
