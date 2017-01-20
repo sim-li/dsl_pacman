@@ -28,6 +28,31 @@ define(["underscore", "constants"], function(_, constants) {
                     break;
             }
         }
+        
+        function next_move(next_direction) {
+            switch (next_direction) {
+                case "LEFT":
+                    if (gameBoard.checkMove(gridX - 1, gridY)) {
+                        return true;
+                    }
+                    break;
+                case "RIGHT":
+                    if (gameBoard.checkMove(gridX + 1, gridY)) {
+                        return true;
+                    }
+                    break;
+                case "UP":
+                    if (gameBoard.checkMove(gridX, gridY - 1)) {
+                        return true;
+                    }
+                    break;
+                case "DOWN":
+                    if (gameBoard.checkMove(gridX, gridY + 1)) {
+                        return true;
+                    }
+                    break;
+            }
+        }
 
         function getGridX() {
             return gridX;
@@ -48,6 +73,7 @@ define(["underscore", "constants"], function(_, constants) {
         return {
             draw: draw,
             move: move,
+            next_move: next_move,
             getGridX: getGridX,
             getGridY: getGridY
         };
