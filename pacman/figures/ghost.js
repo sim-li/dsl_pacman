@@ -5,7 +5,6 @@ define(["underscore", "constants"], function (_, constants) {
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
-
         var currentDirection = "up";
 
         function move() {
@@ -78,7 +77,9 @@ define(["underscore", "constants"], function (_, constants) {
 
         function draw() {
             ctx.drawImage(images.ghost, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+
         }
+
 
         function getGridX() {
             return gridX;
