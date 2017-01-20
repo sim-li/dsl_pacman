@@ -154,9 +154,21 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                             console.log("Hilfe Geist");
                             pac.gotKilled();
                             setPoint("killed");
+                            reset();
 
                         }
                     }
+                }
+                ;
+
+                function reset() {
+                    pac.resetPos();
+                    ghost1.resetPos();
+                    ghost2.resetPos();
+                    ghost3.resetPos();
+                    ghost4.resetPos();
+                    direction = 0;
+                    next_direction = 0;
                 }
                 ;
 
@@ -189,7 +201,8 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
 
                 return {
                     init: init,
-                    run: run
+                    run: run,
+                    reset: reset
                 }
             };
             return Game;

@@ -2,6 +2,8 @@ define(["underscore", "constants"], function (_, constants) {
     var Pac = function (ctx, images, gameBoard) {
         var gridX = 10;
         var gridY = 10;
+        var gridX_initial = gridX;
+        var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var isHungry = false;
         lifecount = 3;
@@ -31,6 +33,11 @@ define(["underscore", "constants"], function (_, constants) {
                     }
                     break;
             }
+        }
+        
+        function resetPos(){
+            gridX = gridX_initial;
+            gridY = gridY_initial;
         }
 
         function next_move(next_direction) {
@@ -81,7 +88,7 @@ define(["underscore", "constants"], function (_, constants) {
         function gotKilled() {
 
 
-            alert("pac died");
+            
         }
 
         function draw() {
@@ -117,7 +124,8 @@ define(["underscore", "constants"], function (_, constants) {
             gridY: getGridY,
             hungry: hungry,
             isHungry: getIsHungry,
-            gotKilled: gotKilled
+            gotKilled: gotKilled,
+            resetPos: resetPos
         };
     };
 

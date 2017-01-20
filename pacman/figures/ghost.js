@@ -2,6 +2,8 @@ define(["underscore", "constants"], function (_, constants) {
     var Ghost = function (ctx, images, gameBoard) {
         var gridX = 8;
         var gridY = 9;
+        var gridX_initial = gridX;
+        var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
 
         var currentDirection = "up";
@@ -42,7 +44,7 @@ define(["underscore", "constants"], function (_, constants) {
                 left: [gridX - 1, gridY],
                 right: [gridX + 1, gridY]
             };
-            var freeMoves = _.filter(bunchOfMoves, function(m) {
+            var freeMoves = _.filter(bunchOfMoves, function (m) {
                 return checkMove(nextCoordinate[m]);
             });
             var currentDirectionFree = _.contains(freeMoves, currentDirection);
@@ -67,6 +69,11 @@ define(["underscore", "constants"], function (_, constants) {
 
         function checkMove(p) {
             return gameBoard.checkMove(p[0], p[1]);
+        }
+
+        function resetPos() {
+            gridX = gridX_initial;
+            gridY = gridY_initial;
         }
 
         function draw() {
@@ -97,7 +104,8 @@ define(["underscore", "constants"], function (_, constants) {
             gridX: getGridX,
             gridY: getGridY,
             move: move,
-            eaten: eaten
+            eaten: eaten,
+            resetPos:resetPos
         };
     };
 
