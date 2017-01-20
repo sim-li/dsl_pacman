@@ -1,7 +1,7 @@
 define(["figures/ghost"], function(Ghost) {
     describe("Ghost", function() {
-        describe("xyz", function() {
-            it("zzz", function() {
+        describe("", function() {
+            it("", function() {
                 expect(true).toBe(true);
             });
         });

@@ -29,6 +29,7 @@ define(["underscore", "constants"], function (_, constants) {
                     }
                     break;
             }
+            draw();
         }
 
         function next_move(next_direction) {
@@ -76,16 +77,14 @@ define(["underscore", "constants"], function (_, constants) {
         };
         
         function gotKilled(){
-           
-            
-            alert("pac died");
+            console.log("pac died");
         }
 
         function draw() {
             ctx.clearRect(0, 0, 600, 600);
             ctx.drawImage(
-                    images.pac, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
-                    );
+                images.pac, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
+            );
         }
 
         return {

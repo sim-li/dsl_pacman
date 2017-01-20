@@ -1,5 +1,5 @@
 define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, constants, level) {
-    var GameBoard = function (ctx, images) {
+    var GameBoard = function (ctx, images, setPoint) {
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
@@ -20,6 +20,45 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         //
         //}
 
+        function checkPacsEating() {
+            var pac = figures.pac;
+            var index = level.map[pac.gridY()][pac.gridX()];
+            if (index == 1 || index == 2) {
+                level.map[pac.gridY()][pac.gridX()] = 0;
+                drawBoard();
+                if (index == 1) {
+                    setPoint("point");
+                } else {
+                    setPoint("fruit");
+                    pac.hungry();
+                }
+            }
+        }
+
+        function checkKills() {
+            var pac = figures.pac;
+            var ghostHittingPac = getGhostHittingPac();
+            if (!_.isUndefined(ghostHittingPac)) {
+                if (pac.isHungry()) {
+                    ghostHittingPac.eaten();
+                    setPoint("ghost");
+                } else {
+                    pac.gotKilled();
+                    setPoint("killed");
+                }
+            }
+        }
+
+        function getGhostHittingPac() {
+            var pac = _.filter(figures, function(f) {
+                return f.type === "pac";
+            })[0]
+            return _.each(_.without(figures, pac), function(f) {
+                if(f.gridX() === pac.gridX() && f.gridY() == pac.gridY()) {
+                    return f;
+                }
+            })[0];
+        }
 
         function checkMove(xPos, yPos) {
             var exceedsLevelHorizontally = xPos < 0 || xPos >= COLS;
@@ -52,7 +91,9 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         return {
             registerFigures: registerFigures,
+            getGhostHittingPac: getGhostHittingPac,
             checkMove: checkMove,
+            checkKills: checkKills,
             drawBoard: drawBoard,
             getLevel: getLevel
         }

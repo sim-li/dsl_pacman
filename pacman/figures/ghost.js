@@ -58,6 +58,7 @@ define(["underscore", "constants"], function (_, constants) {
                 currentDirection = _.without(freeMoves, currentDirection)[0];
             }
             moveTo(nextCoordinate[currentDirection]);
+            draw();
         }
 
         function moveTo(coordTuple) {

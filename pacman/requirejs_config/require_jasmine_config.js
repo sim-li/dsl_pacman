@@ -24,10 +24,10 @@ require.config({
 
 require(['jasmine-boot'], function () {
   require([
-    './game.specs',
-    './figures/ghost.specs',
-    './figures/pac.specs',
-    './levels/level1.specs',
+    './gameboard.specs',
+    //'./figures/ghost.specs',
+    //'./figures/pac.specs',
+    //'./levels/level1.specs',
   ], function(){
     //trigger Jasmine
     window.onload();
