@@ -4,7 +4,7 @@ define(["underscore", "constants"], function(_, constants) {
         var gridY = 9;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
 
-        var direction = "up";
+        var currentDirection = "up";
 
         function move() {
             var randomWalkStrategy = {
@@ -47,8 +47,10 @@ define(["underscore", "constants"], function(_, constants) {
                 ]
             };
 
-            var bunchOfMoves = randomWalkStrategy[direction];
+            // Moves for the current walking dirction
+            var bunchOfMoves = randomWalkStrategy[currentDirection];
 
+            // Calc possible next coordinate
             var nextCoordinate = {
                 up: [gridX, gridY - 1],
                 down: [gridX, gridY + 1],
@@ -56,19 +58,26 @@ define(["underscore", "constants"], function(_, constants) {
                 right: [gridX + 1, gridY]
             };
 
-            var freeDirections = _.mapObject(nextCoordinate, function(coordinate) {
-                return checkMove(coordinate);
+            // Only free moves of bunchOfMoves
+            var freeMoves = _.filter(bunchOfMoves, function(m) {
+                return checkMove(nextCoordinate[m]);
             });
 
-            _.every(bunchOfMoves, function (m) {
-                if(freeDirections[m] === true) {
-                    moveTo(nextCoordinate[m]);
-                    direction = m;
-                    return false;
+            var currentDirectionFree = _.contains(freeMoves, currentDirection);
+            var oppositeDirection = _.last(bunchOfMoves);
+
+            var tryOtherDirection = Math.random() >= 0.8;
+
+            if (currentDirectionFree) {
+                var withoutOpposite = _.without(freeMoves, currentDirection, oppositeDirection);
+                if (tryOtherDirection && withoutOpposite.length > 0) {
+                    var randomDirection = _.sample(withoutOpposite);
+                    currentDirection = randomDirection;
                 }
-                return true;
-            });
-
+            } else {
+                currentDirection = _.without(freeMoves, currentDirection)[0];
+            }
+            moveTo(nextCoordinate[currentDirection]);
         }
 
         function moveTo(coordTuple) {
