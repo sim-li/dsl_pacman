@@ -1,5 +1,5 @@
-define(["underscore", "constants"], function(_, constants) {
-    var Ghost = function(ctx, images, gameBoard) {
+define(["underscore", "constants"], function (_, constants) {
+    var Ghost = function (ctx, images, gameBoard) {
         var gridX = 8;
         var gridY = 9;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -10,39 +10,29 @@ define(["underscore", "constants"], function(_, constants) {
             var randomWalkStrategy = {
                 up: [
                     "up",
-
                     "left",
                     "right",
-
                     "down"
                 ],
-
                 down: [
                     "down",
-
                     "left",
                     "right",
-
                     "up"
                 ],
-
                 left: [
                     "left",
-
                     "up",
                     "down",
-
                     "right"
 
                 ],
-
                 right: [
                     "right", // Random: Go to (up, down) if one of them free.
 
                     // Random if both work
                     "up",
                     "down",
-
                     "left"
                 ]
             };
@@ -56,12 +46,12 @@ define(["underscore", "constants"], function(_, constants) {
                 right: [gridX + 1, gridY]
             };
 
-            var freeDirections = _.mapObject(nextCoordinate, function(coordinate) {
+            var freeDirections = _.mapObject(nextCoordinate, function (coordinate) {
                 return checkMove(coordinate);
             });
 
             _.every(bunchOfMoves, function (m) {
-                if(freeDirections[m] === true) {
+                if (freeDirections[m] === true) {
                     moveTo(nextCoordinate[m]);
                     direction = m;
                     return false;
@@ -92,13 +82,23 @@ define(["underscore", "constants"], function(_, constants) {
             return gridY;
         }
 
+        function eaten() {
+            gridX = -10;
+            gridY = -10;
+            setTimeout(function () {
+                gridX = 10;
+                gridY = 10;
+            }, 10000);
+        }
+
 
         return {
             type: "ghost",
             draw: draw,
             gridX: getGridX,
             gridY: getGridY,
-            move: move
+            move: move,
+            eaten: eaten
         };
     };
 

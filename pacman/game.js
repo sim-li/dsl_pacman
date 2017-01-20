@@ -20,6 +20,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var pac;
                 var ghost;
                 var cur_point;
+                var cur_life;
                 var buttonPressed = false;
                 var direction;
                 var next_direction;
@@ -62,21 +63,29 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     pac = new Pac(ctxPac, {pac: wallImg}, gameBoard);
                     ghost = new Ghost(ctxPac, {ghost: ghostImg}, gameBoard);
                     gameBoard.registerFigures(pac, ghost);
-                    setInterval(updateOnInterval, 100);
+
                 }
 
                 function updateOnInterval() {
-                    if (pac.next_move(next_direction)) {
-                        direction = next_direction;
+                    if (isGameOver == false) {
+                        if (pac.next_move(next_direction)) {
+                            direction = next_direction;
+                        }
+                        pac.move(direction);
+                        getField();
+                        pac.draw();
+                        ghost.move();
+                        ghost.draw();
                     }
-                    pac.move(direction);
-                    getField();
-                    pac.draw();
-                    ghost.move();
-                    ghost.draw();
+                    else {
+                        $('#canvas-overlay').fadeIn('fast');
+                        
+                    }
+
                 }
 
                 function run() {
+                    setInterval(updateOnInterval, 100);
                     isGameOver = false;
                     console.log("Got run");
                 }
@@ -108,14 +117,30 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                             setPoint("point");
                         } else {
                             setPoint("fruit");
+                            pac.hungry();
+                        }
+                    }
+                    if (pac.gridX() == ghost.gridX() && pac.gridY() == ghost.gridY()) {
+                        if (pac.isHungry()) {
+                            console.log("Hallo Geist");
+                            ghost.eaten();
+                            setPoint("ghost");
+                        }
+                        else {
+                            console.log("Hilfe Geist");
+                            pac.gotKilled();
+                            setPoint("killed");
+
                         }
                     }
                 }
                 ;
+
                 function setPoint(condition) {
                     switch (condition) {
                         case "init":
                             cur_point = 0;
+                            cur_life = 3;
                             break;
                         case "point":
                             cur_point = cur_point + 10;
@@ -125,11 +150,16 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                             break;
                         case "ghost":
                             cur_point = cur_point + 200;
+                        case "killed":
+                            cur_life = cur_life - 1;
+                            if (cur_life == 0)
+                                isGameOver = true;
                             break;
                         default:
                             console.log("falsche Punkte vergabe");
                     }
                     $('#points').html(cur_point);
+                    $('#lifes').html(cur_life);
                 }
 
 
