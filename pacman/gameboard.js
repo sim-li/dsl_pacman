@@ -3,6 +3,23 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
+        var figures = {};
+
+        function registerFigures() {
+            _.each(arguments, function(arg) {
+                figures[arg.type] = arg;
+            })
+        }
+
+        //function getPacPosition() {
+        //
+        //}
+
+        //
+        //function getDistanceToPac() {
+        //
+        //}
+
 
         function checkMove(xPos, yPos) {
             var exceedsLevelHorizontally = xPos < 0 || xPos >= COLS;
@@ -34,6 +51,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         }
 
         return {
+            registerFigures: registerFigures,
             checkMove: checkMove,
             drawBoard: drawBoard,
             getLevel: getLevel

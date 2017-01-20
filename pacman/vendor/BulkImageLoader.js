@@ -4,6 +4,7 @@ function BulkImageLoader()
 	this.imagesLoaded = 0;
 	this.isReady = false;
 	this.onReadyCallback = function() { throw new Error("BulkImageLoader.onReadyCallback was not set"); };
+
 	this.onProgressCallback = function() 
 	{
 		var result;
@@ -50,11 +51,8 @@ function BulkImageLoader()
 		{
 			if( this.images[i].imgName == name )
 			{
-				img = this.images[i].image;
-				i = len;
+				return this.images[i].image;
 			}
 		}
-		
-		return img;
-	}	
+	}
 }

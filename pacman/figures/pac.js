@@ -46,6 +46,7 @@ define(["underscore", "constants"], function(_, constants) {
         }
 
         return {
+            type: "pac",
             draw: draw,
             move: move,
             getGridX: getGridX,
