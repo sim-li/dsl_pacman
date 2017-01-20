@@ -5,6 +5,8 @@ define(["underscore", "constants"], function (_, constants) {
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var isHungry = false;
         lifecount = 3;
+        var curImage = "pac";
+        var timer = 0;
 
         function move(direction) {
             switch (direction) {
@@ -73,19 +75,37 @@ define(["underscore", "constants"], function (_, constants) {
             setTimeout(function () {
                 isHungry = false;
             }, 7000);
-        };
-        
-        function gotKilled(){
-           
-            
+        }
+        ;
+
+        function gotKilled() {
+
+
             alert("pac died");
         }
 
         function draw() {
             ctx.clearRect(0, 0, 600, 600);
+
             ctx.drawImage(
-                    images.pac, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
+                    images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
                     );
+            changeImage();
+
+
+
+        }
+        function changeImage() {
+            timer = timer + 1;
+            if(timer == 2) {
+                timer = 0;
+                if (curImage == "pac") {
+                    curImage = "pac2"
+                } else {
+                    curImage = "pac"
+                }
+            }
+
         }
 
         return {
@@ -97,7 +117,7 @@ define(["underscore", "constants"], function (_, constants) {
             gridY: getGridY,
             hungry: hungry,
             isHungry: getIsHungry,
-            gotKilled:gotKilled
+            gotKilled: gotKilled
         };
     };
 

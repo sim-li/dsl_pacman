@@ -48,7 +48,8 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         ghost2: "images/ghost2.jpg",
                         ghost3: "images/ghost3.jpg",
                         ghost4: "images/ghost4.jpg",
-                        pac: "images/pac.png"
+                        pac: "pac.png",
+                        pac_test: "pac_test.png"
                     });
                 }
 
@@ -70,9 +71,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     var ghost3Img = imgLoader.getImageAtIndex(5);
                     var ghost4Img = imgLoader.getImageAtIndex(6);
                     var pacImg = imgLoader.getImageAtIndex(7);
+                    var pacImg2 = imgLoader.getImageAtIndex(8);
                     gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg});
                     gameBoard.drawBoard();
-                    pac = new Pac(ctxPac, {pac: pacImg}, gameBoard);
+                    pac = new Pac(ctxPac, {pac: pacImg, pac2: pacImg2}, gameBoard);
                     ghost1 = new Ghost(ctxPac, {ghost: ghost1Img}, gameBoard);
                     ghost2 = new Ghost(ctxPac, {ghost: ghost2Img}, gameBoard);
                     ghost3 = new Ghost(ctxPac, {ghost: ghost3Img}, gameBoard);
