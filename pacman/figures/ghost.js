@@ -10,64 +10,47 @@ define(["underscore", "constants"], function(_, constants) {
             var randomWalkStrategy = {
                 up: [
                     "up",
-
                     "left",
                     "right",
-
                     "down"
                 ],
 
                 down: [
                     "down",
-
                     "left",
                     "right",
-
                     "up"
                 ],
 
                 left: [
                     "left",
-
                     "up",
                     "down",
-
                     "right"
 
                 ],
 
                 right: [
-                    "right", // Random: Go to (up, down) if one of them free.
-
-                    // Random if both work
+                    "right",
                     "up",
                     "down",
-
                     "left"
                 ]
             };
 
-            // Moves for the current walking dirction
             var bunchOfMoves = randomWalkStrategy[currentDirection];
-
-            // Calc possible next coordinate
             var nextCoordinate = {
                 up: [gridX, gridY - 1],
                 down: [gridX, gridY + 1],
                 left: [gridX - 1, gridY],
                 right: [gridX + 1, gridY]
             };
-
-            // Only free moves of bunchOfMoves
             var freeMoves = _.filter(bunchOfMoves, function(m) {
                 return checkMove(nextCoordinate[m]);
             });
-
             var currentDirectionFree = _.contains(freeMoves, currentDirection);
             var oppositeDirection = _.last(bunchOfMoves);
-
             var tryOtherDirection = Math.random() >= 0.8;
-
             if (currentDirectionFree) {
                 var withoutOpposite = _.without(freeMoves, currentDirection, oppositeDirection);
                 if (tryOtherDirection && withoutOpposite.length > 0) {
