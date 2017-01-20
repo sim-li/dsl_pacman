@@ -54,11 +54,11 @@ define(["underscore", "constants"], function(_, constants) {
             }
         }
 
-        function gridX() {
+        function getGridX() {
             return gridX;
         }
 
-        function gridY() {
+        function getGridY() {
             return gridY;
         }
 
@@ -75,8 +75,8 @@ define(["underscore", "constants"], function(_, constants) {
             draw: draw,
             move: move,
             next_move: next_move,
-            gridX: gridX,
-            gridY: gridY
+            gridX: getGridX,
+            gridY: getGridY
         };
     };
 
