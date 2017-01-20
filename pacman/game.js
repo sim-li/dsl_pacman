@@ -78,7 +78,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     ghost3 = new Ghost(ctxPac, {ghost: ghost3Img}, gameBoard);
                     ghost4 = new Ghost(ctxPac, {ghost: ghost4Img}, gameBoard);
                     gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
-                    setInterval(updateOnInterval, 100);
+
                 }
 
                 function updateOnInterval() {
@@ -89,20 +89,21 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         pac.move(direction);
                         getField();
                         pac.draw();
-                        ghost.move();
-                        ghost.draw();
+                        ghost1.move();
+                        ghost1.draw();
+                        ghost2.move();
+                        ghost2.draw();
+                        ghost3.move();
+                        ghost3.draw();
+                        ghost4.move();
+                        ghost4.draw();
                     }
-                    pac.move(direction);
-                    getField();
-                    pac.draw();
-                    ghost1.move();
-                    ghost1.draw();
-                    ghost2.move();
-                    ghost2.draw();
-                    ghost3.move();
-                    ghost3.draw();
-                    ghost4.move();
-                    ghost4.draw();
+                    else {
+                        $('#canvas-overlay').fadeIn('fast');
+
+                    }
+
+
                 }
 
                 function run() {
@@ -141,10 +142,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                             pac.hungry();
                         }
                     }
-                    if (pac.gridX() == ghost.gridX() && pac.gridY() == ghost.gridY()) {
+                    if (pac.gridX() == ghost1.gridX() && pac.gridY() == ghost1.gridY()) {
                         if (pac.isHungry()) {
                             console.log("Hallo Geist");
-                            ghost.eaten();
+                            ghost1.eaten();
                             setPoint("ghost");
                         }
                         else {
