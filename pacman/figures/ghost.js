@@ -56,11 +56,14 @@ define(["underscore", "constants"], function(_, constants) {
                 right: [gridX + 1, gridY]
             };
 
+            var freeDirections = _.mapObject(nextCoordinate, function(coordinate) {
+                return checkMove(coordinate);
+            });
+
             _.every(bunchOfMoves, function (m) {
-                if (checkMove(nextCoordinate[m])) {
+                if(freeDirections[m] === true) {
                     moveTo(nextCoordinate[m]);
                     direction = m;
-                    //break loop
                     return false;
                 }
                 return true;
@@ -81,11 +84,20 @@ define(["underscore", "constants"], function(_, constants) {
             ctx.drawImage(images.ghost, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
 
+        function getGridX() {
+            return gridX;
+        }
+
+        function getGridY() {
+            return gridY;
+        }
+
+
         return {
             type: "ghost",
             draw: draw,
-            gridX: gridX,
-            gridY: gridY,
+            getGridX: getGridX,
+            getGridY: getGridY,
             move: move
         };
     };
