@@ -1,0 +1,62 @@
+!! (action/state)
+: (information query to the game)
+* (repeat)
+? (until)
+| (or)
+& (and)
+[ ] (parameter)
+{ } block
+# Kommentar
+
+
+
+predefined functions:
+    move
+    turn_to
+    queries:
+    friend.hit
+    friend.spotted
+    friend.position
+    friend.distance
+    enemy.hit
+    enemy.spotted
+    enemy.position
+    enemy.unlocked_position (Gegner weiss “magisch” wie die Position ist)
+    enemy.distance
+    attacktime
+
+    !! tell_friends
+
+    # Not jet implemented
+    # Angriffsaction eines Computerspielers, { definiert den Blockanfang
+    !! attack {
+        # Vordefinierte Funktion turn_to wird aufgerufen, Parameter ist die per Query ausgelesende
+        # Position des Gegners
+        turn_to[:enemy_position]
+        # Hier wird eine Schleife beschrieben, vordefinierte Funktion move wird mit Gegenerposition als
+        # Parameter aufgerufen, bis dieser getroffen ist, oder andere Kriterien (durch queries Überprüft)
+        # erfüllt sind.
+        # Abbruchbedingung
+        *move[:enemy.unlocked_position] ? :enemy.hit | (:enemy.distance > 10 & :attacktime > 10) {
+        # Diese Aktion wird innerhalb der Schleife ausgeführt, dessen Scope wird wieder durch geschweifte
+        # Klammern definiert.
+        tell_friends
+}
+# Search for target Aktion wird aufgerufen, ebenso wie search for target wieder attack aufrufen würde
+search_for_target
+}
+!! search_for_target {
+# Diese Schleife wird ohne Aktion durchgeführt, wenn/dann Logik: wenn Gegner gesehen, angreifen.
+*move ? :enemy.spotted
+attack
+
+
+
+
+-> <- => <=
+
+?{
+
+}
+
+up, { left, right }, down
