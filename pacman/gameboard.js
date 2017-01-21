@@ -3,6 +3,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
+        var level_reset = level.map;
         var figures = {};
 
         function registerFigures() {
@@ -84,6 +85,10 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                 }
             }
         }
+        
+        function resetLevel(){
+            level.map = level_reset;
+        }
 
         function getLevel() {
             return level;
@@ -96,6 +101,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             checkKills: checkKills,
             checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
+            resetLevel: resetLevel,
             getLevel: getLevel
         }
     };
