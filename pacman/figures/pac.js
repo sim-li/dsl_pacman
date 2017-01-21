@@ -1,7 +1,7 @@
 define(["underscore", "constants"], function (_, constants) {
     var Pac = function (ctx, images, gameBoard) {
         var gridX = 10;
-        var gridY = 10;
+        var gridY = 11;
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -9,27 +9,36 @@ define(["underscore", "constants"], function (_, constants) {
         lifecount = 3;
         var curImage = "pac";
         var timer = 0;
+        var degree = 0;
+        var mirror = false;
 
         function move(direction) {
             switch (direction) {
                 case "LEFT":
                     if (gameBoard.checkMove(gridX - 1, gridY)) {
                         gridX--;
+                        degree = 180;
+                        mirror = true;
+
                     }
                     break;
                 case "RIGHT":
                     if (gameBoard.checkMove(gridX + 1, gridY)) {
                         gridX++;
+                        degree = 0;
+                        mirror = false;
                     }
                     break;
                 case "UP":
                     if (gameBoard.checkMove(gridX, gridY - 1)) {
                         gridY--;
+                        degree = 270;
                     }
                     break;
                 case "DOWN":
                     if (gameBoard.checkMove(gridX, gridY + 1)) {
                         gridY++;
+                        degree = 90;
                     }
                     break;
             }
@@ -83,9 +92,23 @@ define(["underscore", "constants"], function (_, constants) {
             setTimeout(function () {
                 isHungry = false;
             }, 7000);
-        };
+        }
 
         function gotKilled() {
+        }
+
+        function rotate() {
+            ctx.save()
+            ctx.translate((gridX * BLOCK_SIZE+15), (gridY * BLOCK_SIZE+15));
+            ctx.rotate(degree*Math.PI/180);
+            if (mirror == true) {
+                ctx.scale(1, -1);
+            }
+            ctx.translate(-((gridX * BLOCK_SIZE)+15), -((gridY * BLOCK_SIZE)+15));
+            ctx.drawImage(
+                images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
+            );
+            ctx.restore();
         }
 
         function draw() {
@@ -95,11 +118,8 @@ define(["underscore", "constants"], function (_, constants) {
             ctx.drawImage(
                 images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
             );
-
+            rotate();
             changeImage();
-
-
-
         }
 
         function changeImage() {
