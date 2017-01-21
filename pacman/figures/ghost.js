@@ -1,7 +1,7 @@
 define(["underscore", "constants"], function (_, constants) {
-    var Ghost = function (ctx, images, gameBoard) {
-        var gridX = 8;
-        var gridY = 9;
+    var Ghost = function (ctx, gridX, gridY, images, gameBoard) {
+        var gridX = gridX;
+        var gridY = gridY;
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;

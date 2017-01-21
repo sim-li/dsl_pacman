@@ -1,7 +1,7 @@
 define(["underscore", "constants"], function (_, constants) {
-    var Pac = function (ctx, images, gameBoard) {
-        var gridX = 10;
-        var gridY = 11;
+    var Pac = function (ctx, gridX, gridY, images, gameBoard) {
+        var gridX = gridX;
+        var gridY = gridY;
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -95,6 +95,7 @@ define(["underscore", "constants"], function (_, constants) {
         }
 
         function gotKilled() {
+            // TODO: To be implemented, remove if unnecessary
         }
 
         function rotate() {

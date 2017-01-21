@@ -51,7 +51,8 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                     setPoint("ghost");
                     console.log("Pac ate ghost");
                 } else {
-                    pac.gotKilled();
+                    //pac.gotKilled();
+                    reset();
                     setPoint("killed");
                     console.log("Pac got killed");
                 }
@@ -101,6 +102,13 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             return level;
         }
 
+
+        function reset() {
+            _.each(figures, function(f) {
+                f.resetPos();
+            });
+        }
+
         function resetLevel() {
             level.map = levelReset;
         }
@@ -113,7 +121,8 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
             getLevel: getLevel,
-            resetLevel: resetLevel
+            resetLevel: resetLevel,
+            reset: reset
         }
     };
 
