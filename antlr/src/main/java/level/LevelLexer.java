@@ -1,14 +1,19 @@
-// Generated from Field.g4 by ANTLR 4.5.3
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.CharStream;
+// Generated from ./level/Level.g4 by ANTLR 4.6
+
+    package level;
+
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class FieldLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.5.3", RuntimeMetaData.VERSION); }
+public class LevelLexer extends Lexer {
+	static { RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -63,13 +68,13 @@ public class FieldLexer extends Lexer {
 	}
 
 
-	public FieldLexer(CharStream input) {
+	public LevelLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Field.g4"; }
+	public String getGrammarFileName() { return "Level.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

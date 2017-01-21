@@ -1,52 +1,54 @@
-package csv;// Generated from ./CSV.g4 by ANTLR 4.5.3
+// Generated from ./level/Level.g4 by ANTLR 4.6
+
+    package level;
+
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 /**
- * This class provides an empty implementation of {@link CSVListener},
+ * This class provides an empty implementation of {@link LevelListener},
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
-public class CSVBaseListener implements CSVListener {
-
+public class LevelBaseListener implements LevelListener {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFile(CSVParser.FileContext ctx) { }
+	@Override public void enterField(LevelParser.FieldContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFile(CSVParser.FileContext ctx) { }
+	@Override public void exitField(LevelParser.FieldContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRow(CSVParser.RowContext ctx) { }
+	@Override public void enterRow(LevelParser.RowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRow(CSVParser.RowContext ctx) { }
+	@Override public void exitRow(LevelParser.RowContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValue(CSVParser.ValueContext ctx) { }
+	@Override public void enterValue(LevelParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValue(CSVParser.ValueContext ctx) { }
+	@Override public void exitValue(LevelParser.ValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -1,8 +1,10 @@
 NAME="AiBaseListener.java"
+PREFIX="Level"
+
 ex -sc '1i|package ai;' -cx $NAME
-NAME="AiLexer.java"
+NAME="${PREFIX}Lexer.java"
 ex -sc '1i|package ai;' -cx $NAME
-NAME="AiListener.java"
+NAME="${PREFIX}Listener.java"
 ex -sc '1i|package ai;' -cx $NAME
-NAME="AiParser.java"
+NAME="${PREFIX}Parser.java"
 ex -sc '1i|package ai;' -cx $NAME

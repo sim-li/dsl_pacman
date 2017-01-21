@@ -8,7 +8,6 @@ import codegenerator.GameboardArrayStrategy;
 import generatedSources.AiMovesBuilder;
 import generatedSources.GameFieldBuilder;
 import generatedSources.AiMovesBuilder;
-
 import java.io.IOException;
 
 public class Controller {
