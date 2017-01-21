@@ -1,10 +1,8 @@
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.FileReader;
-import java.io.IOException;
 
 public class Codegen extends FieldBaseListener {
 

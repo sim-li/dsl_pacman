@@ -30,7 +30,6 @@ public class GameFieldParsingExecutor extends FIELDBaseListener {
         } catch (Exception ex) {
             System.err.println("Error reading playfield " +ex);
         }
-
         return null;
     }
 
