@@ -1,7 +1,6 @@
 // Generated from ./level/Level.g4 by ANTLR 4.6
 
-    package level;
-
+package level;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;

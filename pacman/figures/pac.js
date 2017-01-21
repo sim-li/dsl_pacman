@@ -6,7 +6,6 @@ define(["underscore", "constants"], function (_, constants) {
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var isHungry = false;
-        lifecount = 3;
         var curImage = "pac";
         var timer = 0;
         var degree = 0;

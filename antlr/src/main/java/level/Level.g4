@@ -3,7 +3,6 @@ grammar Level;
     package level;
 }
 
-
 field       : row* EOF ;
 
 row         : value (Separator value)* (LineBreak | EOF) ;
