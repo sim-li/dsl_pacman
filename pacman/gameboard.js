@@ -98,6 +98,10 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             return level;
         }
 
+        function resetLevel() {
+            level.map = level_reset;
+        }
+
         return {
             registerFigures: registerFigures,
             getGhostHittingPac: getGhostHittingPac,
@@ -105,7 +109,8 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             checkKills: checkKills,
             checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
-            getLevel: getLevel
+            getLevel: getLevel,
+            resetLevel: resetLevel
         }
     };
 
