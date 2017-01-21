@@ -64,7 +64,6 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                 return false;
             });
             if (ghostsHittingPac.length > 0) {
-                console.log("hit");
                 return ghostsHittingPac[0];
             }
             return undefined;
