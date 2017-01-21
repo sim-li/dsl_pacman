@@ -4,11 +4,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
         var figures = [];
-        var curMap = level.map;
-        var levelReset = curMap;
-
-        console.log("reingeschrieben");
-        console.log(levelReset);
+        var curMap = mapClone();
 
         function registerFigures() {
             _.each(arguments, function (arg) {
@@ -102,10 +98,6 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             }
         }
 
-        function getLevel() {
-            return level;
-        }
-
 
         function reset() {
             _.each(figures, function (f) {
@@ -114,9 +106,11 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         }
 
         function resetLevel() {
-            console.log("reset level bginnt");
-            level.map = levelReset;
-            console.log(curMap);
+            curMap = mapClone();
+        }
+
+        function mapClone() {
+            return JSON.parse(JSON.stringify(level.map));
         }
 
         return {
@@ -126,7 +120,6 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             checkKills: checkKills,
             checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
-            getLevel: getLevel,
             resetLevel: resetLevel,
             reset: reset
         }

@@ -1,5 +1,5 @@
-define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1", "constants", "gameboard"],
-        function (_, $, Ghost, Pac, level, constants, GameBoard) {
+define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "gameboard"],
+        function (_, $, Ghost, Pac, constants, GameBoard) {
 
             var Game = function () {
                 var BLOCK_SIZE = constants.BLOCK_SIZE;
