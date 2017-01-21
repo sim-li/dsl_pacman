@@ -4,6 +4,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
         var figures = [];
+        var levelReset = level.map;
 
         function registerFigures() {
             _.each(arguments, function(arg) {
@@ -48,9 +49,11 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                 if (pac.isHungry()) {
                     ghostHittingPac.eaten();
                     setPoint("ghost");
+                    console.log("Pac ate ghost");
                 } else {
                     pac.gotKilled();
                     setPoint("killed");
+                    console.log("Pac got killed");
                 }
             }
         }
@@ -99,7 +102,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         }
 
         function resetLevel() {
-            level.map = level_reset;
+            level.map = levelReset;
         }
 
         return {

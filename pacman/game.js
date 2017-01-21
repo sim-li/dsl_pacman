@@ -28,6 +28,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var nextPacDirection;
                 var next_direction;
                 
+                var interval;
 
                 function init() {
                     $('#text').click(function () {
@@ -95,7 +96,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         ghost3.move();
                         ghost4.move();
                         gameBoard.checkPacsEating();
-//                        gameBoard.checkKills();
+                        gameBoard.checkKills();
                     } else {
                         $('#canvas-overlay').fadeIn('fast');
                         setPoint("init");
@@ -106,11 +107,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 function run() {
                     reset();
                     isGameOver = false;
-                    clearInterval(updateOnInterval);
-                    
-                    setInterval(updateOnInterval, 150);
-
-                    
+                    if(!_.isUndefined(interval)) {
+                        clearInterval(interval);
+                    }
+                    interval = setInterval(updateOnInterval, 150);
                     console.log("Got run");
                 }
 
