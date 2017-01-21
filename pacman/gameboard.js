@@ -98,7 +98,6 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             }
         }
 
-
         function reset() {
             _.each(figures, function (f) {
                 f.resetPos();

@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/figures/pac.js" afterPath="$PROJECT_DIR$/../pacman/figures/pac.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/gameboard.js" afterPath="$PROJECT_DIR$/../pacman/gameboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/gameboard.specs.js" afterPath="$PROJECT_DIR$/../pacman/gameboard.specs.js" />
     </list>
     <ignored path="antlr.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -993,12 +993,12 @@
       <workItem from="1481793786544" duration="32000" />
       <workItem from="1484239851096" duration="336000" />
       <workItem from="1484498757708" duration="472000" />
-      <workItem from="1485025067601" duration="362000" />
+      <workItem from="1485025067601" duration="409000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28970000" />
+    <option name="totallyTimeSpent" value="29017000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="23" width="1497" height="1057" extended-state="0" />
