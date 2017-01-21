@@ -19,11 +19,11 @@ public class Codegen extends LevelBaseListener {
         // Pass the tokens to the parser
         LevelParser parser = new LevelParser(tokens);
         // Specify our entry point
-        LevelParser.FieldContext fileContext = parser.field();
+        LevelParser.FieldContext fieldContext = parser.field();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
         LevelBaseListener listener = new LevelBaseListener();
-        walker.walk(listener, fileContext);
+        walker.walk(listener, fieldContext);
     }
 
     public void exitFile(LevelParser.FieldContext ctx) {

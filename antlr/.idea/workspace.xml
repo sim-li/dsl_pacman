@@ -2,44 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr4_4_5_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSV.g4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSV.tokens" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSVBaseListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSVLexer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSVLexer.tokens" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSVListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSVMain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/CSVParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/csv/test_valid.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELD.g4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELD.tokens" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELDBaseListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELDLexer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELDLexer.tokens" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELDListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FIELDParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FieldModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/FormattingCodeWriter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/GameFieldModule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/GameFieldParsingExecutor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/add_package.sh" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/field.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/field/generated/PlayFieldBuilder.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/Codegen.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/Field.g4" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/Field.tokens" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/FieldBaseListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/FieldLexer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/FieldLexer.tokens" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/FieldListener.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/FieldParser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../levelgenerator/paclevel1.csv" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/antlr.iml" afterPath="$PROJECT_DIR$/antlr.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/add_package.sh" afterPath="$PROJECT_DIR$/src/main/java/ai/add_package.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/game/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/game/Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/level/Codegen.java" afterPath="$PROJECT_DIR$/src/main/java/level/Codegen.java" />
     </list>
     <ignored path="antlr.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/ai/AIBaseListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -115,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Codegen.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Codegen.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/level/Codegen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.49668875">
+              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -155,11 +118,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LevelParser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LevelParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/level/LevelParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.794702">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -240,9 +203,9 @@
         <option value="$PROJECT_DIR$/src/main/java/level/LevelListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/level/LevelBaseListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/level/LevelParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/level/Codegen.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/level/paclevel1.csv" />
+        <option value="$PROJECT_DIR$/src/main/java/level/Codegen.java" />
       </list>
     </option>
   </component>
@@ -1182,12 +1145,12 @@
       <workItem from="1481793786544" duration="32000" />
       <workItem from="1484239851096" duration="336000" />
       <workItem from="1484498757708" duration="472000" />
-      <workItem from="1485025067601" duration="2224000" />
+      <workItem from="1485025067601" duration="2506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30832000" />
+    <option name="totallyTimeSpent" value="31114000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1916" height="1057" extended-state="6" />
@@ -1512,14 +1475,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ai/AIBaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ai/AIListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1532,14 +1487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/level/Codegen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1562,8 +1509,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/level/LevelParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.794702">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ai/AIBaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="37" column="6" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/level/Codegen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49668875">
+          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
           <folding />
         </state>
       </provider>
