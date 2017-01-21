@@ -25,8 +25,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
             var cur_point;
             var cur_life;
             var buttonPressed = false;
-            var direction;
-            var next_direction;
+            var nextPacDirection;
 
             function init() {
                 $('#text').click(function () {
@@ -48,7 +47,8 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     ghost2: "images/ghost2.jpg",
                     ghost3: "images/ghost3.jpg",
                     ghost4: "images/ghost4.jpg",
-                    pac: "images/pac.png"
+                    pac: "images/pac.png",
+                    pac2: "pac_test.png"
                 });
             }
 
@@ -70,34 +70,29 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var ghost3Img = imgLoader.getImageAtIndex(5);
                 var ghost4Img = imgLoader.getImageAtIndex(6);
                 var pacImg = imgLoader.getImageAtIndex(7);
+                var pacImg2 = imgLoader.getImageAtIndex(8);
                 gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg}, setPoint);
                 gameBoard.drawBoard();
-                pac = new Pac(ctxPac, {pac: pacImg}, gameBoard);
+                pac = new Pac(ctxPac, {pac: pacImg, pac2: pacImg2}, gameBoard);
                 ghost1 = new Ghost(ctxPac, {ghost: ghost1Img}, gameBoard);
                 ghost2 = new Ghost(ctxPac, {ghost: ghost2Img}, gameBoard);
                 ghost3 = new Ghost(ctxPac, {ghost: ghost3Img}, gameBoard);
                 ghost4 = new Ghost(ctxPac, {ghost: ghost4Img}, gameBoard);
                 gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
-
             }
 
             function updateOnInterval() {
                 if (isGameOver == false) {
-                    if (pac.next_move(next_direction)) {
-                        direction = next_direction;
-                    }
-                    pac.move(direction);
+                    pac.move(nextPacDirection);
                     ghost1.move();
                     ghost2.move();
                     ghost3.move();
                     ghost4.move();
                     gameBoard.checkPacsEating();
                     gameBoard.checkKills();
-                }
-                else {
+                } else {
                     $('#canvas-overlay').fadeIn('fast');
                 }
-
             }
 
             function run() {
@@ -119,9 +114,18 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
             }
 
             function getInput(e) {
-                next_direction = getDirectionFromKeyEvent(e);
+                nextPacDirection = getDirectionFromKeyEvent(e);
             }
 
+
+            function reset() {
+                pac.resetPos();
+                ghost1.resetPos();
+                ghost2.resetPos();
+                ghost3.resetPos();
+                ghost4.resetPos();
+                nextPacDirection = 0;
+            }
 
             function setPoint(condition) {
                 switch (condition) {
@@ -149,12 +153,11 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 $('#lifes').html(cur_life);
             }
 
-
             return {
                 init: init,
-                run: run
+                run: run,
+                reset: reset
             }
         };
-
         return Game;
     });

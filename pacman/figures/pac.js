@@ -2,9 +2,13 @@ define(["underscore", "constants"], function (_, constants) {
     var Pac = function (ctx, images, gameBoard) {
         var gridX = 10;
         var gridY = 10;
+        var gridX_initial = gridX;
+        var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var isHungry = false;
         lifecount = 3;
+        var curImage = "pac";
+        var timer = 0;
 
         function move(direction) {
             switch (direction) {
@@ -30,6 +34,11 @@ define(["underscore", "constants"], function (_, constants) {
                     break;
             }
             draw();
+        }
+        
+        function resetPos(){
+            gridX = gridX_initial;
+            gridY = gridY_initial;
         }
 
         function next_move(next_direction) {
@@ -75,16 +84,34 @@ define(["underscore", "constants"], function (_, constants) {
                 isHungry = false;
             }, 7000);
         };
-        
-        function gotKilled(){
-            console.log("pac died");
+
+        function gotKilled() {
         }
 
         function draw() {
             ctx.clearRect(0, 0, 600, 600);
+            console.log("Image debug for ", curImage);
+            console.log(images[curImage]);
             ctx.drawImage(
-                images.pac, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
+                images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
             );
+
+            changeImage();
+
+
+
+        }
+
+        function changeImage() {
+            timer = timer + 1;
+            if(timer == 2) {
+                timer = 0;
+                if (curImage == "pac") {
+                    curImage = "pac2"
+                } else {
+                    curImage = "pac"
+                }
+            }
         }
 
         return {
@@ -96,7 +123,8 @@ define(["underscore", "constants"], function (_, constants) {
             gridY: getGridY,
             hungry: hungry,
             isHungry: getIsHungry,
-            gotKilled:gotKilled
+            gotKilled: gotKilled,
+            resetPos: resetPos
         };
     };
 

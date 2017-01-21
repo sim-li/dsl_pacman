@@ -94,6 +94,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             getGhostHittingPac: getGhostHittingPac,
             checkMove: checkMove,
             checkKills: checkKills,
+            checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
             getLevel: getLevel
         }
