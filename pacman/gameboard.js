@@ -8,8 +8,8 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         function registerFigures() {
             _.each(arguments, function(arg) {
-                figures[arg.type] = arg;
-            })
+                figures.push(arg);
+            });
         }
 
         //function getPacPosition() {
@@ -22,7 +22,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         //}
 
         function checkPacsEating() {
-            var pac = figures.pac;
+            var pac = getPac();
             var index = level.map[pac.gridY()][pac.gridX()];
             if (index == 1 || index == 2) {
                 level.map[pac.gridY()][pac.gridX()] = 0;
@@ -36,8 +36,14 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             }
         }
 
+        function getPac() {
+            return _.filter(figures, function(f) {
+                return f.type === "pac";
+            })[0];
+        }
+
         function checkKills() {
-            var pac = figures.pac;
+            var pac = getPac();
             var ghostHittingPac = getGhostHittingPac();
             if (!_.isUndefined(ghostHittingPac)) {
                 if (pac.isHungry()) {
@@ -51,14 +57,18 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         }
 
         function getGhostHittingPac() {
-            var pac = _.filter(figures, function(f) {
-                return f.type === "pac";
-            })[0]
-            return _.each(_.without(figures, pac), function(f) {
-                if(f.gridX() === pac.gridX() && f.gridY() == pac.gridY()) {
-                    return f;
+            var pac = getPac();
+            var ghostsHittingPac = _.filter(_.without(figures, pac), function(f) {
+                if(f.gridX() === pac.gridX() && f.gridY() === pac.gridY()) {
+                    return true;
                 }
-            })[0];
+                return false;
+            });
+            if (ghostsHittingPac.length > 0) {
+                console.log("hit");
+                return ghostsHittingPac[0];
+            }
+            return undefined;
         }
 
         function checkMove(xPos, yPos) {
