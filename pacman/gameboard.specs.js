@@ -45,6 +45,7 @@ define(["gameboard"], function(GameBoard) {
                     expect(actual).toBe(ghost1);
                 });
 
+                // Here!
                 it("should not return hit with ghost if at different position", function() {
                     pac.gridX = dummyCoordinate(20);
                     pac.gridY = dummyCoordinate(20);
