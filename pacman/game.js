@@ -5,7 +5,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var BLOCK_SIZE = constants.BLOCK_SIZE;
                 var ROWS = constants.ROWS;
                 var COLS = constants.COLS;
-                var isGameOver = false;
+                var isGameOver = true;
                 // Canvases
                 var canvasGameboard = document.getElementById('canvas');
                 var canvasPac = document.getElementById('canvas2');
@@ -25,8 +25,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var cur_point;
                 var cur_life;
                 var buttonPressed = false;
-                var direction;
+                var nextPacDirection;
                 var next_direction;
+                
+                var interval;
 
                 function init() {
                     $('#text').click(function () {
@@ -39,6 +41,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     loadImages();
                 }
 
+
                 function loadImages() {
                     loadMultipleImages({
                         cherry: "cherry.png",
@@ -49,7 +52,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         ghost3: "images/ghost3.jpg",
                         ghost4: "images/ghost4.jpg",
                         pac: "pac.png",
-                        pac_test: "pac_test.png"
+                        pac2: "pac_test.png"
                     });
                 }
 
@@ -72,45 +75,42 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     var ghost4Img = imgLoader.getImageAtIndex(6);
                     var pacImg = imgLoader.getImageAtIndex(7);
                     var pacImg2 = imgLoader.getImageAtIndex(8);
-                    gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg});
+                    gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg}, setPoint);
                     gameBoard.drawBoard();
-                    pac = new Pac(ctxPac, {pac: pacImg, pac2: pacImg2}, gameBoard);
-                    ghost1 = new Ghost(ctxPac, {ghost: ghost1Img}, gameBoard);
-                    ghost2 = new Ghost(ctxPac, {ghost: ghost2Img}, gameBoard);
-                    ghost3 = new Ghost(ctxPac, {ghost: ghost3Img}, gameBoard);
-                    ghost4 = new Ghost(ctxPac, {ghost: ghost4Img}, gameBoard);
+                    pac = new Pac(ctxPac, 10, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
+                    ghost1 = new Ghost(ctxPac, 1, 1, {ghost: ghost1Img}, gameBoard);
+                    ghost2 = new Ghost(ctxPac, 1, 2, {ghost: ghost2Img}, gameBoard);
+                    ghost3 = new Ghost(ctxPac, 1, 3, {ghost: ghost3Img}, gameBoard);
+                    ghost4 = new Ghost(ctxPac, 1, 4, {ghost: ghost4Img}, gameBoard);
                     gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
-
                 }
 
                 function updateOnInterval() {
                     if (isGameOver == false) {
                         if (pac.next_move(next_direction)) {
-                            direction = next_direction;
+                            nextPacDirection = next_direction;
                         }
-                        pac.move(direction);
-                        getField();
-                        pac.draw();
+                        pac.move(nextPacDirection);
                         ghost1.move();
-                        ghost1.draw();
                         ghost2.move();
-                        ghost2.draw();
                         ghost3.move();
-                        ghost3.draw();
                         ghost4.move();
-                        ghost4.draw();
-                    }
-                    else {
+                        gameBoard.checkPacsEating();
+                        gameBoard.checkKills();
+                    } else {
                         $('#canvas-overlay').fadeIn('fast');
-
+                        setPoint("init");
+                        gameBoard.resetLevel();
                     }
-
-
                 }
 
                 function run() {
-                    setInterval(updateOnInterval, 100);
+                    gameBoard.reset();
                     isGameOver = false;
+                    if(!_.isUndefined(interval)) {
+                        clearInterval(interval);
+                    }
+                    interval = setInterval(updateOnInterval, 150);
                     console.log("Got run");
                 }
 
@@ -127,50 +127,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 }
 
                 function getInput(e) {
-                    next_direction = getDirectionFromKeyEvent(e);
+                      next_direction = getDirectionFromKeyEvent(e);
                 }
 
-                function getField() {
-                    var level = gameBoard.getLevel();
-                    var index = level.map[pac.gridY()][pac.gridX()];
-                    if (index == 1 || index == 2) {
-                        //
-                        level.map[pac.gridY()][pac.gridX()] = 0;
-                        gameBoard.drawBoard();
-                        if (index == 1) {
-                            setPoint("point");
-                        } else {
-                            setPoint("fruit");
-                            pac.hungry();
-                        }
-                    }
-                    if (pac.gridX() == ghost1.gridX() && pac.gridY() == ghost1.gridY()) {
-                        if (pac.isHungry()) {
-                            console.log("Hallo Geist");
-                            ghost1.eaten();
-                            setPoint("ghost");
-                        }
-                        else {
-                            console.log("Hilfe Geist");
-                            pac.gotKilled();
-                            setPoint("killed");
-                            reset();
-
-                        }
-                    }
-                }
-                ;
-
-                function reset() {
-                    pac.resetPos();
-                    ghost1.resetPos();
-                    ghost2.resetPos();
-                    ghost3.resetPos();
-                    ghost4.resetPos();
-                    direction = 0;
-                    next_direction = 0;
-                }
-                ;
 
                 function setPoint(condition) {
                     switch (condition) {
@@ -198,11 +157,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     $('#lifes').html(cur_life);
                 }
 
-
                 return {
                     init: init,
-                    run: run,
-                    reset: reset
+                    run: run
                 }
             };
             return Game;

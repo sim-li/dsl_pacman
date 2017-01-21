@@ -1,14 +1,15 @@
 define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, constants, level) {
-    var GameBoard = function (ctx, images) {
+    var GameBoard = function (ctx, images, setPoint) {
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
-        var figures = {};
+        var figures = [];
+        var levelReset = level.map;
 
         function registerFigures() {
             _.each(arguments, function(arg) {
-                figures[arg.type] = arg;
-            })
+                figures.push(arg);
+            });
         }
 
         //function getPacPosition() {
@@ -20,6 +21,57 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         //
         //}
 
+        function checkPacsEating() {
+            var pac = getPac();
+            var index = level.map[pac.gridY()][pac.gridX()];
+            if (index == 1 || index == 2) {
+                level.map[pac.gridY()][pac.gridX()] = 0;
+                drawBoard();
+                if (index == 1) {
+                    setPoint("point");
+                } else {
+                    setPoint("fruit");
+                    pac.hungry();
+                }
+            }
+        }
+
+        function getPac() {
+            return _.filter(figures, function(f) {
+                return f.type === "pac";
+            })[0];
+        }
+
+        function checkKills() {
+            var pac = getPac();
+            var ghostHittingPac = getGhostHittingPac();
+            if (!_.isUndefined(ghostHittingPac)) {
+                if (pac.isHungry()) {
+                    ghostHittingPac.eaten();
+                    setPoint("ghost");
+                    console.log("Pac ate ghost");
+                } else {
+                    //pac.gotKilled();
+                    reset();
+                    setPoint("killed");
+                    console.log("Pac got killed");
+                }
+            }
+        }
+
+        function getGhostHittingPac() {
+            var pac = getPac();
+            var ghostsHittingPac = _.filter(_.without(figures, pac), function(f) {
+                if(f.gridX() === pac.gridX() && f.gridY() === pac.gridY()) {
+                    return true;
+                }
+                return false;
+            });
+            if (ghostsHittingPac.length > 0) {
+                return ghostsHittingPac[0];
+            }
+            return undefined;
+        }
 
         function checkMove(xPos, yPos) {
             var exceedsLevelHorizontally = xPos < 0 || xPos >= COLS;
@@ -50,11 +102,27 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             return level;
         }
 
+
+        function reset() {
+            _.each(figures, function(f) {
+                f.resetPos();
+            });
+        }
+
+        function resetLevel() {
+            level.map = levelReset;
+        }
+
         return {
             registerFigures: registerFigures,
+            getGhostHittingPac: getGhostHittingPac,
             checkMove: checkMove,
+            checkKills: checkKills,
+            checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
-            getLevel: getLevel
+            getLevel: getLevel,
+            resetLevel: resetLevel,
+            reset: reset
         }
     };
 

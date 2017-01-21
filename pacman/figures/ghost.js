@@ -1,7 +1,7 @@
 define(["underscore", "constants"], function (_, constants) {
-    var Ghost = function (ctx, images, gameBoard) {
-        var gridX = 8;
-        var gridY = 9;
+    var Ghost = function (ctx, gridX, gridY, images, gameBoard) {
+        var gridX = gridX;
+        var gridY = gridY;
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -50,15 +50,17 @@ define(["underscore", "constants"], function (_, constants) {
             var oppositeDirection = _.last(bunchOfMoves);
             var tryOtherDirection = Math.random() >= 0.8;
             if (currentDirectionFree) {
-                var withoutOpposite = _.without(freeMoves, currentDirection, oppositeDirection);
-                if (tryOtherDirection && withoutOpposite.length > 0) {
-                    var randomDirection = _.sample(withoutOpposite);
-                    currentDirection = randomDirection;
+                var fleeDirections = _.without(freeMoves, currentDirection, oppositeDirection);
+                if (tryOtherDirection && fleeDirections.length > 0) {
+                    currentDirection = _.sample(fleeDirections);
                 }
             } else {
                 currentDirection = _.without(freeMoves, currentDirection)[0];
             }
-            moveTo(nextCoordinate[currentDirection]);
+            if (!_.isUndefined(currentDirection)) {
+                moveTo(nextCoordinate[currentDirection]);
+            }
+            draw();
         }
 
         function moveTo(coordTuple) {

@@ -1,7 +1,7 @@
 define(["underscore", "constants"], function (_, constants) {
-    var Pac = function (ctx, images, gameBoard) {
-        var gridX = 10;
-        var gridY = 11;
+    var Pac = function (ctx, gridX, gridY, images, gameBoard) {
+        var gridX = gridX;
+        var gridY = gridY;
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -42,6 +42,7 @@ define(["underscore", "constants"], function (_, constants) {
                     }
                     break;
             }
+            draw();
         }
         
         function resetPos(){
@@ -92,12 +93,9 @@ define(["underscore", "constants"], function (_, constants) {
                 isHungry = false;
             }, 7000);
         }
-        ;
 
         function gotKilled() {
-
-
-            
+            // TODO: To be implemented, remove if unnecessary
         }
 
         function rotate() {
@@ -116,10 +114,13 @@ define(["underscore", "constants"], function (_, constants) {
 
         function draw() {
             ctx.clearRect(0, 0, 600, 600);
+//            ctx.drawImage(
+//                images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE
+//            );
             rotate();
             changeImage();
-
         }
+
         function changeImage() {
             timer = timer + 1;
             if(timer == 2) {
@@ -130,7 +131,6 @@ define(["underscore", "constants"], function (_, constants) {
                     curImage = "pac"
                 }
             }
-
         }
 
         return {
