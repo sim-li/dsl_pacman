@@ -1,5 +1,5 @@
-define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1", "constants", "gameboard"],
-        function (_, $, Ghost, Pac, level, constants, GameBoard) {
+define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "gameboard"],
+        function (_, $, Ghost, Pac, constants, GameBoard) {
 
             var Game = function () {
                 var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -27,7 +27,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var buttonPressed = false;
                 var nextPacDirection;
                 var next_direction;
-                
+
                 var interval;
 
                 function init() {
@@ -77,11 +77,11 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     var pacImg2 = imgLoader.getImageAtIndex(8);
                     gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg}, setPoint);
                     gameBoard.drawBoard();
-                    pac = new Pac(ctxPac, 10, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
-                    ghost1 = new Ghost(ctxPac, 1, 1, {ghost: ghost1Img}, gameBoard);
-                    ghost2 = new Ghost(ctxPac, 1, 2, {ghost: ghost2Img}, gameBoard);
-                    ghost3 = new Ghost(ctxPac, 1, 3, {ghost: ghost3Img}, gameBoard);
-                    ghost4 = new Ghost(ctxPac, 1, 4, {ghost: ghost4Img}, gameBoard);
+                    pac = new Pac(ctxPac, 9, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
+                    ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img}, gameBoard);
+                    ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img}, gameBoard);
+                    ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img}, gameBoard);
+                    ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img}, gameBoard);
                     gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
                 }
 
@@ -97,17 +97,19 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         ghost4.move();
                         gameBoard.checkPacsEating();
                         gameBoard.checkKills();
+                        gameBoard.drawBoard();
                     } else {
                         $('#canvas-overlay').fadeIn('fast');
                         setPoint("init");
-                        gameBoard.resetLevel();
+
                     }
                 }
 
                 function run() {
                     gameBoard.reset();
+                    gameBoard.resetLevel();
                     isGameOver = false;
-                    if(!_.isUndefined(interval)) {
+                    if (!_.isUndefined(interval)) {
                         clearInterval(interval);
                     }
                     interval = setInterval(updateOnInterval, 150);
@@ -127,7 +129,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 }
 
                 function getInput(e) {
-                      next_direction = getDirectionFromKeyEvent(e);
+                    next_direction = getDirectionFromKeyEvent(e);
                 }
 
 
@@ -135,7 +137,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     switch (condition) {
                         case "init":
                             cur_point = 0;
-                            cur_life = 3;
+                            cur_life = 1;
                             break;
                         case "point":
                             cur_point = cur_point + 10;
