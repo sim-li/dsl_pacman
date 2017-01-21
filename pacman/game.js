@@ -77,11 +77,11 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     var pacImg2 = imgLoader.getImageAtIndex(8);
                     gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg}, setPoint);
                     gameBoard.drawBoard();
-                    pac = new Pac(ctxPac, 10, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
-                    ghost1 = new Ghost(ctxPac, 1, 1, {ghost: ghost1Img}, gameBoard);
-                    ghost2 = new Ghost(ctxPac, 1, 2, {ghost: ghost2Img}, gameBoard);
-                    ghost3 = new Ghost(ctxPac, 1, 3, {ghost: ghost3Img}, gameBoard);
-                    ghost4 = new Ghost(ctxPac, 1, 4, {ghost: ghost4Img}, gameBoard);
+                    pac = new Pac(ctxPac, 9, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
+                    ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img}, gameBoard);
+                    ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img}, gameBoard);
+                    ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img}, gameBoard);
+                    ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img}, gameBoard);
                     gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
                 }
 
