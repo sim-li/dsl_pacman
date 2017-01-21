@@ -27,7 +27,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var buttonPressed = false;
                 var nextPacDirection;
                 var next_direction;
-                
+
                 var interval;
 
                 function init() {
@@ -97,17 +97,19 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                         ghost4.move();
                         gameBoard.checkPacsEating();
                         gameBoard.checkKills();
+                        gameBoard.drawBoard();
                     } else {
                         $('#canvas-overlay').fadeIn('fast');
                         setPoint("init");
-                        gameBoard.resetLevel();
+
                     }
                 }
 
                 function run() {
                     gameBoard.reset();
+                    gameBoard.resetLevel();
                     isGameOver = false;
-                    if(!_.isUndefined(interval)) {
+                    if (!_.isUndefined(interval)) {
                         clearInterval(interval);
                     }
                     interval = setInterval(updateOnInterval, 150);
@@ -127,7 +129,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 }
 
                 function getInput(e) {
-                      next_direction = getDirectionFromKeyEvent(e);
+                    next_direction = getDirectionFromKeyEvent(e);
                 }
 
 
@@ -135,7 +137,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     switch (condition) {
                         case "init":
                             cur_point = 0;
-                            cur_life = 3;
+                            cur_life = 1;
                             break;
                         case "point":
                             cur_point = cur_point + 10;

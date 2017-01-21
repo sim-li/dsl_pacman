@@ -4,10 +4,14 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         var ROWS = constants.ROWS;
         var COLS = constants.COLS;
         var figures = [];
-        var levelReset = level.map;
+        var curMap = level.map;
+        var levelReset = curMap;
+
+        console.log("reingeschrieben");
+        console.log(levelReset);
 
         function registerFigures() {
-            _.each(arguments, function(arg) {
+            _.each(arguments, function (arg) {
                 figures.push(arg);
             });
         }
@@ -23,9 +27,9 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         function checkPacsEating() {
             var pac = getPac();
-            var index = level.map[pac.gridY()][pac.gridX()];
+            var index = curMap[pac.gridY()][pac.gridX()];
             if (index == 1 || index == 2) {
-                level.map[pac.gridY()][pac.gridX()] = 0;
+                curMap[pac.gridY()][pac.gridX()] = 0;
                 drawBoard();
                 if (index == 1) {
                     setPoint("point");
@@ -37,7 +41,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         }
 
         function getPac() {
-            return _.filter(figures, function(f) {
+            return _.filter(figures, function (f) {
                 return f.type === "pac";
             })[0];
         }
@@ -61,8 +65,8 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         function getGhostHittingPac() {
             var pac = getPac();
-            var ghostsHittingPac = _.filter(_.without(figures, pac), function(f) {
-                if(f.gridX() === pac.gridX() && f.gridY() === pac.gridY()) {
+            var ghostsHittingPac = _.filter(_.without(figures, pac), function (f) {
+                if (f.gridX() === pac.gridX() && f.gridY() === pac.gridY()) {
                     return true;
                 }
                 return false;
@@ -77,7 +81,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             var exceedsLevelHorizontally = xPos < 0 || xPos >= COLS;
             var exceedsLevelVertically = yPos < 0 || yPos > ROWS;
             var WALL = 3;
-            var fieldIsBlocked = level.map[yPos] == undefined || level.map[yPos][xPos] == WALL;
+            var fieldIsBlocked = curMap[yPos] == undefined || curMap[yPos][xPos] == WALL;
             return !(fieldIsBlocked || exceedsLevelHorizontally || exceedsLevelVertically);
         }
 
@@ -85,13 +89,13 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             ctx.clearRect(0, 0, 600, 600);
             for (var r = 0; r < ROWS; r++) {
                 for (var c = 0; c < COLS; c++) {
-                    if (level.map[r][c] === 3) {
+                    if (curMap[r][c] === 3) {
                         ctx.drawImage(images.wall, c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
                     }
-                    else if (level.map[r][c] === 2) {
+                    else if (curMap[r][c] === 2) {
                         ctx.drawImage(images.fruit, 0, 0, BLOCK_SIZE, BLOCK_SIZE, c * BLOCK_SIZE, r * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
                     }
-                    else if (level.map[r][c] === 1) {
+                    else if (curMap[r][c] === 1) {
                         ctx.drawImage(images.point, 0, 0, BLOCK_SIZE, BLOCK_SIZE, c * BLOCK_SIZE + 7.5, r * BLOCK_SIZE + 7.5, BLOCK_SIZE / 2, BLOCK_SIZE / 2);
                     }
                 }
@@ -104,13 +108,15 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
 
         function reset() {
-            _.each(figures, function(f) {
+            _.each(figures, function (f) {
                 f.resetPos();
             });
         }
 
         function resetLevel() {
+            console.log("reset level bginnt");
             level.map = levelReset;
+            console.log(curMap);
         }
 
         return {
