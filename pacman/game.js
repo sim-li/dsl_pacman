@@ -5,7 +5,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                 var BLOCK_SIZE = constants.BLOCK_SIZE;
                 var ROWS = constants.ROWS;
                 var COLS = constants.COLS;
-                var isGameOver = false;
+                var isGameOver = true;
                 // Canvases
                 var canvasGameboard = document.getElementById('canvas');
                 var canvasPac = document.getElementById('canvas2');
@@ -80,7 +80,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     ghost3 = new Ghost(ctxPac, {ghost: ghost3Img}, gameBoard);
                     ghost4 = new Ghost(ctxPac, {ghost: ghost4Img}, gameBoard);
                     gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
-
+                    setInterval(updateOnInterval, 100);
                 }
 
                 function updateOnInterval() {
@@ -102,14 +102,14 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "levels/level1",
                     }
                     else {
                         $('#canvas-overlay').fadeIn('fast');
-
+                        setPoint("init");
                     }
 
 
                 }
 
                 function run() {
-                    setInterval(updateOnInterval, 100);
+
                     isGameOver = false;
                     console.log("Got run");
                 }
