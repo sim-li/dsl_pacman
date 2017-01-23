@@ -1,5 +1,7 @@
+import ai.AiBaseListenerImplementation;
+import ai.AiLexer;
+import ai.AiParser;
 import level.*;
-import level.AiBaseListenerImplementation;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -8,11 +10,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Codegen {
-    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/src/main/java/level/";
+    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "antlr/src/main/java/level/";
 
     public static void main(String[] args) throws IOException {
-        //parseLevel();
-        parseAi();
+        parseLevel();
+        //parseAi();
     }
 
     private static void parseLevel() throws IOException {
@@ -26,7 +28,7 @@ public class Codegen {
         final LevelParser.FieldContext fieldContext = parser.field();
         // Walk it and attach our listener
         final ParseTreeWalker walker = new ParseTreeWalker();
-        final AiBaseListenerImplementation listener = new AiBaseListenerImplementation();
+        final LevelBaseListenerImplementation listener = new LevelBaseListenerImplementation();
         walker.walk(listener, fieldContext);
     }
 
