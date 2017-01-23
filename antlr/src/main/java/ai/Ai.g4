@@ -4,19 +4,23 @@ ai: startai LINE_BREAK (ai_body)+ end_ai;
 
 startai: NAME_IDENTIFIER PARENTHESIS_OPEN;
 
-ai_body: WS* (LINE_BREAK|block_declaration|assignment|reference|DIRECTION_EXPR|bracket);
+ai_body: WS* (LINE_BREAK|COMMENT|bracket_open|bracket_close|block_declaration|assignment|reference|DIRECTION_EXPR);
 
-bracket: '{'|'}';
+bracket_open: '{';
+
+bracket_close: '}';
 
 //!random
 reference: '!' NAME_IDENTIFIER;
 
-block_declaration: (if_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
+block_declaration: (if_free_statement|else_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
 
 //-> = ::PAC_POSITION
 assignment: DIRECTION WS? '=' WS? '::' WS? NAME_IDENTIFIER;
 
-if_free_statement: 'if *(' DIRECTION_EXPR ')';
+if_free_statement: 'if *(' DIRECTION ')';
+
+else_free_statement: 'else ' bracket_open;
 
 random_statement: '%' ratio_expr?;
 
@@ -27,6 +31,8 @@ leave_free_statement: '**';
 get_nth_free_statement: NTH_FREE;
 
 end_ai: PARENTHESIS_CLOSE WS* LINE_BREAK* EOF;
+
+COMMENT: WS*'#'(WS|NAME_IDENTIFIER|DIGIT)*;
 
 DIRECTION_EXPR: DIRECTION';' LINE_BREAK?;
 

@@ -16,6 +16,11 @@ public class AiPassAndFailTests extends TestCase {
         parseAndAssertNoError("ifStatementWithMoves");
     }
 
+    public void testCompleteCase() throws IOException {
+        recompileGrammar();
+        parseAndAssertNoError("completeCase");
+    }
+
     public void recompileGrammar() {
         if (recompiledGrammar) {
             return;
@@ -24,7 +29,9 @@ public class AiPassAndFailTests extends TestCase {
             recompiledGrammar = true;
         }
         try {
+            System.out.println("Recompiling grammar...");
             Process p = Runtime.getRuntime().exec(USER_DIR + "/build.sh");
+            System.out.println("Grammar recompiled.");
             p.waitFor();
         } catch (InterruptedException interruptedException) {
             System.out.println("Got interrupted exception running grammar compile script");

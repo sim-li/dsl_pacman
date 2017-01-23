@@ -1,4 +1,4 @@
-GRAMMARS=( "Ai" "Level" )
+GRAMMARS=( "Ai" )
 echo "Processing grammars"
 for GRAMMAR in "${GRAMMARS[@]}"
 do

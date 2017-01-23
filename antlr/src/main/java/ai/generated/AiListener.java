@@ -38,15 +38,25 @@ public interface AiListener extends ParseTreeListener {
 	 */
 	void exitAi_body(AiParser.Ai_bodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link AiParser#bracket}.
+	 * Enter a parse tree produced by {@link AiParser#bracket_open}.
 	 * @param ctx the parse tree
 	 */
-	void enterBracket(AiParser.BracketContext ctx);
+	void enterBracket_open(AiParser.Bracket_openContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link AiParser#bracket}.
+	 * Exit a parse tree produced by {@link AiParser#bracket_open}.
 	 * @param ctx the parse tree
 	 */
-	void exitBracket(AiParser.BracketContext ctx);
+	void exitBracket_open(AiParser.Bracket_openContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#bracket_close}.
+	 * @param ctx the parse tree
+	 */
+	void enterBracket_close(AiParser.Bracket_closeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#bracket_close}.
+	 * @param ctx the parse tree
+	 */
+	void exitBracket_close(AiParser.Bracket_closeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AiParser#reference}.
 	 * @param ctx the parse tree
@@ -87,6 +97,16 @@ public interface AiListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIf_free_statement(AiParser.If_free_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#else_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterElse_free_statement(AiParser.Else_free_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#else_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitElse_free_statement(AiParser.Else_free_statementContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AiParser#random_statement}.
 	 * @param ctx the parse tree

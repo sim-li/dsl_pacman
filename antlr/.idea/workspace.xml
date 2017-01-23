@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/testAis/randomFilterFreeN.ai" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/testAis/random.ai" afterPath="$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/testAis/completeCase.ai" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sh" afterPath="$PROJECT_DIR$/build.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/Ai.g4" afterPath="$PROJECT_DIR$/src/main/java/ai/Ai.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/generated/Ai.tokens" afterPath="$PROJECT_DIR$/src/main/java/ai/generated/Ai.tokens" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/generated/AiBaseListener.java" afterPath="$PROJECT_DIR$/src/main/java/ai/generated/AiBaseListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/generated/AiLexer.java" afterPath="$PROJECT_DIR$/src/main/java/ai/generated/AiLexer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/generated/AiLexer.tokens" afterPath="$PROJECT_DIR$/src/main/java/ai/generated/AiLexer.tokens" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/generated/AiListener.java" afterPath="$PROJECT_DIR$/src/main/java/ai/generated/AiListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ai/generated/AiParser.java" afterPath="$PROJECT_DIR$/src/main/java/ai/generated/AiParser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java" afterPath="$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java" />
     </list>
     <ignored path="antlr.iws" />
@@ -23,67 +30,83 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file leaf-file-name="Ai.g4" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/ai/Ai.g4">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.17621145">
-                    <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="antlr" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AiPassAndFailTests.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7882883">
-              <caret line="35" column="52" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1921#1922#0" expanded="true" />
-                <element signature="e#1982#1983#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="randomFilterFreeN.ai" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/testAis/randomFilterFreeN.ai">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ifStatementWithMoves.ai" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.45402664">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="AiPassAndFailTests.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.4054054">
+                  <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#2172#2173#0" expanded="true" />
+                    <element signature="e#2233#2234#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="build.sh" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/build.sh">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <splitter split-orientation="vertical" split-proportion="0.6977077">
+          <split-first>
+            <leaf>
+              <file leaf-file-name="Ai.g4" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/main/java/ai/Ai.g4">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state vertical-scroll-proportion="0.6476427">
+                      <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="ifStatementWithMoves.ai" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state vertical-scroll-proportion="0.0">
+                      <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="completeCase.ai" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/test/java/testAis/completeCase.ai">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state vertical-scroll-proportion="0.28125">
+                      <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -110,9 +133,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/field/GameFieldParsingExecutor.java" />
-        <option value="$PROJECT_DIR$/src/main/java/generatedSources/gameFieldBuilder.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ai/AiParsingModule.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/AiParsingExecutor.java" />
         <option value="$PROJECT_DIR$/src/main/java/models/Line.java" />
         <option value="$PROJECT_DIR$/src/main/java/codegenerator/AiArrayStrategy.java" />
@@ -152,7 +172,6 @@
         <option value="$PROJECT_DIR$/src/main/java/ai/nodes/Assignment.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/nodes/Node.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/nodes/Root.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ai/Ai.g4" />
         <option value="$PROJECT_DIR$/src/test/java/AiTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/AiBaseListenerImplementation.java" />
         <option value="$PROJECT_DIR$/src/main/java/ParsingResult.java" />
@@ -160,7 +179,11 @@
         <option value="$PROJECT_DIR$/src/test/java/testAis/random.ai" />
         <option value="$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves" />
         <option value="$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai" />
+        <option value="$PROJECT_DIR$/build.sh" />
+        <option value="$PROJECT_DIR$/src/test/java/testAis/completeCase/ai.java" />
         <option value="$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java" />
+        <option value="$PROJECT_DIR$/src/test/java/testAis/completeCase.ai" />
+        <option value="$PROJECT_DIR$/src/main/java/ai/Ai.g4" />
       </list>
     </option>
   </component>
@@ -428,7 +451,7 @@
       <recent name="$PROJECT_DIR$/src/main/java/csv" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AiPassAndFailTests.testIfStatementWithMoves">
+  <component name="RunManager">
     <configuration default="false" name="PacmanParserExecutor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="PacmanParserExecutor" />
@@ -1017,8 +1040,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AiPassAndFailTests.testIfStatementWithMoves" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.AiPassAndFailTests" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AiPassAndFailTests" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AiPassAndFailTests.testIfStatementWithMoves" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.AiPassAndFailTests.testRandomWithNestedFilterFreeN" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.AiPassAndFailTests.testBasic" />
         <item index="4" class="java.lang.String" itemvalue="Application.PacmanParserExecutor" />
@@ -1066,44 +1089,44 @@
       <workItem from="1485025067601" duration="4130000" />
       <workItem from="1485030291391" duration="555000" />
       <workItem from="1485165719817" duration="1617000" />
-      <workItem from="1485169748611" duration="26270000" />
+      <workItem from="1485169748611" duration="27492000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 25m 10s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 25m 40s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 25m 58s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 26m 33s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 27m 23s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 28m 00s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 28m 14s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 30m 08s.xml">
-      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 32m 13s.xml">
+      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 40m 48s.xml">
+      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 41m 32s.xml">
+      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 52m 18s.xml">
+      <configuration name="AiPassAndFailTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests - 2017.01.23 at 21h 53m 11s.xml">
       <configuration name="AiPassAndFailTests" configurationId="JUnit" />
     </history-entry>
     <history-entry file="AiPassAndFailTests_testIfStatementWithMoves - 2017.01.23 at 21h 32m 37s.xml">
       <configuration name="AiPassAndFailTests.testIfStatementWithMoves" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AiPassAndFailTests_testIfStatementWithMoves - 2017.01.23 at 21h 34m 59s.xml">
+      <configuration name="AiPassAndFailTests.testIfStatementWithMoves" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests_testIfStatementWithMoves - 2017.01.23 at 21h 36m 14s.xml">
+      <configuration name="AiPassAndFailTests.testIfStatementWithMoves" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests_testIfStatementWithMoves - 2017.01.23 at 21h 37m 34s.xml">
+      <configuration name="AiPassAndFailTests.testIfStatementWithMoves" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AiPassAndFailTests_testIfStatementWithMoves - 2017.01.23 at 21h 39m 10s.xml">
+      <configuration name="AiPassAndFailTests.testIfStatementWithMoves" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61180000" />
+    <option name="totallyTimeSpent" value="62402000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="23" width="1874" height="1007" extended-state="0" />
@@ -1115,12 +1138,12 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733408" sideWeight="0.19782062" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30955994" sideWeight="0.19279128" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41266376" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41266376" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21934758" sideWeight="0.8072087" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30258718" sideWeight="0.8072087" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18777293" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.082969435" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1564,14 +1587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ai/Ai.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17621145">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ai/AiBaseListenerImplementation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18018018">
@@ -1601,23 +1616,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7882883">
-          <caret line="35" column="52" selection-start-line="35" selection-start-column="52" selection-end-line="35" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.4054054">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1921#1922#0" expanded="true" />
-            <element signature="e#1982#1983#0" expanded="true" />
+            <element signature="e#2172#2173#0" expanded="true" />
+            <element signature="e#2233#2234#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ai/Ai.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6476427">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/testAis/completeCase.ai">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28125">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
