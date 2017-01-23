@@ -76,6 +76,30 @@ public class AiBaseListener implements AiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLeave_free_statement(AiParser.Leave_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLeave_free_statement(AiParser.Leave_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGet_nth_free_statement(AiParser.Get_nth_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGet_nth_free_statement(AiParser.Get_nth_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRatio_expr(AiParser.Ratio_exprContext ctx) { }
 	/**
 	 * {@inheritDoc}

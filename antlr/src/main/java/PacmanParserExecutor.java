@@ -16,7 +16,7 @@ public class PacmanParserExecutor {
 
     public static void main(String[] args) throws IOException {
         //parseLevel();
-        parseAi();
+        //parseAi(WORKING_DIRECTORY + "strategies/random.ai");
     }
 
     public static void parseLevel() throws IOException {
@@ -34,9 +34,9 @@ public class PacmanParserExecutor {
         walker.walk(listener, fieldContext);
     }
 
-    public static void parseAi() throws IOException {
+    public static void parseAi(final String filePath) throws IOException {
         // Get CSV lexer
-        final AiLexer lexer = new AiLexer(new ANTLRInputStream(new FileReader(WORKING_DIRECTORY + "ai/strategies/random.ai")));
+        final AiLexer lexer = new AiLexer(new ANTLRInputStream(new FileReader(filePath)));
         // Get a list of matched tokens
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         // Pass the tokens to the parser

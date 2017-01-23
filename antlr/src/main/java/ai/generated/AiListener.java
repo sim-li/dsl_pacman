@@ -58,6 +58,26 @@ public interface AiListener extends ParseTreeListener {
 	 */
 	void exitRandom_statement(AiParser.Random_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AiParser#leave_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeave_free_statement(AiParser.Leave_free_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#leave_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeave_free_statement(AiParser.Leave_free_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#get_nth_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterGet_nth_free_statement(AiParser.Get_nth_free_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#get_nth_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitGet_nth_free_statement(AiParser.Get_nth_free_statementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AiParser#ratio_expr}.
 	 * @param ctx the parse tree
 	 */
