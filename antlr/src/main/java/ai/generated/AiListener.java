@@ -18,15 +18,15 @@ public interface AiListener extends ParseTreeListener {
 	 */
 	void exitAi(AiParser.AiContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link AiParser#start_ai}.
+	 * Enter a parse tree produced by {@link AiParser#startai}.
 	 * @param ctx the parse tree
 	 */
-	void enterStart_ai(AiParser.Start_aiContext ctx);
+	void enterStartai(AiParser.StartaiContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link AiParser#start_ai}.
+	 * Exit a parse tree produced by {@link AiParser#startai}.
 	 * @param ctx the parse tree
 	 */
-	void exitStart_ai(AiParser.Start_aiContext ctx);
+	void exitStartai(AiParser.StartaiContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AiParser#end_ai}.
 	 * @param ctx the parse tree

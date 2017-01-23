@@ -28,13 +28,13 @@ public class AiBaseListener implements AiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStart_ai(AiParser.Start_aiContext ctx) { }
+	@Override public void enterStartai(AiParser.StartaiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStart_ai(AiParser.Start_aiContext ctx) { }
+	@Override public void exitStartai(AiParser.StartaiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

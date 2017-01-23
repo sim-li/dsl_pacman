@@ -1,18 +1,24 @@
 grammar Ai;
 
-ai: ANY_CHAR;
+ai: startai LINE_BREAK end_ai;
 
-start_ai: AI_NAME PARENTHESIS_OPEN;
+startai: AI_NAME PARENTHESIS_OPEN;
 end_ai: PARENTHESIS_CLOSE WS* LINE_BREAK* EOF;
-//instr: WS* ANY_CHAR* WS*;
 
-WS: [ \t]*;
+//instr: WS* ANY_CHAR* WS*;
 AI_NAME: ('a'..'z' | 'A'..'Z' | '0'..'9')+;
+
+
+ANY_CHAR: ('a'..'z' | 'A'..'Z' | '0'..'9')+;
+
+//WS: [ \t]*;
+
+
 LINE_BREAK: '\r'?'\n' | '\r';
 PARENTHESIS_OPEN: '(';
 PARENTHESIS_CLOSE: ')';
 
-ANY_CHAR: 'a'..'z'+;
+
 
 //
 //ai: start_ai instr* end_ai;
