@@ -10,16 +10,12 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class PacmanParserExecutor {
-    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "antlr/src/main/java/level/";
+    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/level/";
 
-    public static void main(String[] args) throws IOException {
-        parseLevel();
-        //parseAi();
-    }
-
-    private static void parseLevel() throws IOException {
+    public static List<List> parseLevel() throws IOException {
         // Get CSV lexer
         final LevelLexer lexer = new LevelLexer(new ANTLRInputStream(new FileReader(WORKING_DIRECTORY + "paclevel1.csv")));
         // Get a list of matched tokens
@@ -32,6 +28,7 @@ public class PacmanParserExecutor {
         final ParseTreeWalker walker = new ParseTreeWalker();
         final LevelBaseListenerImplementation listener = new LevelBaseListenerImplementation();
         walker.walk(listener, fieldContext);
+        return listener.getTotalValues();
     }
 
     private static void parseAi() throws IOException {

@@ -15,8 +15,8 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     private List<List> totalvalues = new ArrayList<>();
 
     public List<List> getTotalValues() {
-        System.out.println(totalvalues.size());
-        System.out.println(values.size());
+        //System.out.println(totalvalues.size());
+        //System.out.println(values.size());
         if(totalvalues.size() == 20 && values.size() == 20) {
             System.out.println("ok");
             System.out.println(totalvalues);
