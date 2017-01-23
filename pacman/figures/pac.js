@@ -102,7 +102,7 @@ define(["underscore", "constants"], function (_, constants) {
         }
 
         function rotate() {
-            ctx.save()
+            ctx.save();
             ctx.translate((gridX * BLOCK_SIZE+15), (gridY * BLOCK_SIZE+15));
             ctx.rotate(degree*Math.PI/180);
             if (mirror == true) {

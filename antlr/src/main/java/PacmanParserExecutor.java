@@ -7,21 +7,16 @@ import level.generated.LevelParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 public class PacmanParserExecutor {
-    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/src/main/java/";
+    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/level/";
 
-    public static void main(String[] args) throws IOException {
-        //parseLevel();
-        //parseAi(WORKING_DIRECTORY + "strategies/random.ai");
-    }
-
-    public static void parseLevel() throws IOException {
+    public static List<List> parseLevel() throws IOException {
         // Get CSV lexer
-        final LevelLexer lexer = new LevelLexer(new ANTLRInputStream(new FileReader(WORKING_DIRECTORY + "level/paclevel1.csv")));
+        final LevelLexer lexer = new LevelLexer(new ANTLRInputStream(new FileReader(WORKING_DIRECTORY + "paclevel1.csv")));
         // Get a list of matched tokens
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         // Pass the tokens to the parser
@@ -32,6 +27,7 @@ public class PacmanParserExecutor {
         final ParseTreeWalker walker = new ParseTreeWalker();
         final LevelBaseListenerImplementation listener = new LevelBaseListenerImplementation();
         walker.walk(listener, fieldContext);
+        return listener.getTotalValues();
     }
 
     public static void parseAi(final String filePath) throws IOException {
@@ -42,11 +38,11 @@ public class PacmanParserExecutor {
         // Pass the tokens to the parser
         final AiParser parser = new AiParser(tokens);
         // Specify our entry point
-        final AiParser.AiContext aiContext = parser.ai();
+        final AiParser.AiContext fieldContext = parser.ai();
         // Walk it and attach our listener
         final ParseTreeWalker walker = new ParseTreeWalker();
         final AiBaseListener listener = new AiBaseListener();
-        walker.walk(listener, aiContext);
+        walker.walk(listener, fieldContext);
     }
 
     public void exitFile(LevelParser.FieldContext ctx) {
