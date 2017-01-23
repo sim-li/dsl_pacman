@@ -12,14 +12,14 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
 
     private List values;
 
-    private List<List> totalvalues = new ArrayList<>();
+    private List<List> totalvalues = new ArrayList<List>();
 
     public List<List> getTotalValues() {
         //System.out.println(totalvalues.size());
         //System.out.println(values.size());
         if(totalvalues.size() == 20 && values.size() == 20) {
             System.out.println("ok");
-            System.out.println(totalvalues);
+            //System.out.println(totalvalues);
             return totalvalues;
 
         }

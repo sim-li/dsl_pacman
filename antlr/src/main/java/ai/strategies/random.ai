@@ -13,3 +13,8 @@ random (
       }
     }
 )
+
+follow_pac (
+    -> = % ::PAC_POSITION
+    !random
+)

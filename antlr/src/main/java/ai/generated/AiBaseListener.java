@@ -16,37 +16,109 @@ public class AiBaseListener implements AiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterField(AiParser.FieldContext ctx) { }
+	@Override public void enterAi(AiParser.AiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitField(AiParser.FieldContext ctx) { }
+	@Override public void exitAi(AiParser.AiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRow(AiParser.RowContext ctx) { }
+	@Override public void enterStartai(AiParser.StartaiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRow(AiParser.RowContext ctx) { }
+	@Override public void exitStartai(AiParser.StartaiContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterValue(AiParser.ValueContext ctx) { }
+	@Override public void enterAi_body(AiParser.Ai_bodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitValue(AiParser.ValueContext ctx) { }
+	@Override public void exitAi_body(AiParser.Ai_bodyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIf_free_statement(AiParser.If_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIf_free_statement(AiParser.If_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRandom_statement(AiParser.Random_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRandom_statement(AiParser.Random_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterLeave_free_statement(AiParser.Leave_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLeave_free_statement(AiParser.Leave_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGet_nth_free_statement(AiParser.Get_nth_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGet_nth_free_statement(AiParser.Get_nth_free_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRatio_expr(AiParser.Ratio_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRatio_expr(AiParser.Ratio_exprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEnd_ai(AiParser.End_aiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnd_ai(AiParser.End_aiContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
