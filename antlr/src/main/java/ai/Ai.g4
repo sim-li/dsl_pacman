@@ -4,7 +4,7 @@ ai: startai LINE_BREAK (ai_body|LINE_BREAK|DIRECTION)+ end_ai;
 
 startai: AI_NAME PARENTHESIS_OPEN;
 
-ai_body: LINE_BREAK? block_declaration '{' LINE_BREAK DIRECTION+|ai_body '}' LINE_BREAK?;
+ai_body: LINE_BREAK? block_declaration '{' LINE_BREAK (DIRECTION+|ai_body) '}' LINE_BREAK?;
 
 block_declaration: if_free_statement | random_statement | leave_free_statement | get_nth_free_statement;
 
