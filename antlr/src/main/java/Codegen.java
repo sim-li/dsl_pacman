@@ -1,11 +1,13 @@
-import level.*;
-import level.AiBaseListenerImplementation;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-
 import java.io.FileReader;
 import java.io.IOException;
+
+import ai.*;
+import ai.generated.*;
+import level.*;
+import level.generated.*;
 
 public class Codegen {
     final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/src/main/java/level/";

@@ -13,20 +13,16 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
 
         @Override public void enterRow(LevelParser.RowContext ctx) {
             System.out.println("Hello");
-            ;
         }
 
         @Override public void exitRow(LevelParser.RowContext ctx) { }
 
         @Override public void enterValue(LevelParser.ValueContext ctx) {
             System.out.println("Hello");
-            ;
-
         }
 
         @Override public void exitValue(LevelParser.ValueContext ctx) {
             System.out.println("Hello");
-            ;
         }
 
         @Override public void enterEveryRule(ParserRuleContext ctx) { }

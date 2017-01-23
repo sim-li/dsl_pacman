@@ -13,20 +13,16 @@ public class AiBaseListenerImplementation extends AiBaseListener {
 
         @Override public void enterRow(AiParser.RowContext ctx) {
             System.out.println("Hello");
-            ;
         }
 
         @Override public void exitRow(AiParser.RowContext ctx) { }
 
         @Override public void enterValue(AiParser.ValueContext ctx) {
             System.out.println("Hello");
-            ;
-
         }
 
         @Override public void exitValue(AiParser.ValueContext ctx) {
             System.out.println("Hello");
-            ;
         }
 
         @Override public void enterEveryRule(ParserRuleContext ctx) { }
