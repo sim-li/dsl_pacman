@@ -1,7 +1,4 @@
 grammar Level;
-@header {
-    package level;
-}
 
 field       : row* EOF ;
 

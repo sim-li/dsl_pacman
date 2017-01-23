@@ -1,0 +1,20 @@
+random (
+    // -> defaults to current direction
+    if *(->) {
+        %(50:25:25) {
+            ->;
+            **{
+              =>; <=;
+            }
+        }
+    } else {
+      *1 {
+        =>; <=; <-;
+      }
+    }
+)
+
+follow_pac (
+    -> = % ::PAC_POSITION
+    !random
+)
