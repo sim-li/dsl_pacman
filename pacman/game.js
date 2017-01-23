@@ -151,8 +151,11 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                             cur_point = cur_point + 100;
                             break;
                         case "ghost":
+                            console.log("geist gegessen");
                             cur_point = cur_point + 200;
+                            break;
                         case "killed":
+                            console.log("killed aufgerufen");
                             cur_life = cur_life - 1;
                             if (cur_life == 0)
                                 isGameOver = true;
