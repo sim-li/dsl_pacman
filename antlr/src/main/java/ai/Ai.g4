@@ -4,7 +4,7 @@ ai: startai LINE_BREAK (ai_body)+ end_ai;
 
 startai: NAME_IDENTIFIER PARENTHESIS_OPEN;
 
-ai_body: WS* (LINE_BREAK|COMMENT|bracket_open|bracket_close|block_declaration|assignment|reference|DIRECTION_EXPR);
+ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration|assignment|reference|DIRECTION_EXPR);
 
 bracket_open: '{';
 
@@ -18,17 +18,17 @@ block_declaration: (if_free_statement|else_free_statement|random_statement|leave
 //-> = ::PAC_POSITION
 assignment: DIRECTION WS? '=' WS? '::' WS? NAME_IDENTIFIER;
 
-if_free_statement: 'if *(' DIRECTION ')';
+if_free_statement: 'if *(' DIRECTION ')' WS* bracket_open;
 
-else_free_statement: 'else ' bracket_open;
+else_free_statement: 'else' WS* bracket_open;
 
-random_statement: '%' ratio_expr?;
+random_statement: '%' ratio_expr? WS* bracket_open;
 
 ratio_expr: '(' RATIO_EXPR RATIO_EXPR+ ')';
 
-leave_free_statement: '**';
+leave_free_statement: '**' WS* bracket_open;
 
-get_nth_free_statement: NTH_FREE;
+get_nth_free_statement: NTH_FREE WS* bracket_open;
 
 end_ai: PARENTHESIS_CLOSE WS* LINE_BREAK* EOF;
 
