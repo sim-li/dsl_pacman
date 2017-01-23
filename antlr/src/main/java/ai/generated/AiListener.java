@@ -38,6 +38,16 @@ public interface AiListener extends ParseTreeListener {
 	 */
 	void exitAi_body(AiParser.Ai_bodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AiParser#bracket}.
+	 * @param ctx the parse tree
+	 */
+	void enterBracket(AiParser.BracketContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#bracket}.
+	 * @param ctx the parse tree
+	 */
+	void exitBracket(AiParser.BracketContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AiParser#reference}.
 	 * @param ctx the parse tree
 	 */

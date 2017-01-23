@@ -1,7 +1,7 @@
 import junit.framework.TestCase;
 import java.io.IOException;
 
-public class AiTest extends TestCase {
+public class AiPassAndFailTests extends TestCase {
     final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/src/test/java/testAis";
 
     public void testBasic() throws IOException {

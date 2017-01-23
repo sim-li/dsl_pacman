@@ -52,6 +52,18 @@ public class AiBaseListener implements AiListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBracket(AiParser.BracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBracket(AiParser.BracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterReference(AiParser.ReferenceContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -1,6 +1,8 @@
+import ai.AiBaseListenerImplementation;
 import ai.generated.AiBaseListener;
 import ai.generated.AiLexer;
 import ai.generated.AiParser;
+import ai.nodes.Node;
 import level.LevelBaseListenerImplementation;
 import level.generated.LevelLexer;
 import level.generated.LevelParser;
@@ -30,7 +32,7 @@ public class PacmanParserExecutor {
         return listener.getTotalValues();
     }
 
-    public static void parseAi(final String filePath) throws IOException {
+    public static ParsingResult<Node> parseAi(final String filePath) throws IOException {
         // Get CSV lexer
         final AiLexer lexer = new AiLexer(new ANTLRInputStream(new FileReader(filePath)));
         // Get a list of matched tokens
@@ -41,8 +43,9 @@ public class PacmanParserExecutor {
         final AiParser.AiContext fieldContext = parser.ai();
         // Walk it and attach our listener
         final ParseTreeWalker walker = new ParseTreeWalker();
-        final AiBaseListener listener = new AiBaseListener();
+        final AiBaseListenerImplementation listener = new AiBaseListenerImplementation();
         walker.walk(listener, fieldContext);
+        return new ParsingResult<Node>(listener.getRootNode(), parser);
     }
 
     public void exitFile(LevelParser.FieldContext ctx) {

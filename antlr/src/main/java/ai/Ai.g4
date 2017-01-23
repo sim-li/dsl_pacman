@@ -4,7 +4,9 @@ ai: startai LINE_BREAK (ai_body)+ end_ai;
 
 startai: NAME_IDENTIFIER PARENTHESIS_OPEN;
 
-ai_body: WS* (LINE_BREAK|block_declaration|assignment|reference|DIRECTION_EXPR|'{'|'}');
+ai_body: WS* (LINE_BREAK|block_declaration|assignment|reference|DIRECTION_EXPR|bracket);
+
+bracket: '{'|'}';
 
 //!random
 reference: '!' NAME_IDENTIFIER;
