@@ -4,9 +4,15 @@ ai: startai LINE_BREAK (ai_body)+ end_ai;
 
 startai: NAME_IDENTIFIER PARENTHESIS_OPEN;
 
-ai_body: WS* (LINE_BREAK|block_declaration|DIRECTION_EXPR|'{'|'}');
+ai_body: WS* (LINE_BREAK|block_declaration|assignment|reference|DIRECTION_EXPR|'{'|'}');
+
+//!random
+reference: '!' NAME_IDENTIFIER;
 
 block_declaration: (if_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
+
+//-> = ::PAC_POSITION
+assignment: DIRECTION WS? '=' WS? '::' WS? NAME_IDENTIFIER;
 
 if_free_statement: 'if *(' DIRECTION_EXPR ')';
 
@@ -20,18 +26,19 @@ get_nth_free_statement: NTH_FREE;
 
 end_ai: PARENTHESIS_CLOSE WS* LINE_BREAK* EOF;
 
-
 DIRECTION_EXPR: DIRECTION';' LINE_BREAK?;
 
 DIRECTION: ('->' | '<-' | '=>' | '<=');
 
-NAME_IDENTIFIER: [a-zA-Z0-9_]+;
+NAME_IDENTIFIER: ([a-zA-Z_])+;
 
 RATIO_EXPR: RATIO ':'?;
 
-RATIO: [0-9][0-9]?;
+RATIO: DIGIT DIGIT?;
 
-NTH_FREE: '*'[0-9]+;
+NTH_FREE: '*'DIGIT+;
+
+DIGIT: [0-9];
 
 WS: [ \t];
 

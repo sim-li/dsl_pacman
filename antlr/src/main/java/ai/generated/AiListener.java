@@ -38,6 +38,16 @@ public interface AiListener extends ParseTreeListener {
 	 */
 	void exitAi_body(AiParser.Ai_bodyContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AiParser#reference}.
+	 * @param ctx the parse tree
+	 */
+	void enterReference(AiParser.ReferenceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#reference}.
+	 * @param ctx the parse tree
+	 */
+	void exitReference(AiParser.ReferenceContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AiParser#block_declaration}.
 	 * @param ctx the parse tree
 	 */
@@ -47,6 +57,16 @@ public interface AiListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBlock_declaration(AiParser.Block_declarationContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignment(AiParser.AssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#assignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignment(AiParser.AssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AiParser#if_free_statement}.
 	 * @param ctx the parse tree

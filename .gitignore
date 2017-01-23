@@ -25,3 +25,6 @@ dist/
 nbdist/
 .nb-gradle/
 nbproject/
+
+.idea/workspace.xml
+.idea
