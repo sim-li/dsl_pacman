@@ -65,9 +65,10 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                     console.log("Pac ate ghost");
                 } else {
                     //pac.gotKilled();
-                    reset();
-                    setPoint("killed");
                     console.log("Pac got killed");
+                    setPoint("killed");
+                    
+                    reset();
                 }
             }
         }
