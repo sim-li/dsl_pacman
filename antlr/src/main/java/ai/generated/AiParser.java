@@ -17,8 +17,9 @@ public class AiParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, DIRECTION=6, NTH_FREE=7, RATIO_EXPR=8, 
-		RATIO=9, AI_NAME=10, WS=11, LINE_BREAK=12, PARENTHESIS_OPEN=13, PARENTHESIS_CLOSE=14;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, DIRECTION_EXPR=6, DIRECTION=7, 
+		NAME_IDENTIFIER=8, RATIO_EXPR=9, RATIO=10, NTH_FREE=11, WS=12, LINE_BREAK=13, 
+		PARENTHESIS_OPEN=14, PARENTHESIS_CLOSE=15;
 	public static final int
 		RULE_ai = 0, RULE_startai = 1, RULE_ai_body = 2, RULE_block_declaration = 3, 
 		RULE_if_free_statement = 4, RULE_random_statement = 5, RULE_ratio_expr = 6, 
@@ -31,11 +32,12 @@ public class AiParser extends Parser {
 
 	private static final String[] _LITERAL_NAMES = {
 		null, "'{'", "'}'", "'if *('", "'%'", "'**'", null, null, null, null, 
-		null, null, null, "'('", "')'"
+		null, null, null, null, "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, "DIRECTION", "NTH_FREE", "RATIO_EXPR", 
-		"RATIO", "AI_NAME", "WS", "LINE_BREAK", "PARENTHESIS_OPEN", "PARENTHESIS_CLOSE"
+		null, null, null, null, null, null, "DIRECTION_EXPR", "DIRECTION", "NAME_IDENTIFIER", 
+		"RATIO_EXPR", "RATIO", "NTH_FREE", "WS", "LINE_BREAK", "PARENTHESIS_OPEN", 
+		"PARENTHESIS_CLOSE"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -138,7 +140,7 @@ public class AiParser extends Parser {
 				setState(25); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << DIRECTION) | (1L << NTH_FREE) | (1L << WS) | (1L << LINE_BREAK))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << DIRECTION_EXPR) | (1L << NTH_FREE) | (1L << WS) | (1L << LINE_BREAK))) != 0) );
 			setState(27);
 			end_ai();
 			}
@@ -155,7 +157,7 @@ public class AiParser extends Parser {
 	}
 
 	public static class StartaiContext extends ParserRuleContext {
-		public TerminalNode AI_NAME() { return getToken(AiParser.AI_NAME, 0); }
+		public TerminalNode NAME_IDENTIFIER() { return getToken(AiParser.NAME_IDENTIFIER, 0); }
 		public TerminalNode PARENTHESIS_OPEN() { return getToken(AiParser.PARENTHESIS_OPEN, 0); }
 		public StartaiContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -178,7 +180,7 @@ public class AiParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(29);
-			match(AI_NAME);
+			match(NAME_IDENTIFIER);
 			setState(30);
 			match(PARENTHESIS_OPEN);
 			}
@@ -199,7 +201,7 @@ public class AiParser extends Parser {
 		public Block_declarationContext block_declaration() {
 			return getRuleContext(Block_declarationContext.class,0);
 		}
-		public TerminalNode DIRECTION() { return getToken(AiParser.DIRECTION, 0); }
+		public TerminalNode DIRECTION_EXPR() { return getToken(AiParser.DIRECTION_EXPR, 0); }
 		public List<TerminalNode> WS() { return getTokens(AiParser.WS); }
 		public TerminalNode WS(int i) {
 			return getToken(AiParser.WS, i);
@@ -257,10 +259,10 @@ public class AiParser extends Parser {
 				block_declaration();
 				}
 				break;
-			case DIRECTION:
+			case DIRECTION_EXPR:
 				{
 				setState(40);
-				match(DIRECTION);
+				match(DIRECTION_EXPR);
 				}
 				break;
 			case T__0:
@@ -368,7 +370,7 @@ public class AiParser extends Parser {
 	}
 
 	public static class If_free_statementContext extends ParserRuleContext {
-		public TerminalNode DIRECTION() { return getToken(AiParser.DIRECTION, 0); }
+		public TerminalNode DIRECTION_EXPR() { return getToken(AiParser.DIRECTION_EXPR, 0); }
 		public If_free_statementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -392,7 +394,7 @@ public class AiParser extends Parser {
 			setState(51);
 			match(T__2);
 			setState(52);
-			match(DIRECTION);
+			match(DIRECTION_EXPR);
 			setState(53);
 			match(PARENTHESIS_CLOSE);
 			}
@@ -668,7 +670,7 @@ public class AiParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\20Z\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\21Z\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
 		"\2\3\2\3\2\6\2\32\n\2\r\2\16\2\33\3\2\3\2\3\3\3\3\3\3\3\4\7\4$\n\4\f\4"+
 		"\16\4\'\13\4\3\4\3\4\3\4\3\4\3\4\5\4.\n\4\3\5\3\5\3\5\3\5\5\5\64\n\5\3"+
@@ -677,20 +679,20 @@ public class AiParser extends Parser {
 		"\f\13\16\13V\13\13\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\\"+
 		"\2\26\3\2\2\2\4\37\3\2\2\2\6%\3\2\2\2\b\63\3\2\2\2\n\65\3\2\2\2\f9\3\2"+
 		"\2\2\16=\3\2\2\2\20F\3\2\2\2\22H\3\2\2\2\24J\3\2\2\2\26\27\5\4\3\2\27"+
-		"\31\7\16\2\2\30\32\5\6\4\2\31\30\3\2\2\2\32\33\3\2\2\2\33\31\3\2\2\2\33"+
-		"\34\3\2\2\2\34\35\3\2\2\2\35\36\5\24\13\2\36\3\3\2\2\2\37 \7\f\2\2 !\7"+
-		"\17\2\2!\5\3\2\2\2\"$\7\r\2\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2"+
-		"\2&-\3\2\2\2\'%\3\2\2\2(.\7\16\2\2).\5\b\5\2*.\7\b\2\2+.\7\3\2\2,.\7\4"+
+		"\31\7\17\2\2\30\32\5\6\4\2\31\30\3\2\2\2\32\33\3\2\2\2\33\31\3\2\2\2\33"+
+		"\34\3\2\2\2\34\35\3\2\2\2\35\36\5\24\13\2\36\3\3\2\2\2\37 \7\n\2\2 !\7"+
+		"\20\2\2!\5\3\2\2\2\"$\7\16\2\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2"+
+		"\2&-\3\2\2\2\'%\3\2\2\2(.\7\17\2\2).\5\b\5\2*.\7\b\2\2+.\7\3\2\2,.\7\4"+
 		"\2\2-(\3\2\2\2-)\3\2\2\2-*\3\2\2\2-+\3\2\2\2-,\3\2\2\2.\7\3\2\2\2/\64"+
 		"\5\n\6\2\60\64\5\f\7\2\61\64\5\20\t\2\62\64\5\22\n\2\63/\3\2\2\2\63\60"+
 		"\3\2\2\2\63\61\3\2\2\2\63\62\3\2\2\2\64\t\3\2\2\2\65\66\7\5\2\2\66\67"+
-		"\7\b\2\2\678\7\20\2\28\13\3\2\2\29;\7\6\2\2:<\5\16\b\2;:\3\2\2\2;<\3\2"+
-		"\2\2<\r\3\2\2\2=>\7\17\2\2>@\7\n\2\2?A\7\n\2\2@?\3\2\2\2AB\3\2\2\2B@\3"+
-		"\2\2\2BC\3\2\2\2CD\3\2\2\2DE\7\20\2\2E\17\3\2\2\2FG\7\7\2\2G\21\3\2\2"+
-		"\2HI\7\t\2\2I\23\3\2\2\2JN\7\20\2\2KM\7\r\2\2LK\3\2\2\2MP\3\2\2\2NL\3"+
-		"\2\2\2NO\3\2\2\2OT\3\2\2\2PN\3\2\2\2QS\7\16\2\2RQ\3\2\2\2SV\3\2\2\2TR"+
-		"\3\2\2\2TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\2\2\3X\25\3\2\2\2\n\33%-\63"+
-		";BNT";
+		"\7\b\2\2\678\7\21\2\28\13\3\2\2\29;\7\6\2\2:<\5\16\b\2;:\3\2\2\2;<\3\2"+
+		"\2\2<\r\3\2\2\2=>\7\20\2\2>@\7\13\2\2?A\7\13\2\2@?\3\2\2\2AB\3\2\2\2B"+
+		"@\3\2\2\2BC\3\2\2\2CD\3\2\2\2DE\7\21\2\2E\17\3\2\2\2FG\7\7\2\2G\21\3\2"+
+		"\2\2HI\7\r\2\2I\23\3\2\2\2JN\7\21\2\2KM\7\16\2\2LK\3\2\2\2MP\3\2\2\2N"+
+		"L\3\2\2\2NO\3\2\2\2OT\3\2\2\2PN\3\2\2\2QS\7\17\2\2RQ\3\2\2\2SV\3\2\2\2"+
+		"TR\3\2\2\2TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\2\2\3X\25\3\2\2\2\n\33%-"+
+		"\63;BNT";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
