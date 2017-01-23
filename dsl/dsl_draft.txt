@@ -25,6 +25,6 @@ random (
 )
 
 follow_pac (
-    -> = % ::PAC_POSITION
+    -> = ::PAC_POSITION
     !random
 )

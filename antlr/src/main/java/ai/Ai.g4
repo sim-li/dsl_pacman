@@ -1,12 +1,12 @@
 grammar Ai;
 
-ai: startai LINE_BREAK (ai_body|LINE_BREAK|DIRECTION)+ end_ai;
+ai: startai LINE_BREAK (ai_body)+ end_ai;
 
 startai: AI_NAME PARENTHESIS_OPEN;
 
-ai_body: LINE_BREAK? block_declaration '{' LINE_BREAK (DIRECTION+|ai_body) '}' LINE_BREAK?;
+ai_body: WS* (LINE_BREAK|block_declaration|DIRECTION|'{'|'}');
 
-block_declaration: if_free_statement | random_statement | leave_free_statement | get_nth_free_statement;
+block_declaration: (if_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
 
 if_free_statement: 'if *(' DIRECTION ')';
 
@@ -28,7 +28,7 @@ RATIO: [0-9][0-9]?;
 
 AI_NAME: [a-zA-Z0-9]+;
 
-WS: [ \t]*;
+WS: [ \t];
 
 LINE_BREAK: '\r'?'\n' | '\r';
 PARENTHESIS_OPEN: '(';

@@ -90,10 +90,7 @@ public class AiParser extends Parser {
 		public StartaiContext startai() {
 			return getRuleContext(StartaiContext.class,0);
 		}
-		public List<TerminalNode> LINE_BREAK() { return getTokens(AiParser.LINE_BREAK); }
-		public TerminalNode LINE_BREAK(int i) {
-			return getToken(AiParser.LINE_BREAK, i);
-		}
+		public TerminalNode LINE_BREAK() { return getToken(AiParser.LINE_BREAK, 0); }
 		public End_aiContext end_ai() {
 			return getRuleContext(End_aiContext.class,0);
 		}
@@ -102,10 +99,6 @@ public class AiParser extends Parser {
 		}
 		public Ai_bodyContext ai_body(int i) {
 			return getRuleContext(Ai_bodyContext.class,i);
-		}
-		public List<TerminalNode> DIRECTION() { return getTokens(AiParser.DIRECTION); }
-		public TerminalNode DIRECTION(int i) {
-			return getToken(AiParser.DIRECTION, i);
 		}
 		public AiContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -132,39 +125,21 @@ public class AiParser extends Parser {
 			startai();
 			setState(21);
 			match(LINE_BREAK);
-			setState(25); 
+			setState(23); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
-				setState(25);
-				_errHandler.sync(this);
-				switch ( getInterpreter().adaptivePredict(_input,0,_ctx) ) {
-				case 1:
-					{
-					setState(22);
-					ai_body();
-					}
-					break;
-				case 2:
-					{
-					setState(23);
-					match(LINE_BREAK);
-					}
-					break;
-				case 3:
-					{
-					setState(24);
-					match(DIRECTION);
-					}
-					break;
+				{
+				setState(22);
+				ai_body();
 				}
 				}
-				setState(27); 
+				setState(25); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << DIRECTION) | (1L << NTH_FREE) | (1L << LINE_BREAK))) != 0) );
-			setState(29);
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << DIRECTION) | (1L << NTH_FREE) | (1L << WS) | (1L << LINE_BREAK))) != 0) );
+			setState(27);
 			end_ai();
 			}
 		}
@@ -202,9 +177,9 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(31);
+			setState(29);
 			match(AI_NAME);
-			setState(32);
+			setState(30);
 			match(PARENTHESIS_OPEN);
 			}
 		}
@@ -220,19 +195,14 @@ public class AiParser extends Parser {
 	}
 
 	public static class Ai_bodyContext extends ParserRuleContext {
+		public TerminalNode LINE_BREAK() { return getToken(AiParser.LINE_BREAK, 0); }
 		public Block_declarationContext block_declaration() {
 			return getRuleContext(Block_declarationContext.class,0);
 		}
-		public List<TerminalNode> LINE_BREAK() { return getTokens(AiParser.LINE_BREAK); }
-		public TerminalNode LINE_BREAK(int i) {
-			return getToken(AiParser.LINE_BREAK, i);
-		}
-		public Ai_bodyContext ai_body() {
-			return getRuleContext(Ai_bodyContext.class,0);
-		}
-		public List<TerminalNode> DIRECTION() { return getTokens(AiParser.DIRECTION); }
-		public TerminalNode DIRECTION(int i) {
-			return getToken(AiParser.DIRECTION, i);
+		public TerminalNode DIRECTION() { return getToken(AiParser.DIRECTION, 0); }
+		public List<TerminalNode> WS() { return getTokens(AiParser.WS); }
+		public TerminalNode WS(int i) {
+			return getToken(AiParser.WS, i);
 		}
 		public Ai_bodyContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -258,64 +228,55 @@ public class AiParser extends Parser {
 			setState(35);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==LINE_BREAK) {
+			while (_la==WS) {
 				{
-				setState(34);
-				match(LINE_BREAK);
+				{
+				setState(32);
+				match(WS);
 				}
-			}
-
-			setState(37);
-			block_declaration();
-			setState(38);
-			match(T__0);
-			setState(39);
-			match(LINE_BREAK);
-			setState(46);
-			_errHandler.sync(this);
-			switch (_input.LA(1)) {
-			case DIRECTION:
-				{
-				setState(41); 
+				}
+				setState(37);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				do {
-					{
-					{
-					setState(40);
-					match(DIRECTION);
-					}
-					}
-					setState(43); 
-					_errHandler.sync(this);
-					_la = _input.LA(1);
-				} while ( _la==DIRECTION );
+			}
+			setState(43);
+			_errHandler.sync(this);
+			switch (_input.LA(1)) {
+			case LINE_BREAK:
+				{
+				setState(38);
+				match(LINE_BREAK);
 				}
 				break;
 			case T__2:
 			case T__3:
 			case T__4:
 			case NTH_FREE:
-			case LINE_BREAK:
 				{
-				setState(45);
-				ai_body();
+				setState(39);
+				block_declaration();
+				}
+				break;
+			case DIRECTION:
+				{
+				setState(40);
+				match(DIRECTION);
+				}
+				break;
+			case T__0:
+				{
+				setState(41);
+				match(T__0);
+				}
+				break;
+			case T__1:
+				{
+				setState(42);
+				match(T__1);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
-			}
-			setState(48);
-			match(T__1);
-			setState(50);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
-			case 1:
-				{
-				setState(49);
-				match(LINE_BREAK);
-				}
-				break;
 			}
 			}
 		}
@@ -361,39 +322,38 @@ public class AiParser extends Parser {
 		Block_declarationContext _localctx = new Block_declarationContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_block_declaration);
 		try {
-			setState(56);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(49);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__2:
-				enterOuterAlt(_localctx, 1);
 				{
-				setState(52);
+				setState(45);
 				if_free_statement();
 				}
 				break;
 			case T__3:
-				enterOuterAlt(_localctx, 2);
 				{
-				setState(53);
+				setState(46);
 				random_statement();
 				}
 				break;
 			case T__4:
-				enterOuterAlt(_localctx, 3);
 				{
-				setState(54);
+				setState(47);
 				leave_free_statement();
 				}
 				break;
 			case NTH_FREE:
-				enterOuterAlt(_localctx, 4);
 				{
-				setState(55);
+				setState(48);
 				get_nth_free_statement();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -429,11 +389,11 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(58);
+			setState(51);
 			match(T__2);
-			setState(59);
+			setState(52);
 			match(DIRECTION);
-			setState(60);
+			setState(53);
 			match(PARENTHESIS_CLOSE);
 			}
 		}
@@ -473,14 +433,14 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(62);
+			setState(55);
 			match(T__3);
-			setState(64);
+			setState(57);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PARENTHESIS_OPEN) {
 				{
-				setState(63);
+				setState(56);
 				ratio_expr();
 				}
 			}
@@ -524,25 +484,25 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(66);
+			setState(59);
 			match(PARENTHESIS_OPEN);
-			setState(67);
+			setState(60);
 			match(RATIO_EXPR);
-			setState(69); 
+			setState(62); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(68);
+				setState(61);
 				match(RATIO_EXPR);
 				}
 				}
-				setState(71); 
+				setState(64); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==RATIO_EXPR );
-			setState(73);
+			setState(66);
 			match(PARENTHESIS_CLOSE);
 			}
 		}
@@ -578,7 +538,7 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(75);
+			setState(68);
 			match(T__4);
 			}
 		}
@@ -615,7 +575,7 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77);
+			setState(70);
 			match(NTH_FREE);
 			}
 		}
@@ -662,37 +622,37 @@ public class AiParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(79);
+			setState(72);
 			match(PARENTHESIS_CLOSE);
-			setState(83);
+			setState(76);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==WS) {
 				{
 				{
-				setState(80);
+				setState(73);
 				match(WS);
 				}
 				}
-				setState(85);
+				setState(78);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(89);
+			setState(82);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==LINE_BREAK) {
 				{
 				{
-				setState(86);
+				setState(79);
 				match(LINE_BREAK);
 				}
 				}
-				setState(91);
+				setState(84);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(92);
+			setState(85);
 			match(EOF);
 			}
 		}
@@ -708,30 +668,29 @@ public class AiParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\20a\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\20Z\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\3"+
-		"\2\3\2\3\2\3\2\3\2\6\2\34\n\2\r\2\16\2\35\3\2\3\2\3\3\3\3\3\3\3\4\5\4"+
-		"&\n\4\3\4\3\4\3\4\3\4\6\4,\n\4\r\4\16\4-\3\4\5\4\61\n\4\3\4\3\4\5\4\65"+
-		"\n\4\3\5\3\5\3\5\3\5\5\5;\n\5\3\6\3\6\3\6\3\6\3\7\3\7\5\7C\n\7\3\b\3\b"+
-		"\3\b\6\bH\n\b\r\b\16\bI\3\b\3\b\3\t\3\t\3\n\3\n\3\13\3\13\7\13T\n\13\f"+
-		"\13\16\13W\13\13\3\13\7\13Z\n\13\f\13\16\13]\13\13\3\13\3\13\3\13\2\2"+
-		"\f\2\4\6\b\n\f\16\20\22\24\2\2d\2\26\3\2\2\2\4!\3\2\2\2\6%\3\2\2\2\b:"+
-		"\3\2\2\2\n<\3\2\2\2\f@\3\2\2\2\16D\3\2\2\2\20M\3\2\2\2\22O\3\2\2\2\24"+
-		"Q\3\2\2\2\26\27\5\4\3\2\27\33\7\16\2\2\30\34\5\6\4\2\31\34\7\16\2\2\32"+
-		"\34\7\b\2\2\33\30\3\2\2\2\33\31\3\2\2\2\33\32\3\2\2\2\34\35\3\2\2\2\35"+
-		"\33\3\2\2\2\35\36\3\2\2\2\36\37\3\2\2\2\37 \5\24\13\2 \3\3\2\2\2!\"\7"+
-		"\f\2\2\"#\7\17\2\2#\5\3\2\2\2$&\7\16\2\2%$\3\2\2\2%&\3\2\2\2&\'\3\2\2"+
-		"\2\'(\5\b\5\2()\7\3\2\2)\60\7\16\2\2*,\7\b\2\2+*\3\2\2\2,-\3\2\2\2-+\3"+
-		"\2\2\2-.\3\2\2\2.\61\3\2\2\2/\61\5\6\4\2\60+\3\2\2\2\60/\3\2\2\2\61\62"+
-		"\3\2\2\2\62\64\7\4\2\2\63\65\7\16\2\2\64\63\3\2\2\2\64\65\3\2\2\2\65\7"+
-		"\3\2\2\2\66;\5\n\6\2\67;\5\f\7\28;\5\20\t\29;\5\22\n\2:\66\3\2\2\2:\67"+
-		"\3\2\2\2:8\3\2\2\2:9\3\2\2\2;\t\3\2\2\2<=\7\5\2\2=>\7\b\2\2>?\7\20\2\2"+
-		"?\13\3\2\2\2@B\7\6\2\2AC\5\16\b\2BA\3\2\2\2BC\3\2\2\2C\r\3\2\2\2DE\7\17"+
-		"\2\2EG\7\n\2\2FH\7\n\2\2GF\3\2\2\2HI\3\2\2\2IG\3\2\2\2IJ\3\2\2\2JK\3\2"+
-		"\2\2KL\7\20\2\2L\17\3\2\2\2MN\7\7\2\2N\21\3\2\2\2OP\7\t\2\2P\23\3\2\2"+
-		"\2QU\7\20\2\2RT\7\r\2\2SR\3\2\2\2TW\3\2\2\2US\3\2\2\2UV\3\2\2\2V[\3\2"+
-		"\2\2WU\3\2\2\2XZ\7\16\2\2YX\3\2\2\2Z]\3\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\^"+
-		"\3\2\2\2][\3\2\2\2^_\7\2\2\3_\25\3\2\2\2\r\33\35%-\60\64:BIU[";
+		"\2\3\2\3\2\6\2\32\n\2\r\2\16\2\33\3\2\3\2\3\3\3\3\3\3\3\4\7\4$\n\4\f\4"+
+		"\16\4\'\13\4\3\4\3\4\3\4\3\4\3\4\5\4.\n\4\3\5\3\5\3\5\3\5\5\5\64\n\5\3"+
+		"\6\3\6\3\6\3\6\3\7\3\7\5\7<\n\7\3\b\3\b\3\b\6\bA\n\b\r\b\16\bB\3\b\3\b"+
+		"\3\t\3\t\3\n\3\n\3\13\3\13\7\13M\n\13\f\13\16\13P\13\13\3\13\7\13S\n\13"+
+		"\f\13\16\13V\13\13\3\13\3\13\3\13\2\2\f\2\4\6\b\n\f\16\20\22\24\2\2\\"+
+		"\2\26\3\2\2\2\4\37\3\2\2\2\6%\3\2\2\2\b\63\3\2\2\2\n\65\3\2\2\2\f9\3\2"+
+		"\2\2\16=\3\2\2\2\20F\3\2\2\2\22H\3\2\2\2\24J\3\2\2\2\26\27\5\4\3\2\27"+
+		"\31\7\16\2\2\30\32\5\6\4\2\31\30\3\2\2\2\32\33\3\2\2\2\33\31\3\2\2\2\33"+
+		"\34\3\2\2\2\34\35\3\2\2\2\35\36\5\24\13\2\36\3\3\2\2\2\37 \7\f\2\2 !\7"+
+		"\17\2\2!\5\3\2\2\2\"$\7\r\2\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2"+
+		"\2&-\3\2\2\2\'%\3\2\2\2(.\7\16\2\2).\5\b\5\2*.\7\b\2\2+.\7\3\2\2,.\7\4"+
+		"\2\2-(\3\2\2\2-)\3\2\2\2-*\3\2\2\2-+\3\2\2\2-,\3\2\2\2.\7\3\2\2\2/\64"+
+		"\5\n\6\2\60\64\5\f\7\2\61\64\5\20\t\2\62\64\5\22\n\2\63/\3\2\2\2\63\60"+
+		"\3\2\2\2\63\61\3\2\2\2\63\62\3\2\2\2\64\t\3\2\2\2\65\66\7\5\2\2\66\67"+
+		"\7\b\2\2\678\7\20\2\28\13\3\2\2\29;\7\6\2\2:<\5\16\b\2;:\3\2\2\2;<\3\2"+
+		"\2\2<\r\3\2\2\2=>\7\17\2\2>@\7\n\2\2?A\7\n\2\2@?\3\2\2\2AB\3\2\2\2B@\3"+
+		"\2\2\2BC\3\2\2\2CD\3\2\2\2DE\7\20\2\2E\17\3\2\2\2FG\7\7\2\2G\21\3\2\2"+
+		"\2HI\7\t\2\2I\23\3\2\2\2JN\7\20\2\2KM\7\r\2\2LK\3\2\2\2MP\3\2\2\2NL\3"+
+		"\2\2\2NO\3\2\2\2OT\3\2\2\2PN\3\2\2\2QS\7\16\2\2RQ\3\2\2\2SV\3\2\2\2TR"+
+		"\3\2\2\2TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\2\2\3X\25\3\2\2\2\n\33%-\63"+
+		";BNT";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
