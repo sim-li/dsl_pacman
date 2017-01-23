@@ -1,7 +1,5 @@
 // Generated from ./src/main/java/ai/Ai.g4 by ANTLR 4.6
-
-    package ai;
-
+package ai.generated;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**

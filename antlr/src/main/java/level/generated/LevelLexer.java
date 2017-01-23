@@ -1,7 +1,5 @@
-// Generated from ./src/main/java/ai/Ai.g4 by ANTLR 4.6
-
-    package ai;
-
+// Generated from ./src/main/java/level/Level.g4 by ANTLR 4.6
+package level.generated;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -12,7 +10,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class AiLexer extends Lexer {
+public class LevelLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -68,13 +66,13 @@ public class AiLexer extends Lexer {
 	}
 
 
-	public AiLexer(CharStream input) {
+	public LevelLexer(CharStream input) {
 		super(input);
 		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	@Override
-	public String getGrammarFileName() { return "Ai.g4"; }
+	public String getGrammarFileName() { return "Level.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

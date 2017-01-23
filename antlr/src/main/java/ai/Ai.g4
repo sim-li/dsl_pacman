@@ -1,7 +1,4 @@
 grammar Ai;
-@header {
-    ai;
-}
 
 field       : row* EOF ;
 
