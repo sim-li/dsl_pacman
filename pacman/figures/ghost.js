@@ -107,8 +107,8 @@ define(["underscore", "constants"], function (_, constants) {
             gridX = -10;
             gridY = -10;
             setTimeout(function () {
-                gridX = 10;
-                gridY = 10;
+                gridX = gridX_initial;
+                gridY = gridY_initial;
             }, 10000);
         }
 
