@@ -28,6 +28,46 @@ public interface AiListener extends ParseTreeListener {
 	 */
 	void exitStartai(AiParser.StartaiContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AiParser#ai_body}.
+	 * @param ctx the parse tree
+	 */
+	void enterAi_body(AiParser.Ai_bodyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#ai_body}.
+	 * @param ctx the parse tree
+	 */
+	void exitAi_body(AiParser.Ai_bodyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#if_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf_free_statement(AiParser.If_free_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#if_free_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf_free_statement(AiParser.If_free_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#random_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterRandom_statement(AiParser.Random_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#random_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitRandom_statement(AiParser.Random_statementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#ratio_expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterRatio_expr(AiParser.Ratio_exprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#ratio_expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitRatio_expr(AiParser.Ratio_exprContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AiParser#end_ai}.
 	 * @param ctx the parse tree
 	 */
