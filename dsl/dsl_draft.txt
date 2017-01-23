@@ -5,6 +5,8 @@
 ; \n         statement seperator
 %            random
 %(50:25:25)  random with distribution
+---
+
 
 random (
     // -> defaults to current direction
@@ -16,7 +18,7 @@ random (
             }
         }
     } else {
-      **[1] {
+      *1 {
         =>; <=; <-;
       }
     }

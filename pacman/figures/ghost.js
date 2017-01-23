@@ -5,7 +5,9 @@ define(["underscore", "constants"], function (_, constants) {
         var gridX_initial = gridX;
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
+        var timer;
         var currentDirection = "up";
+        var curImage = "ghost";
 
         function move() {
             var randomWalkStrategy = {
@@ -78,10 +80,20 @@ define(["underscore", "constants"], function (_, constants) {
         }
 
         function draw() {
-            ctx.drawImage(images.ghost, 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
+            ctx.drawImage(images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
 
         }
+        
+        function isVulnerable(){
+              curImage = "ghostVul";
+              timer = setTimeout(function () {
+                curImage = "ghost";
+            }, 7000);
+        }
 
+        function stopTimer(){
+            clearTimeout(timer);
+        }
 
         function getGridX() {
             return gridX;
@@ -108,6 +120,8 @@ define(["underscore", "constants"], function (_, constants) {
             gridY: getGridY,
             move: move,
             eaten: eaten,
+            isVulnerable: isVulnerable,
+            stopTimer: stopTimer,
             resetPos:resetPos
         };
     };

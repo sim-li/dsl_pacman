@@ -51,6 +51,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                         ghost2: "images/ghost2.jpg",
                         ghost3: "images/ghost3.jpg",
                         ghost4: "images/ghost4.jpg",
+                        ghostVul: "images/ghost_vul.png",
                         pac: "pac.png",
                         pac2: "pac_test.png"
                     });
@@ -73,15 +74,17 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     var ghost2Img = imgLoader.getImageAtIndex(4);
                     var ghost3Img = imgLoader.getImageAtIndex(5);
                     var ghost4Img = imgLoader.getImageAtIndex(6);
-                    var pacImg = imgLoader.getImageAtIndex(7);
-                    var pacImg2 = imgLoader.getImageAtIndex(8);
+                    var ghostVul = imgLoader.getImageAtIndex(7)
+                    var pacImg = imgLoader.getImageAtIndex(8);
+                    var pacImg2 = imgLoader.getImageAtIndex(9);
+                    console.log("gameboard load");
                     gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg}, setPoint);
                     gameBoard.drawBoard();
                     pac = new Pac(ctxPac, 9, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
-                    ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img}, gameBoard);
-                    ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img}, gameBoard);
-                    ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img}, gameBoard);
-                    ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img}, gameBoard);
+                    ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img, ghostVul: ghostVul}, gameBoard);
+                    ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img, ghostVul: ghostVul}, gameBoard);
+                    ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img, ghostVul: ghostVul}, gameBoard);
+                    ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img, ghostVul: ghostVul}, gameBoard);
                     gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
                 }
 
@@ -106,8 +109,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                 }
 
                 function run() {
+
                     gameBoard.reset();
                     gameBoard.resetLevel();
+
                     isGameOver = false;
                     if (!_.isUndefined(interval)) {
                         clearInterval(interval);
@@ -137,7 +142,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     switch (condition) {
                         case "init":
                             cur_point = 0;
-                            cur_life = 1;
+                            cur_life = 3;
                             break;
                         case "point":
                             cur_point = cur_point + 10;

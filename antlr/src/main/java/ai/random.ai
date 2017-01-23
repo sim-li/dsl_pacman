@@ -1,0 +1,15 @@
+random (
+    // -> defaults to current direction
+    if *(->) {
+        %(50:25:25) {
+            ->;
+            **{
+              =>; <=;
+            }
+        }
+    } else {
+      *1 {
+        =>; <=; <-;
+      }
+    }
+)
