@@ -1,14 +1,15 @@
-import level.*;
+import level.LevelBaseListenerImplementation;
+import level.LevelLexer;
+import level.LevelParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class Codegen {
-    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/src/main/java/level/";
+    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/level/";
 
     public static void main(String[] args) throws IOException {
         parseLevel();
@@ -32,7 +33,7 @@ public class Codegen {
         walker.walk(listener, fieldContext);
     }
 
-    public void exitFile(LevelParser.FieldContext ctx) {
+    public void exitField(LevelParser.FieldContext ctx) {
         System.out.println(
                 "If no error outputs occurred, then file has valid format!");
         System.out.println(ctx.getText());
