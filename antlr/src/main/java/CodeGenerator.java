@@ -7,7 +7,7 @@ public class CodeGenerator {
     final String WORKING_DIRECTORY = System.getProperty("user.dir") + "/src/de/bht/se/battleship/";
     //final String MODEL_FILENAME = WORKING_DIRECTORY + "/codegen/battleship.txt";
     final String OUTPUT_FILENAME = WORKING_DIRECTORY + "/generatedSources/level1.js";
-    Codegen codegen = new Codegen();
+    PacmanParserExecutor codegen = new PacmanParserExecutor();
 
     public void createJavaFile() throws IOException {
         final File outputFile = new File(OUTPUT_FILENAME);
@@ -34,7 +34,6 @@ public class CodeGenerator {
                             "wall: 3,",
                             "map:"
             );
-
            /* modelScanner.useDelimiter(",");
             for (int i = 0; modelScanner.hasNextLine() && i < 6; i++) {
                 final String input = modelScanner.nextLine();

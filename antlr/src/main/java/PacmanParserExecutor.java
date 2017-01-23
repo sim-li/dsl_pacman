@@ -1,7 +1,9 @@
 import ai.AiBaseListenerImplementation;
-import ai.AiLexer;
-import ai.AiParser;
-import level.*;
+import ai.generated.AiLexer;
+import ai.generated.AiParser;
+import level.LevelBaseListenerImplementation;
+import level.generated.LevelLexer;
+import level.generated.LevelParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -9,7 +11,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Codegen {
+public class PacmanParserExecutor {
     final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "antlr/src/main/java/level/";
 
     public static void main(String[] args) throws IOException {
