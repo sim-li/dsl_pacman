@@ -12,7 +12,7 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
 
     private List values;
 
-    private List<List> totalvalues = new ArrayList<>();
+    private List<List> totalvalues = new ArrayList<List>();
 
     public List<List> getTotalValues() {
         System.out.println(totalvalues.size());

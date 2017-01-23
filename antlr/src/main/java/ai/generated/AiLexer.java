@@ -17,20 +17,23 @@ public class AiLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		Separator=1, LineBreak=2, Value=3;
+		WS=1, AI_NAME=2, LINE_BREAK=3, PARENTHESIS_OPEN=4, PARENTHESIS_CLOSE=5, 
+		ANY_CHAR=6;
 	public static String[] modeNames = {
 		"DEFAULT_MODE"
 	};
 
 	public static final String[] ruleNames = {
-		"Separator", "LineBreak", "Value"
+		"WS", "AI_NAME", "LINE_BREAK", "PARENTHESIS_OPEN", "PARENTHESIS_CLOSE", 
+		"ANY_CHAR"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "';'"
+		null, null, null, null, "'('", "')'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, "Separator", "LineBreak", "Value"
+		null, "WS", "AI_NAME", "LINE_BREAK", "PARENTHESIS_OPEN", "PARENTHESIS_CLOSE", 
+		"ANY_CHAR"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -87,14 +90,19 @@ public class AiLexer extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\5\27\b\1\4\2\t\2"+
-		"\4\3\t\3\4\4\t\4\3\2\3\2\3\3\5\3\r\n\3\3\3\3\3\5\3\21\n\3\3\4\6\4\24\n"+
-		"\4\r\4\16\4\25\2\2\5\3\3\5\4\7\5\3\2\2\31\2\3\3\2\2\2\2\5\3\2\2\2\2\7"+
-		"\3\2\2\2\3\t\3\2\2\2\5\20\3\2\2\2\7\23\3\2\2\2\t\n\7=\2\2\n\4\3\2\2\2"+
-		"\13\r\7\17\2\2\f\13\3\2\2\2\f\r\3\2\2\2\r\16\3\2\2\2\16\21\7\f\2\2\17"+
-		"\21\7\17\2\2\20\f\3\2\2\2\20\17\3\2\2\2\21\6\3\2\2\2\22\24\4\62\65\2\23"+
-		"\22\3\2\2\2\24\25\3\2\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\b\3\2\2\2\6\2"+
-		"\f\20\25\2";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\2\b*\b\1\4\2\t\2\4"+
+		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\7\2\21\n\2\f\2\16\2\24\13\2"+
+		"\3\3\6\3\27\n\3\r\3\16\3\30\3\4\5\4\34\n\4\3\4\3\4\5\4 \n\4\3\5\3\5\3"+
+		"\6\3\6\3\7\6\7\'\n\7\r\7\16\7(\2\2\b\3\3\5\4\7\5\t\6\13\7\r\b\3\2\4\4"+
+		"\2\13\13\"\"\5\2\62;C\\c|.\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2"+
+		"\2\2\2\13\3\2\2\2\2\r\3\2\2\2\3\22\3\2\2\2\5\26\3\2\2\2\7\37\3\2\2\2\t"+
+		"!\3\2\2\2\13#\3\2\2\2\r&\3\2\2\2\17\21\t\2\2\2\20\17\3\2\2\2\21\24\3\2"+
+		"\2\2\22\20\3\2\2\2\22\23\3\2\2\2\23\4\3\2\2\2\24\22\3\2\2\2\25\27\t\3"+
+		"\2\2\26\25\3\2\2\2\27\30\3\2\2\2\30\26\3\2\2\2\30\31\3\2\2\2\31\6\3\2"+
+		"\2\2\32\34\7\17\2\2\33\32\3\2\2\2\33\34\3\2\2\2\34\35\3\2\2\2\35 \7\f"+
+		"\2\2\36 \7\17\2\2\37\33\3\2\2\2\37\36\3\2\2\2 \b\3\2\2\2!\"\7*\2\2\"\n"+
+		"\3\2\2\2#$\7+\2\2$\f\3\2\2\2%\'\4c|\2&%\3\2\2\2\'(\3\2\2\2(&\3\2\2\2("+
+		")\3\2\2\2)\16\3\2\2\2\b\2\22\30\33\37(\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

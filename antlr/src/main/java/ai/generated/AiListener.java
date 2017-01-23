@@ -8,33 +8,33 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface AiListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link AiParser#field}.
+	 * Enter a parse tree produced by {@link AiParser#ai}.
 	 * @param ctx the parse tree
 	 */
-	void enterField(AiParser.FieldContext ctx);
+	void enterAi(AiParser.AiContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link AiParser#field}.
+	 * Exit a parse tree produced by {@link AiParser#ai}.
 	 * @param ctx the parse tree
 	 */
-	void exitField(AiParser.FieldContext ctx);
+	void exitAi(AiParser.AiContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link AiParser#row}.
+	 * Enter a parse tree produced by {@link AiParser#start_ai}.
 	 * @param ctx the parse tree
 	 */
-	void enterRow(AiParser.RowContext ctx);
+	void enterStart_ai(AiParser.Start_aiContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link AiParser#row}.
+	 * Exit a parse tree produced by {@link AiParser#start_ai}.
 	 * @param ctx the parse tree
 	 */
-	void exitRow(AiParser.RowContext ctx);
+	void exitStart_ai(AiParser.Start_aiContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link AiParser#value}.
+	 * Enter a parse tree produced by {@link AiParser#end_ai}.
 	 * @param ctx the parse tree
 	 */
-	void enterValue(AiParser.ValueContext ctx);
+	void enterEnd_ai(AiParser.End_aiContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link AiParser#value}.
+	 * Exit a parse tree produced by {@link AiParser#end_ai}.
 	 * @param ctx the parse tree
 	 */
-	void exitValue(AiParser.ValueContext ctx);
+	void exitEnd_ai(AiParser.End_aiContext ctx);
 }
