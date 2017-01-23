@@ -23,6 +23,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         function checkPacsEating() {
             var pac = getPac();
+            var ghosts = getGhosts();
             var index = curMap[pac.gridY()][pac.gridX()];
             if (index == 1 || index == 2) {
                 curMap[pac.gridY()][pac.gridX()] = 0;
@@ -30,8 +31,12 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                 if (index == 1) {
                     setPoint("point");
                 } else {
+                    pac.stopTimer();
+                    ghosts.stopTimer();
                     setPoint("fruit");
                     pac.hungry();
+                    ghosts.isVulnerable();
+                    console.log("ghost vulnerable");
                 }
             }
         }
@@ -39,6 +44,11 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
         function getPac() {
             return _.filter(figures, function (f) {
                 return f.type === "pac";
+            })[0];
+        }
+        function getGhosts() {
+            return _.filter(figures, function (f) {
+                return f.type === "ghost";
             })[0];
         }
 

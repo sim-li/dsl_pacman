@@ -6,6 +6,7 @@ define(["underscore", "constants"], function (_, constants) {
         var gridY_initial = gridY;
         var BLOCK_SIZE = constants.BLOCK_SIZE;
         var isHungry = false;
+        var timer_hungry;
         var curImage = "pac";
         var timer = 0;
         var degree = 0;
@@ -88,9 +89,12 @@ define(["underscore", "constants"], function (_, constants) {
 
         function hungry() {
             isHungry = true;
-            setTimeout(function () {
+            timer_hungry = setTimeout(function () {
                 isHungry = false;
             }, 7000);
+        }
+        function stopTimer(){
+            clearTimeout(timer_hungry);
         }
 
         function gotKilled() {
@@ -138,6 +142,7 @@ define(["underscore", "constants"], function (_, constants) {
             gridY: getGridY,
             hungry: hungry,
             isHungry: getIsHungry,
+            stopTimer: stopTimer,
             gotKilled: gotKilled,
             resetPos: resetPos
         };
