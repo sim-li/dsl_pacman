@@ -1,6 +1,6 @@
 grammar Ai;
 
-ai: start_ai LINE_BREAK ANY_CHAR LINE_BREAK end_ai;
+ai: ANY_CHAR;
 
 start_ai: AI_NAME PARENTHESIS_OPEN;
 end_ai: PARENTHESIS_CLOSE WS* LINE_BREAK* EOF;
