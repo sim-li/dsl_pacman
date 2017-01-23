@@ -32,10 +32,12 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                     setPoint("point");
                 } else {
                     pac.stopTimer();
-                    ghosts.stopTimer();
+                    _.each(ghosts, function(ghost) {
+                        ghost.stopTimer();
+                        ghost.isVulnerable();
+                    });
                     setPoint("fruit");
                     pac.hungry();
-                    ghosts.isVulnerable();
                     console.log("ghost vulnerable");
                 }
             }
@@ -46,10 +48,11 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                 return f.type === "pac";
             })[0];
         }
+
         function getGhosts() {
             return _.filter(figures, function (f) {
                 return f.type === "ghost";
-            })[0];
+            });
         }
 
         function checkKills() {
