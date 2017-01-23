@@ -1,15 +1,19 @@
 grammar Ai;
 
-field       : row* EOF ;
+ai: start_ai instr* end_ai;
 
-row         : value (Separator value)* (LineBreak | EOF) ;
+start_ai: WS AINAME WS PARENTHESIS_OPEN WS LINE_BREAK;
 
-value       : Value ;
+end_ai: WS PARENTHESIS_CLOSE WS LINE_BREAK* EOF;
 
-Separator   : ';' ;
+instr: ANY_CHAR;
 
-LineBreak   : '\r'?'\n' | '\r';
+ANY_CHAR: [a-zA-Z0-9]*;
 
-Value : ('0'|'1'|'2'|'3')+ ;
+AI_NAME: [a-zA-Z0-9]+;
+PARENTHESIS_OPEN: '(';
+PARENTHESIS_CLOSE: ')';
 
-
+COLON: ';' ;
+LINE_BREAK: '\r'?'\n' | '\r';
+WS: [ \t]*
