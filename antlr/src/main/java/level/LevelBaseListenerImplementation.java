@@ -1,3 +1,4 @@
+/*
 package level;
 
 import level.generated.LevelBaseListener;
@@ -10,25 +11,19 @@ import java.util.List;
 
 public class LevelBaseListenerImplementation extends LevelBaseListener {
 
+    boolean check = true;
+
     private List values;
 
     private List<List> totalvalues = new ArrayList<List>();
 
     public List<List> getTotalValues() {
-        //System.out.println(totalvalues.size());
-        //System.out.println(values.size());
-        if(totalvalues.size() == 20 && values.size() == 20) {
-            System.out.println("ok");
-            //System.out.println(totalvalues);
+        if(check == true) {
+            System.out.println("Ok");
             return totalvalues;
-
-        }
-        else{
-            System.out.println("value / row error");
         }
         return null;
     }
-
 
     @Override
     public void enterField(LevelParser.FieldContext ctx) {
@@ -40,6 +35,10 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     public void exitField(LevelParser.FieldContext ctx) {
         //System.out.println("exitField()");
        getTotalValues();
+       if(totalvalues.size() != 20){
+           System.out.println("Row Error - Exactly 20 rows allowed");
+           check = false;
+       }
     }
 
     @Override
@@ -52,12 +51,18 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     public void exitRow(LevelParser.RowContext ctx) {
         //System.out.println("exitRow()");
         totalvalues.add(values);
+        if (values.size() != 20 ) {
+            System.out.println("Value Error in Line " + totalvalues.size() + " - Exactly 20 values per row allowed");
+            check = false;
+        }
+        //System.out.println(values.size());
     }
 
     @Override
     public void enterValue(LevelParser.ValueContext ctx) {
         //System.out.println("enterValue()");
         values.add(ctx.Value());
+
     }
 
     @Override
@@ -82,3 +87,4 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     public void visitErrorNode(ErrorNode node) {
     }
 }
+*/
