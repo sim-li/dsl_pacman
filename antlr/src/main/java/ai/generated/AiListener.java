@@ -157,4 +157,14 @@ public interface AiListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitEnd_ai(AiParser.End_aiContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AiParser#direction_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterDirection_statement(AiParser.Direction_statementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AiParser#direction_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitDirection_statement(AiParser.Direction_statementContext ctx);
 }

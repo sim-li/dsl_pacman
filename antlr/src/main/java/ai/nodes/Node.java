@@ -10,6 +10,13 @@ public class Node {
 
     public Node() {
         nodes = new ArrayList<Node>();
+        if (!(this instanceof EmptyNode)) {
+            parent = new EmptyNode();
+        }
+    }
+
+    public boolean hasParent() {
+        return parent instanceof EmptyNode;
     }
 
     public void addChild(Node node) {

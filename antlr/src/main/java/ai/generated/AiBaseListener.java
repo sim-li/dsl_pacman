@@ -191,6 +191,18 @@ public class AiBaseListener implements AiListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEnd_ai(AiParser.End_aiContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDirection_statement(AiParser.Direction_statementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDirection_statement(AiParser.Direction_statementContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

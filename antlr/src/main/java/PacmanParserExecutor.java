@@ -1,5 +1,4 @@
 import ai.AiBaseListenerImplementation;
-import ai.generated.AiBaseListener;
 import ai.generated.AiLexer;
 import ai.generated.AiParser;
 import ai.nodes.Node;
@@ -45,12 +44,12 @@ public class PacmanParserExecutor {
         final ParseTreeWalker walker = new ParseTreeWalker();
         final AiBaseListenerImplementation listener = new AiBaseListenerImplementation();
         walker.walk(listener, fieldContext);
-        return new ParsingResult<Node>(listener.getRootNode(), parser);
+        return new ParsingResult<Node>(listener.getCurrentNode(), parser);
     }
 
     public void exitFile(LevelParser.FieldContext ctx) {
         System.out.println(
-                "If no error outputs occurred, then file has valid format!");
+                "IfFree no error outputs occurred, then file has valid format!");
         System.out.println(ctx.getText());
     }
 }

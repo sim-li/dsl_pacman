@@ -4,7 +4,7 @@ ai: startai LINE_BREAK (ai_body)+ end_ai;
 
 startai: NAME_IDENTIFIER PARENTHESIS_OPEN;
 
-ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration|assignment|reference|DIRECTION_EXPR);
+ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration|assignment|reference|direction_statement);
 
 bracket_open: '{';
 
@@ -32,9 +32,9 @@ get_nth_free_statement: NTH_FREE WS* bracket_open;
 
 end_ai: PARENTHESIS_CLOSE WS* LINE_BREAK* EOF;
 
-COMMENT: WS*'#'(WS|NAME_IDENTIFIER|DIGIT)*;
+direction_statement: DIRECTION';' LINE_BREAK?;
 
-DIRECTION_EXPR: DIRECTION';' LINE_BREAK?;
+COMMENT: WS*'#'(WS|NAME_IDENTIFIER|DIGIT)*;
 
 DIRECTION: ('->' | '<-' | '=>' | '<=');
 

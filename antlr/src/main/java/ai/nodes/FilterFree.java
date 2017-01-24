@@ -1,4 +1,4 @@
 package ai.nodes;
 
-public class FilterFree {
+public class FilterFree extends Node{
 }
