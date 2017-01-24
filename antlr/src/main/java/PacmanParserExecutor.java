@@ -44,7 +44,7 @@ public class PacmanParserExecutor {
         final ParseTreeWalker walker = new ParseTreeWalker();
         final AiBaseListenerImplementation listener = new AiBaseListenerImplementation();
         walker.walk(listener, fieldContext);
-        return new ParsingResult<Node>(listener.getCurrentNode(), parser);
+        return new ParsingResult<Node>(listener.getInitialRoot(), parser);
     }
 
     public void exitFile(LevelParser.FieldContext ctx) {

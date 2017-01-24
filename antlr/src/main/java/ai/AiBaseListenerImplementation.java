@@ -14,10 +14,12 @@ import java.util.List;
 
 public class AiBaseListenerImplementation extends AiBaseListener {
     private Node currentNode;
+    private Node initialRoot;
     private int bracketsOpen = 0;
 
     @Override public void enterStartai(AiParser.StartaiContext ctx) {
         currentNode = new Root(ctx.start.getText());
+        initialRoot = currentNode;
     }
 
     @Override public void enterBracket_open(AiParser.Bracket_openContext ctx) {
@@ -103,11 +105,11 @@ public class AiBaseListenerImplementation extends AiBaseListener {
     }
 
     public Node getCurrentNode() {
-        Node rootNode = this.currentNode;
-//        while(!(rootNode instanceof EmptyNode)) {
-//            rootNode = rootNode.getParent();
-//        }
-        return rootNode;
+        return  this.currentNode;
+    }
+
+    public Node getInitialRoot() {
+        return this.initialRoot;
     }
 
     private void d() {
