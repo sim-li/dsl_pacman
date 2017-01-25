@@ -22,10 +22,10 @@ and open the template in the editor.
     height: 100%;
     transform: translateX(-50%);
     z-index: 2;
-    background-image: url(images/3770028466_20402d4fe9_b.jpg);
+    background-image: url(../images/3770028466_20402d4fe9_b.jpg);
 }
 #title{
-    background-image: url("images/Pac_man_logo.svg");
+    background-image: url("../images/Pac_man_logo.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
