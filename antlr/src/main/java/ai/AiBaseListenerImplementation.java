@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import ai.generated.*;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
+import sun.tools.tree.AssignAddExpression;
 import sun.tools.tree.IfStatement;
 
 import java.util.ArrayList;
@@ -48,10 +49,12 @@ public class AiBaseListenerImplementation extends AiBaseListener {
 
 
     @Override public void enterIf_free_statement(AiParser.If_free_statementContext ctx) {
-        final Node ifFree = new IfFree(ctx.getChild(1).getText());
+        final String direction = ctx.getChild(1).getText();
+        final Node ifFree = new IfFree(direction);
         final Node ifContainer = new IfContainer();
-        ifContainer.addChild(ifFree);
         add(ifContainer);
+        // Adds ifFree as child of ifContainer
+        add(ifFree);
     }
 
     @Override public void enterElse_free_statement(AiParser.Else_free_statementContext ctx) {
@@ -101,7 +104,10 @@ public class AiBaseListenerImplementation extends AiBaseListener {
             System.out.println("Illegal state, possible programming error: Opened an IfContainer and trying to add other than if or else block.");
         }
         this.currentNode.addChild(n);
-        this.currentNode = n;
+        // Flat elements that can't contain child nodes should not set themselves as currentNode
+        if (!(n instanceof Direction || n instanceof Reference || n instanceof Assignment)) {
+            this.currentNode = n;
+        }
     }
 
     public Node getCurrentNode() {

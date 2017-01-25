@@ -1,4 +1,4 @@
 package ai.nodes;
 
-public class Reference {
+public class Reference extends Node {
 }

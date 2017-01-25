@@ -1,4 +1,4 @@
 package ai.nodes;
 
-public class Assignment {
+public class Assignment extends Node {
 }
