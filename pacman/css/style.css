@@ -7,14 +7,24 @@ and open the template in the editor.
     Created on : 12.01.2017, 17:52:41
     Author     : MaJoh
 */
-
+body{
+    background-image: url("../images/sitecont-gb3.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+     font-family: sans-serif;
+    padding: 50px 0 0 0;
+}
 #canvas-container{
+   
+    height: 600px;
     margin: 0 auto;
     position: relative;
     width: 600px;
-    height: 600px;
 }
 #canvas-overlay{
+    border: 5px solid #f2f2f2;
+    border-radius: 12px;
     position: absolute;
     top: 0;
     left: 50%;
@@ -65,6 +75,8 @@ and open the template in the editor.
     left: 50%;
     transform: translateX(-50%);
     z-index: 0;
+    border: 5px solid #f2f2f2;
+    border-radius: 12px;
 }
 #canvas2{
     position: absolute;
@@ -74,18 +86,26 @@ and open the template in the editor.
     height: 100%;
     transform: translateX(-50%);
     z-index: 1;
+    border: 5px solid #f2f2f2;
+    border-radius: 12px;
 }
 .hud{
     position: absolute;
     top: 0;
-    right: -200px;
+    right: -230px;
     z-index: 3;
     width: 200px;
     background-color: black;
     color: white;
+    border: 5px solid #f2f2f2;
+    border-radius: 12px;
+    display: none;
 }
 .hud div{
+    font-family: sans-serif;
     padding: 10px;
+    font-size: 20px;
+    color: yellow;
     
 }
 .hud span{

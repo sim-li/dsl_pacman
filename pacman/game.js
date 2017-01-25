@@ -47,10 +47,10 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                         cherry: "images/cherry.png",
                         wall: "images/wall.png",
                         bitcoin: "images/bitcoin.png",
-                        ghost1: "images/ghost1.jpg",
-                        ghost2: "images/ghost2.jpg",
-                        ghost3: "images/ghost3.jpg",
-                        ghost4: "images/ghost4.jpg",
+                        ghost1: "images/ghost1.png",
+                        ghost2: "images/ghost2.png",
+                        ghost3: "images/ghost3.png",
+                        ghost4: "images/ghost4.png",
                         ghostVul: "images/ghost_vul.png",
                         pac: "images/pac.png",
                         pac2: "images/pac_1.png"
@@ -103,13 +103,14 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                         gameBoard.drawBoard();
                     } else {
                         $('#canvas-overlay').fadeIn('fast');
+                        $('.hud').fadeOut('');
                         setPoint("init");
 
                     }
                 }
 
                 function run() {
-
+                    $('.hud').fadeIn('slow');
                     gameBoard.reset();
                     gameBoard.resetLevel();
 
