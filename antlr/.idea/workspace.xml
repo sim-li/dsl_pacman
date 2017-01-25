@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="" />
+    <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sh" afterPath="$PROJECT_DIR$/build.sh" />
+    </list>
     <ignored path="antlr.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -80,11 +83,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PacmanParserExecutor.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PacmanParserExecutor.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/PacmanParserExecutor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.601227">
+            <state vertical-scroll-proportion="0.0">
               <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.15337424">
+              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -148,7 +161,6 @@
         <option value="$PROJECT_DIR$/src/test/java/testAis/random.ai" />
         <option value="$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves" />
         <option value="$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai" />
-        <option value="$PROJECT_DIR$/build.sh" />
         <option value="$PROJECT_DIR$/src/test/java/testAis/completeCase/ai.java" />
         <option value="$PROJECT_DIR$/src/test/java/AiPassAndFailTests.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/nodes/IfFree.java" />
@@ -168,6 +180,7 @@
         <option value="$PROJECT_DIR$/src/main/java/ai/nodes/Reference.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/nodes/Assignment.java" />
         <option value="$PROJECT_DIR$/src/main/java/ai/AiBaseListenerImplementation.java" />
+        <option value="$PROJECT_DIR$/build.sh" />
       </list>
     </option>
   </component>
@@ -1109,7 +1122,7 @@
       <workItem from="1485025067601" duration="4130000" />
       <workItem from="1485030291391" duration="555000" />
       <workItem from="1485165719817" duration="1617000" />
-      <workItem from="1485169748611" duration="40659000" />
+      <workItem from="1485169748611" duration="40751000" />
     </task>
     <servers />
   </component>
@@ -1146,7 +1159,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75569000" />
+    <option name="totallyTimeSpent" value="75661000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="46" y="23" width="1848" height="1057" extended-state="0" />
@@ -1507,14 +1520,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="15" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/testAis/ifStatementWithMoves.ai">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5625">
@@ -1700,8 +1705,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/PacmanParserExecutor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.601227">
+        <state vertical-scroll-proportion="0.0">
           <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15337424">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
           <folding />
         </state>
       </provider>
