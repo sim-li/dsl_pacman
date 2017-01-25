@@ -1,4 +1,3 @@
-/*
 package level;
 
 import level.generated.LevelBaseListener;
@@ -20,6 +19,7 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     public List<List> getTotalValues() {
         if(check == true) {
             System.out.println("Ok");
+            //System.out.println(totalvalues);
             return totalvalues;
         }
         return null;
@@ -34,10 +34,12 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     @Override
     public void exitField(LevelParser.FieldContext ctx) {
         //System.out.println("exitField()");
-       getTotalValues();
        if(totalvalues.size() != 20){
            System.out.println("Row Error - Exactly 20 rows allowed");
            check = false;
+       }
+       else {
+           getTotalValues();
        }
     }
 
@@ -62,7 +64,6 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     public void enterValue(LevelParser.ValueContext ctx) {
         //System.out.println("enterValue()");
         values.add(ctx.Value());
-
     }
 
     @Override
@@ -87,4 +88,3 @@ public class LevelBaseListenerImplementation extends LevelBaseListener {
     public void visitErrorNode(ErrorNode node) {
     }
 }
-*/

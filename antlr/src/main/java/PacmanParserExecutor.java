@@ -15,6 +15,7 @@ import java.util.List;
 public class PacmanParserExecutor {
     final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/level/";
 
+
     public static List<List> parseLevel() throws IOException {
         // Get CSV lexer
         final LevelLexer lexer = new LevelLexer(new ANTLRInputStream(new FileReader(WORKING_DIRECTORY + "paclevel1.csv")));
