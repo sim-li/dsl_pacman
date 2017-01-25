@@ -44,16 +44,16 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
 
                 function loadImages() {
                     loadMultipleImages({
-                        cherry: "cherry.png",
-                        wall: "wall.png",
-                        bitcoin: "bitcoin.png",
+                        cherry: "images/cherry.png",
+                        wall: "images/wall.png",
+                        bitcoin: "images/bitcoin.png",
                         ghost1: "images/ghost1.jpg",
                         ghost2: "images/ghost2.jpg",
                         ghost3: "images/ghost3.jpg",
                         ghost4: "images/ghost4.jpg",
                         ghostVul: "images/ghost_vul.png",
-                        pac: "pac.png",
-                        pac2: "pac_test.png"
+                        pac: "images/pac.png",
+                        pac2: "images/pac_1.png"
                     });
                 }
 
