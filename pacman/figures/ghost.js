@@ -104,11 +104,13 @@ define(["underscore", "constants"], function (_, constants) {
         }
 
         function eaten() {
-            gridX = -10;
-            gridY = -10;
+            gridX = -1;
+            gridY = -1;
+            currentDirection = "";
             setTimeout(function () {
                 gridX = gridX_initial;
                 gridY = gridY_initial;
+                currentDirection = "up";
             }, 10000);
         }
 
