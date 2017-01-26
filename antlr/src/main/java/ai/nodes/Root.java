@@ -14,6 +14,14 @@ public class Root extends Node {
 
     @Override
     public String renderCode() {
-        return "abc";
+        String code = "" +
+                "define([], function () {\n" +
+                "    var strategy = function(queries) {\n"+
+                "       var direction = queries.currentDirection();\n"+
+                "       return " + childCode() +
+                "\n    }\n"+
+                "    return strategy;\n" +
+                "});\n";
+        return code;
     }
 }

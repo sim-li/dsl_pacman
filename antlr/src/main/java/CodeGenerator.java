@@ -72,7 +72,7 @@ public class CodeGenerator {
         System.out.println("Starting code generation...");
         final CodeGenerator cg = new CodeGenerator();
         cg.createLevelFiles("level1");
-        cg.createAiFiles("test");
+        cg.createAiFiles("random");
         System.out.println("Finished code generation...");
     }
 }

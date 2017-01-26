@@ -26,6 +26,15 @@ public class Direction extends Node {
 
     @Override
     public String renderCode() {
-        return "";
+        if (direction.equals("CURRENT")) {
+            return "direction";
+        } else if (direction.equals("OPPOSITE")) {
+            return "queries.opposite(direction)";
+        } else if (direction.equals("ALTERNATIVE")) {
+            return "queries.alternative(direction)";
+        } else if (direction.equals("ALTERNATIVE_OPPOSITE")) {
+            return "queries.alternativeOpposite(direction)";
+        }
+        return "ERROR, EMPTY DIRECTION";
     }
 }
