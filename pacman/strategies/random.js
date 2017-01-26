@@ -1,13 +1,6 @@
 define([], function () {
-    var commands = {
-        setCurrentDirection: function(direction) {
-        }
-    };
-
-
     var strategy = function(queries) {
-        // By default
-        var direction = queries.currentDirection();
+        var direction = queries.positionOfPacAsDirection();
         return (function() {
             if (queries.isFree(direction)) {
                 return queries.randomWithDistribution([
@@ -29,7 +22,5 @@ define([], function () {
         })();
     };
 
-
-    //
     return strategy;
 });

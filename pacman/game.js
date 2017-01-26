@@ -84,14 +84,22 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     //TODO Change back, for DEBUG
 
                     ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img, ghostVul: ghostVul}, gameBoard);
-
                     var ghostQueries1 = new GhostQueries(ghost1);
                     ghost1.setGhostQueries(ghostQueries1);
 
-                    //ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img, ghostVul: ghostVul}, gameBoard);
-                    //ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img, ghostVul: ghostVul}, gameBoard);
-                    //ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img, ghostVul: ghostVul}, gameBoard);
-                    //gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
+                    ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img, ghostVul: ghostVul}, gameBoard);
+                    var ghostQueries2 = new GhostQueries(ghost2);
+                    ghost2.setGhostQueries(ghostQueries2);
+
+                    ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img, ghostVul: ghostVul}, gameBoard);
+                    var ghostQueries3 = new GhostQueries(ghost3);
+                    ghost3.setGhostQueries(ghostQueries3);
+
+                    ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img, ghostVul: ghostVul}, gameBoard);
+                    var ghostQueries4 = new GhostQueries(ghost4);
+                    ghost4.setGhostQueries(ghostQueries4);
+
+                    gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
                     gameBoard.registerFigures(pac, ghost1);
                 }
 
@@ -102,9 +110,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                         }
                         pac.move(nextPacDirection);
                         ghost1.move();
-                        //ghost2.move();
-                        //ghost3.move();
-                        //ghost4.move();
+                        ghost2.move();
+                        ghost3.move();
+                        ghost4.move();
                         gameBoard.checkPacsEating();
                         gameBoard.checkKills();
                         gameBoard.drawBoard();
