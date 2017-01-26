@@ -7,4 +7,9 @@ public class FilterFreeN extends Node {
         super();
         this.n = Integer.parseInt(n);
     }
+
+    @Override
+    public String renderCode() {
+        return "";
+    }
 }

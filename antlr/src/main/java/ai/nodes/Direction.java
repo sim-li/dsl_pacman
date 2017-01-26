@@ -23,4 +23,9 @@ public class Direction extends Node {
     public void setDirection(String direction) {
         this.direction = direction;
     }
+
+    @Override
+    public String renderCode() {
+        return "";
+    }
 }
