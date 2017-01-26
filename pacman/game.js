@@ -138,6 +138,12 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     next_direction = getDirectionFromKeyEvent(e);
                 }
 
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+
 
                 function setPoint(condition) {
                     switch (condition) {
@@ -158,8 +164,15 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                         case "killed":
                             console.log("killed aufgerufen");
                             cur_life = cur_life - 1;
-                            if (cur_life == 0)
+                            if (cur_life == 0) {
                                 isGameOver = true;
+                                setTimeout(function () {
+                                    document.getElementById("dialog").showModal();
+                                },600);
+                                setTimeout(function () {
+                                    document.getElementById("dialog").style.display = "none";
+                                },3000);
+                            }
                             break;
                         default:
                             console.log("falsche Punkte vergabe");

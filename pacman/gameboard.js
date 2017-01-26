@@ -118,7 +118,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             });
         }
 
-        function resetLevel() {
+        function resetLevel() {git
             curMap = mapClone();
         }
 

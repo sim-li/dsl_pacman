@@ -111,4 +111,9 @@ body{
 .hud span{
     margin-left: 10px;
 }
-
+#dialog{
+    width: 300px;
+    height: 200px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.6);
+}
