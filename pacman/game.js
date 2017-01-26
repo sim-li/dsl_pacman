@@ -1,5 +1,5 @@
-define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "gameboard"],
-        function (_, $, Ghost, Pac, constants, GameBoard) {
+define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "gameboard",  "figures/ghost_queries"],
+        function (_, $, Ghost, Pac, constants, GameBoard, GhostQueries) {
 
             var Game = function () {
                 var BLOCK_SIZE = constants.BLOCK_SIZE;
@@ -82,7 +82,12 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     gameBoard.drawBoard();
                     pac = new Pac(ctxPac, 9, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
                     //TODO Change back, for DEBUG
+
                     ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img, ghostVul: ghostVul}, gameBoard);
+
+                    var ghostQueries1 = new GhostQueries(ghost1);
+                    ghost1.setGhostQueries(ghostQueries1);
+
                     //ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img, ghostVul: ghostVul}, gameBoard);
                     //ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img, ghostVul: ghostVul}, gameBoard);
                     //ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img, ghostVul: ghostVul}, gameBoard);

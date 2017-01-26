@@ -16,8 +16,15 @@ define(["figures/ghost", "figures/ghost_queries"], function(Ghost, GhostQueries)
             expect(ghostQueries.currentDirection()).toBe("down");
         });
 
-        it("xyz", function() {
-            console.log(ghostQueries.randomWithDistribution([100, 10, 10], ["a", "b", "c"]));
+        it("should flatten randoms", function() {
+            var res = ghostQueries.flattenRandoms([100, 10, 10], ["a", "b"]);
+            expect(res).toBe([100, 20]);
+            var res = ghostQueries.flattenRandoms([100, 10, 10], ["a", "b", "c"]);
+            expect(res).toBe([100, 10, 10]);
+            var res = ghostQueries.flattenRandoms([100, 10, 10], ["a"]);
+            expect(res).toBe([120]);
+            var res = ghostQueries.flattenRandoms([100, 10, 10, 10, 10, 10], ["a"]);
+            expect(res).toBe([120]);
         });
 
     });

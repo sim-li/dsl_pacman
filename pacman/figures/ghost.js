@@ -1,4 +1,4 @@
-define(["underscore", "constants"], function (_, constants) {
+define(["underscore", "constants", "strategies/random"], function (_, constants, randomStrategy) {
     var Ghost = function (ctx, gridX, gridY, images, gameBoard) {
         var gridX = gridX;
         var gridY = gridY;
@@ -8,61 +8,22 @@ define(["underscore", "constants"], function (_, constants) {
         var timer;
         var currentDirection = "up";
         var curImage = "ghost";
+        var strategy = randomStrategy;
+        var ghostQueries;
+
+        function setGhostQueries(gQ) {
+            ghostQueries = gQ;
+        }
 
         function move() {
-            console.log(positionOfPacAsDirection());
-            var randomWalkStrategy = {
-                up: [
-                    "up",
-                    "left",
-                    "right",
-                    "down"
-                ],
-                down: [
-                    "down",
-                    "left",
-                    "right",
-                    "up"
-                ],
-                left: [
-                    "left",
-                    "up",
-                    "down",
-                    "right"
-
-                ],
-                right: [
-                    "right",
-                    "up",
-                    "down",
-                    "left"
-                ]
-            };
-
-            var bunchOfMoves = randomWalkStrategy[currentDirection];
             var nextCoordinate = {
                 up: [gridX, gridY - 1],
                 down: [gridX, gridY + 1],
                 left: [gridX - 1, gridY],
                 right: [gridX + 1, gridY]
             };
-            var freeMoves = _.filter(bunchOfMoves, function (m) {
-                return checkMove(nextCoordinate[m]);
-            });
-            var currentDirectionFree = _.contains(freeMoves, currentDirection);
-            var oppositeDirection = _.last(bunchOfMoves);
-            var tryOtherDirection = Math.random() >= 0.8;
-            if (currentDirectionFree) {
-                var fleeDirections = _.without(freeMoves, currentDirection, oppositeDirection);
-                if (tryOtherDirection && fleeDirections.length > 0) {
-                    currentDirection = _.sample(fleeDirections);
-                }
-            } else {
-                currentDirection = _.without(freeMoves, currentDirection)[0];
-            }
-            if (!_.isUndefined(currentDirection)) {
-                moveTo(nextCoordinate[currentDirection]);
-            }
+            currentDirection = strategy(ghostQueries);
+            moveTo(nextCoordinate[currentDirection]);
             draw();
         }
 
@@ -135,6 +96,10 @@ define(["underscore", "constants"], function (_, constants) {
             }, 10000);
         }
 
+        function getCurrentDirection() {
+            return currentDirection;
+        }
+
         return {
             type: "ghost",
             draw: draw,
@@ -144,7 +109,11 @@ define(["underscore", "constants"], function (_, constants) {
             eaten: eaten,
             isVulnerable: isVulnerable,
             stopTimer: stopTimer,
-            resetPos:resetPos
+            resetPos:resetPos,
+            checkMove: checkMove,
+            setGhostQueries: setGhostQueries,
+            currentDirection: getCurrentDirection,
+            positionOfPacAsDirection: positionOfPacAsDirection
         };
     };
 

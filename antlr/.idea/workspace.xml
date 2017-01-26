@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../pacman/strategies/random.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/figures/ghost.js" afterPath="$PROJECT_DIR$/../pacman/figures/ghost.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/figures/pac.js" afterPath="$PROJECT_DIR$/../pacman/figures/pac.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/figures/ghost_queries.js" afterPath="$PROJECT_DIR$/../pacman/figures/ghost_queries.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/figures/ghost_queries.specs.js" afterPath="$PROJECT_DIR$/../pacman/figures/ghost_queries.specs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/game.js" afterPath="$PROJECT_DIR$/../pacman/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/gameboard.js" afterPath="$PROJECT_DIR$/../pacman/gameboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/gameboard.specs.js" afterPath="$PROJECT_DIR$/../pacman/gameboard.specs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/requirejs_config/require_jasmine_config.js" afterPath="$PROJECT_DIR$/../pacman/requirejs_config/require_jasmine_config.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../pacman/strategies/random.js" afterPath="$PROJECT_DIR$/../pacman/strategies/random.js" />
     </list>
     <ignored path="antlr.iws" />
     <ignored path=".idea/workspace.xml" />

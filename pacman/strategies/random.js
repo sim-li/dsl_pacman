@@ -1,26 +1,26 @@
-define(["underscore"], function (_) {
+define([], function () {
     var commands = {
         setCurrentDirection: function(direction) {
         }
     };
 
 
-    var strategy = function(queries, commands) {
+    var strategy = function(queries) {
         // By default
         var direction = queries.currentDirection();
         return (function() {
             if (queries.isFree(direction)) {
-                return commands.randomWithDistribution([
+                return queries.randomWithDistribution([
                     50, 25, 25
                 ], [
                     direction,
-                    commands.filterFree([
+                    queries.filterFree([
                         queries.alternative(direction),
                         queries.alternativeOpposite(direction)
                     ])
                 ]);
             } else {
-                return commands.filterFreeN(1, [
+                return queries.filterFreeN(1, [
                     queries.alternative(direction),
                     queries.alternativeOpposite(direction),
                     queries.opposite(direction)
