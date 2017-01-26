@@ -81,11 +81,13 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     gameBoard = new GameBoard(ctxGameboard, {wall: wallImg, point: pointImg, fruit: cherryImg}, setPoint);
                     gameBoard.drawBoard();
                     pac = new Pac(ctxPac, 9, 11, {pac: pacImg, pac2: pacImg2}, gameBoard);
+                    //TODO Change back, for DEBUG
                     ghost1 = new Ghost(ctxPac, 8, 9, {ghost: ghost1Img, ghostVul: ghostVul}, gameBoard);
-                    ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img, ghostVul: ghostVul}, gameBoard);
-                    ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img, ghostVul: ghostVul}, gameBoard);
-                    ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img, ghostVul: ghostVul}, gameBoard);
-                    gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
+                    //ghost2 = new Ghost(ctxPac, 9, 9, {ghost: ghost2Img, ghostVul: ghostVul}, gameBoard);
+                    //ghost3 = new Ghost(ctxPac, 10, 9, {ghost: ghost3Img, ghostVul: ghostVul}, gameBoard);
+                    //ghost4 = new Ghost(ctxPac, 9, 9, {ghost: ghost4Img, ghostVul: ghostVul}, gameBoard);
+                    //gameBoard.registerFigures(pac, ghost1, ghost2, ghost3, ghost4);
+                    gameBoard.registerFigures(pac, ghost1);
                 }
 
                 function updateOnInterval() {
@@ -95,9 +97,9 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                         }
                         pac.move(nextPacDirection);
                         ghost1.move();
-                        ghost2.move();
-                        ghost3.move();
-                        ghost4.move();
+                        //ghost2.move();
+                        //ghost3.move();
+                        //ghost4.move();
                         gameBoard.checkPacsEating();
                         gameBoard.checkKills();
                         gameBoard.drawBoard();
@@ -138,11 +140,12 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                     next_direction = getDirectionFromKeyEvent(e);
                 }
 
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
+                //TODO: Define modal or remove entire block
+                //window.onclick = function(event) {
+                    //if (event.target == modal) {
+                    //    modal.style.display = "none";
+                    //}
+                //}
 
 
                 function setPoint(condition) {

@@ -77,7 +77,6 @@ define(["underscore", "gameboard"], function(_, GameBoard) {
                 gameBoard.registerFigures(pac, ghost1);
             });
 
-            describe("")
             describe("get ghost hitting pac", function() {
                 it("should return hit with ghost if at same position", function() {
                     var actual = gameBoard.getGhostHittingPac();

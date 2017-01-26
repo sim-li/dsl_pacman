@@ -12,15 +12,6 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             });
         }
 
-        //function getPacPosition() {
-        //
-        //}
-
-        //
-        //function getDistanceToPac() {
-        //
-        //}
-
         function checkPacsEating() {
             var pac = getPac();
             var ghosts = getGhosts();
@@ -41,6 +32,11 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                     console.log("ghost vulnerable");
                 }
             }
+        }
+
+        function getPacPosition() {
+            var pac = getPac();
+            return [ pac.gridX(), pac.gridY() ];
         }
 
         function getPac() {
@@ -118,7 +114,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             });
         }
 
-        function resetLevel() {git
+        function resetLevel() {
             curMap = mapClone();
         }
 
@@ -134,7 +130,8 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
             checkPacsEating: checkPacsEating,
             drawBoard: drawBoard,
             resetLevel: resetLevel,
-            reset: reset
+            reset: reset,
+            getPacPosition: getPacPosition
         }
     };
 

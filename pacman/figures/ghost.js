@@ -10,6 +10,7 @@ define(["underscore", "constants"], function (_, constants) {
         var curImage = "ghost";
 
         function move() {
+            console.log(positionOfPacAsDirection());
             var randomWalkStrategy = {
                 up: [
                     "up",
@@ -65,6 +66,27 @@ define(["underscore", "constants"], function (_, constants) {
             draw();
         }
 
+        function positionOfPacAsDirection() {
+            var pacPosition = gameBoard.getPacPosition();
+            var x = pacPosition[0];
+            var y = pacPosition[1];
+            var diffX = x - gridX;
+            var diffY = y - gridY;
+            var directionX = diffX >= 0 ? "right" : "left";
+            var directionY = diffY >= 0 ? "down" : "up";
+            var finalDirection;
+            if (diffX == 0) {
+                finalDirection = directionY;
+            } else if (diffY == 0) {
+                finalDirection = directionX;
+            } else if (Math.abs(diffX) < Math.abs(diffY)) {
+                finalDirection = directionX;
+            } else {
+                finalDirection = directionY;
+            }
+            return finalDirection;
+        }
+
         function moveTo(coordTuple) {
             gridX = coordTuple[0];
             gridY = coordTuple[1];
@@ -81,7 +103,6 @@ define(["underscore", "constants"], function (_, constants) {
 
         function draw() {
             ctx.drawImage(images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-
         }
         
         function isVulnerable(){
@@ -113,7 +134,6 @@ define(["underscore", "constants"], function (_, constants) {
                 currentDirection = "up";
             }, 10000);
         }
-
 
         return {
             type: "ghost",

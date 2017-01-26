@@ -25,6 +25,7 @@ require.config({
 require(['jasmine-boot'], function () {
   require([
     './gameboard.specs',
+    './figures/ghost_queries.specs'
     //'./figures/ghost.specs',
     //'./figures/pac.specs',
     //'./levels/level1.specs',
