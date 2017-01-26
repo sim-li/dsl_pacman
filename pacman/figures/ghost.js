@@ -10,20 +10,24 @@ define(["underscore", "constants", "strategies/random"], function (_, constants,
         var curImage = "ghost";
         var strategy = randomStrategy;
         var ghostQueries;
+        var wait = false;
 
         function setGhostQueries(gQ) {
             ghostQueries = gQ;
         }
 
         function move() {
-            var nextCoordinate = {
-                up: [gridX, gridY - 1],
-                down: [gridX, gridY + 1],
-                left: [gridX - 1, gridY],
-                right: [gridX + 1, gridY]
-            };
-            currentDirection = strategy(ghostQueries);
-            moveTo(nextCoordinate[currentDirection]);
+            if (!wait) {
+                var nextCoordinate = {
+                    up: [gridX, gridY - 1],
+                    down: [gridX, gridY + 1],
+                    left: [gridX - 1, gridY],
+                    right: [gridX + 1, gridY]
+                };
+                currentDirection = strategy(ghostQueries);
+                moveTo(nextCoordinate[currentDirection]);
+            }
+
             draw();
         }
 
@@ -65,15 +69,15 @@ define(["underscore", "constants", "strategies/random"], function (_, constants,
         function draw() {
             ctx.drawImage(images[curImage], 0, 0, BLOCK_SIZE, BLOCK_SIZE, gridX * BLOCK_SIZE, gridY * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
         }
-        
-        function isVulnerable(){
-              curImage = "ghostVul";
-              timer = setTimeout(function () {
+
+        function isVulnerable() {
+            curImage = "ghostVul";
+            timer = setTimeout(function () {
                 curImage = "ghost";
             }, 7000);
         }
 
-        function stopTimer(){
+        function stopTimer() {
             clearTimeout(timer);
         }
 
@@ -86,14 +90,14 @@ define(["underscore", "constants", "strategies/random"], function (_, constants,
         }
 
         function eaten() {
-            gridX = -1;
-            gridY = -1;
-            currentDirection = "";
+            wait = true;
+            gridX = gridX_initial;
+            gridY = gridY_initial;
+            currentDirection = "up";
             setTimeout(function () {
-                gridX = gridX_initial;
-                gridY = gridY_initial;
+                wait = false;
                 currentDirection = "up";
-            }, 10000);
+            }, 7000);
         }
 
         function getCurrentDirection() {
@@ -109,7 +113,7 @@ define(["underscore", "constants", "strategies/random"], function (_, constants,
             eaten: eaten,
             isVulnerable: isVulnerable,
             stopTimer: stopTimer,
-            resetPos:resetPos,
+            resetPos: resetPos,
             checkMove: checkMove,
             setGhostQueries: setGhostQueries,
             currentDirection: getCurrentDirection,

@@ -1,6 +1,6 @@
 define([], function () {
     var strategy = function(queries) {
-        var direction = queries.positionOfPacAsDirection();
+        var direction = queries.currentDirection();
         return (function() {
             if (queries.isFree(direction)) {
                 return queries.randomWithDistribution([
