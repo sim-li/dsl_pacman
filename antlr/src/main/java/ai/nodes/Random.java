@@ -13,4 +13,9 @@ public class Random extends Node {
             this.ratios.add(Integer.parseInt(r));
         }
     }
+
+    @Override
+    public String renderCode() {
+        return "";
+    }
 }

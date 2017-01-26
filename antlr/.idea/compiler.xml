@@ -25,8 +25,8 @@
         <module name="antlr" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="antlr" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="antlr" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

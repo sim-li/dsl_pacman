@@ -13,12 +13,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class PacmanParserExecutor {
-    final static String WORKING_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/level/";
 
-
-    public static List<List> parseLevel() throws IOException {
+    public static List<List> parseLevel(final String filePath) throws IOException {
         // Get CSV lexer
-        final LevelLexer lexer = new LevelLexer(new ANTLRInputStream(new FileReader(WORKING_DIRECTORY + "paclevel1.csv")));
+        final LevelLexer lexer = new LevelLexer(new ANTLRInputStream(new FileReader(filePath)));
         // Get a list of matched tokens
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         // Pass the tokens to the parser

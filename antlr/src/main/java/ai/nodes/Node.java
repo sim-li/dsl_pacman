@@ -3,7 +3,7 @@ package ai.nodes;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Node {
+public abstract class Node {
     private List<Node> nodes;
 
     private Node parent;
@@ -36,4 +36,6 @@ public class Node {
     public void setParent(Node parent) {
         this.parent = parent;
     }
+
+    public abstract String renderCode();
 }

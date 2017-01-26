@@ -6,4 +6,9 @@ public class IfFree extends Node {
     public IfFree(String directionArrow) {
         direction = new Direction(directionArrow);
     }
+
+    @Override
+    public String renderCode() {
+        return "";
+    }
 }

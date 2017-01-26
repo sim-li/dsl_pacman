@@ -11,4 +11,9 @@ public class Root extends Node {
     public String getName(String name) {
         return aiName;
     }
+
+    @Override
+    public String renderCode() {
+        return "abc";
+    }
 }
