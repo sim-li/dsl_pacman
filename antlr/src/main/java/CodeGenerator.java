@@ -61,6 +61,7 @@ public class CodeGenerator {
                     final FileWriter fw = new FileWriter(outputFile);
             ) {
                 final FormattingCodeWriter codeWriter = new FormattingCodeWriter(fw);
+                // Render code
                 codeWriter.append(rootNode.renderCode());
                 codeWriter.write();
             }
@@ -71,8 +72,8 @@ public class CodeGenerator {
         System.out.println(System.getProperty("user.dir"));
         System.out.println("Starting code generation...");
         final CodeGenerator cg = new CodeGenerator();
-        cg.createLevelFiles("level1");
-        cg.createAiFiles("random");
+        cg.createLevelFiles("level1", "level2", "level3");
+        cg.createAiFiles("random", "wild", "simple");
         System.out.println("Finished code generation...");
     }
 }

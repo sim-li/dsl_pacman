@@ -8,10 +8,31 @@ return queries.randomWithDistribution([
  ], [
 direction,
 queries.filterFree([
+queries.randomWithDistribution([
+50,25,25
+ ], [
+direction,
+queries.filterFree([
+queries.alternative(direction),
+queries.alternativeOpposite(direction)])]),
 queries.alternative(direction),
 queries.alternativeOpposite(direction)])]);
 }else {
 return queries.filterFreeN(1, [
+queries.randomWithDistribution([
+50,25,25
+ ], [
+direction,
+queries.filterFree([
+queries.randomWithDistribution([
+50,25,25
+ ], [
+direction,
+queries.filterFree([
+queries.alternative(direction),
+queries.alternativeOpposite(direction)])]),
+queries.alternative(direction),
+queries.alternativeOpposite(direction)])]),
 queries.alternative(direction),
 queries.alternativeOpposite(direction),
 queries.opposite(direction)]);
