@@ -23,7 +23,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                     setPoint("point");
                 } else {
                     pac.stopTimer();
-                    _.each(ghosts, function(ghost) {
+                    _.each(ghosts, function (ghost) {
                         ghost.stopTimer();
                         ghost.isVulnerable();
                     });
@@ -36,7 +36,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         function getPacPosition() {
             var pac = getPac();
-            return [ pac.gridX(), pac.gridY() ];
+            return [pac.gridX(), pac.gridY()];
         }
 
         function getPac() {
@@ -63,7 +63,7 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
                     //pac.gotKilled();
                     console.log("Pac got killed");
                     setPoint("killed");
-                    
+
                     reset();
                 }
             }
@@ -71,8 +71,16 @@ define(["underscore", "jquery", "constants", "levels/level1"], function (_, $, c
 
         function getGhostHittingPac() {
             var pac = getPac();
+
             var ghostsHittingPac = _.filter(_.without(figures, pac), function (f) {
-                if (f.gridX() === pac.gridX() && f.gridY() === pac.gridY()) {
+
+                if (f.currentDirection() === "right" && ((f.gridX() + 1) === pac.gridX() && f.gridY() === pac.gridY()) ||
+                        f.currentDirection() === "left" && ((f.gridX() - 1) === pac.gridX() && f.gridY() === pac.gridY()) ||
+                        f.currentDirection() === "up" && (f.gridX() === pac.gridX() && (f.gridY() - 1) === pac.gridY()) ||
+                        f.currentDirection() === "down" && (f.gridX() === pac.gridX() && (f.gridY() + 1) === pac.gridY()) ||
+                        (f.gridX() === pac.gridX() && f.gridY() === pac.gridY()))
+                {
+                    console.log(f.currentDirection());
                     return true;
                 }
                 return false;

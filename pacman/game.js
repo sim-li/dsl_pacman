@@ -183,10 +183,12 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                             if (cur_life == 0) {
                                 isGameOver = true;
                                 setTimeout(function () {
-                                    document.getElementById("dialog").showModal();
+                                    $('#dialog').show();
+//                                    document.getElementById("dialog").showModal();
                                 },600);
                                 setTimeout(function () {
-                                    document.getElementById("dialog").style.display = "none";
+                                    $('#dialog').hide();
+//                                    document.getElementById("dialog").style.display = "none";
                                 },3000);
                             }
                             break;
