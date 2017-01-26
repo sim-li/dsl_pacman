@@ -9,6 +9,9 @@ public class IfFree extends Node {
 
     @Override
     public String renderCode() {
-        return "";
+        String code = "if (queries.isFree(direction)) {\n" +
+                "return " + childCode() + "\n" +
+                "}";
+        return code;
     }
 }

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Node {
-    private List<Node> nodes;
+    protected List<Node> nodes;
 
-    private Node parent;
+    protected Node parent;
 
     public Node() {
         nodes = new ArrayList<Node>();
@@ -38,4 +38,20 @@ public abstract class Node {
     }
 
     public abstract String renderCode();
+
+    public String childCode() {
+        String code = "";
+        for (Node n : nodes) {
+            code = code + n.renderCode();
+        }
+        return code;
+    }
+
+    public String withoutSemi(String code) {
+        if(code.charAt(code.length() - 1) == ';') {
+            code = code.substring(0, code.length() - 1);
+        }
+        return code;
+    }
+
 }
