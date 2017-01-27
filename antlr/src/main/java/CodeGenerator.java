@@ -3,12 +3,11 @@ import ai.nodes.Node;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.IllegalFormatException;
 import java.util.List;
 
 public class CodeGenerator {
-    final String LEVEL_SOURCE_DIRECTORY = System.getProperty("user.dir") + "/src/main/java/level/levels/";
-    final String LEVEL_OUTPUT_DIRECTORY = System.getProperty("user.dir") + "/../pacman/levels/";
+    final String LEVEL_SOURCE_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/level/levels/";
+    final String LEVEL_OUTPUT_DIRECTORY = System.getProperty("user.dir") + "/pacman/levels/";
 
     public void createLevelFiles(String ... levelNames) throws IOException {
         for (final String lN: levelNames) {
@@ -45,8 +44,8 @@ public class CodeGenerator {
         }
     }
 
-    final String AI_SOURCE_DIRECTORY = System.getProperty("user.dir") + "/src/main/java/ai/strategies/";
-    final String AI_OUTPUT_DIRECTORY = System.getProperty("user.dir") + "/../pacman/strategies/";
+    final String AI_SOURCE_DIRECTORY = System.getProperty("user.dir") + "/antlr/src/main/java/ai/strategies/";
+    final String AI_OUTPUT_DIRECTORY = System.getProperty("user.dir") + "/pacman/strategies/";
 
     public void createAiFiles(String ... aiNames) throws IOException {
         for(final String aiN: aiNames) {
@@ -71,8 +70,8 @@ public class CodeGenerator {
         System.out.println(System.getProperty("user.dir"));
         System.out.println("Starting code generation...");
         final CodeGenerator cg = new CodeGenerator();
-        cg.createLevelFiles("level1");
-        cg.createAiFiles("random");
+        //cg.createLevelFiles("level1");
+        cg.createAiFiles("random", "simple");
         System.out.println("Finished code generation...");
     }
 }
