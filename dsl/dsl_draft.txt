@@ -1,28 +1,42 @@
+Implementiert:
+================================================================================================
+
 *            free
 **           leave free directions in list
+*1           leave free directions in list and select first element
 -> <- => <=  directions: CURRENT; OPPOSITE; ALTERNATIVE; ALTERNATIVE_OPPOSITE
-[1]          access list element
-; \n         statement seperator
+;            direction seperator
+\n           statement seperator
 %            random
 %(50:25:25)  random with distribution
----
 
+
+------------------------------------------------------------------------------------------------
 
 random(
-    // -> defaults to current direction
+    # My cool comment
     if *(->) {
         %(50:25:25) {
             ->;
             **{
-              =>; <=;
+              =>;
+              <=;
             }
         }
     } else {
       *1 {
-        =>; <=; <-;
+        =>;
+        <=;
+        <-;
       }
     }
 )
+
+Vorgesehen:
+================================================================================================
+-> = ::PAC_POSITION Assignment
+
+------------------------------------------------------------------------------------------------
 
 follow_pac (
     -> = ::PAC_POSITION

@@ -183,7 +183,7 @@ define(["underscore", "jquery", "figures/ghost", "figures/pac", "constants", "ga
                             if (cur_life == 0) {
                                 isGameOver = true;
                                 setTimeout(function () {
-                                    $('#dialog').show();
+                                    $('#dialog').hide();
 //                                    document.getElementById("dialog").showModal();
                                 },600);
                                 setTimeout(function () {
