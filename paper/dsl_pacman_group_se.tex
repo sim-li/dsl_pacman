@@ -5,13 +5,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
+\usepackage{makecell}
+%\usepackage[section]{placeins}
 
-\ifCLASSINFOpdf
+
   \usepackage[pdftex]{graphicx}
-  \graphicspath{{./screenshots/}{./uml/}}
-  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-\fi
+  \graphicspath{{images/}}
+%   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 
@@ -33,6 +35,7 @@ s67176@beuth-hochschule.de}
 \IEEEauthorblockA{s67357@beuth-hochschule.de}}
 
 \maketitle
+
 \lstset{%
   basicstyle=\footnotesize\ttfamily
   }
@@ -80,11 +83,35 @@ Für die Spielfiguren wird ein zweites Canvas-Element verwendet, das transparent
 
 Die Figuren werden  genauso wie die Objekte des Levels als Bilder geladen. Sie operieren auf dem selben Koordinatensystem wie das Level.
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{gameboard_and_figures.png}
+
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
+
 Abbildung (REFERENZ EINFÜGEN) ist ein reduziertes Klassendiagramm und stellt den zuvor beschriebenen Sachverhalt dar. Die Objekte von Spieler und Gegner (Pac und Ghost) besitzen die Instanzvariablen gridX und gridY, die wie beschrieben den Wertebereich des Levels besitzen. Die Funktion checkMove() der Klasse Gameboard gleicht den nächsten Schritt einer Figur mit dem Array des Levels ab. Bei Zahlencode Null, Eins oder Zwei liefert sie true zurück und erlaubt den gewünschten Schritt der Figur. Entsprechend wird bei einer Drei, also einer Wand false zurückgeliefert und verhindert somit den nächsten Schritt der Spielfigur. Diese Funktion wird von Klassen Ghost und Pac bei der Umsetzung des nächsten Spielzugs verwendet.
 
 Um die Bewegungen der Figuren sichtbar zu machen existiert die Funktion updateOnInterval(), die durch den Scheduler des Browsers  alle 150 Millisekunden aufgerufen wird. Sie zeichnet das Level und die Spielfiguren mit den entsprechenden Informationen und Positionen neu. In der Methode werden Kollisionsabfragen der Klasse GameBoard aufgerufen, die prüfen ob Pac Man gerade einen Punkt bzw. eine Frucht frisst (Methode checkPacsEating()) oder mit einem Geist kollidiert ist (Methode checkKills()). Die im Spiel agierende KI berechnet in jedem Interval die Richtung der Geister neu. Ihre Berechnung bezieht sich also immer genau auf einen Spielzug und hat dementsprechend die nächste zu gehenden Richtung als Rückgabewert.
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{screenshot.png}
+
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
+
 Abbildung (REFERENZ EINFÜGEN) stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pacman sind als Akteure dargestellt, die ihre Position in Abstimmung mit den Request-Antworten von checkMove aktualisieren. Akteur Strategy und Speicher Level werden durch ANTLR generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der KI DSL in Abschnitt (REFERENZ EINFÜGEN) näher erläutert.
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.5in]{tam.png}
+
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
 
 Interessant ist, dass die Akteure sich nicht automatisch auf die gleiche Modularisierungseinheit, also Beispielsweise nur  Klassen abbilden. Checkmove etwa wird im aktuellen Entwicklungsstand durch eine einzelne Methode repräsentiert, Hitdetection durch mehrere Methoden der Klasse Gameboard. Akteure Pacman und Ghost beispielsweise existieren als eigene Klassen, ebenso wie Strategy und GhostQuery.
 
@@ -97,6 +124,14 @@ Wir haben uns bei der Umsetzung der Level- und der AI DSL für  das Einsetzen vo
 Für beide Grammatiken erstellten wir Subklassen der generierten Listener. Diese Klassen enthalten jeweils eine Datenstruktur als Instanzvariable, die beim Traversieren befüllt wird. Im Fall der Level DSL handelt es sich um eine Liste, bei der AI DSL um eine Baumstruktur.
 
 Erst nach Beenden der Traversierung werden die Daten in der Klasse CodeGenerator durch Interpretation der Datenstrukturen, die in den Listenern erzeugt wurden, geschrieben. Abbildung (REFERENZ EINFÜGEN) stellt die beteiligten Klassen dar. Bei totalValues und initialRoot handelt es sich um die erwähnten Datenstrukturen.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=2.5in]{code_gen_rough.png}
+
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
 
 \subsection{Level DSL}
 Der LevelListener ist für das Auslesen der Daten zuständig. In der Java Klasse LevelBaseListenerImplementation.java welche von der LevelListener.java erbt ist zum einen der Zugriff auf die Daten möglich zum anderen wurde an dieser Stelle die Überprüfung der Spielfeldgröße umgesetzt welches genau eine Arraygröße von 20x20 voraussetzt. Die parseLevel() Methode welche in der PacmanParseExecuter.java Klasse definiert ist erwartet eine .csv Datei als Argument. welche nach dem Schema wie in Tabelle 1 aufgebaut ist. Des Weiteren wird in dieser Methode die Initialisierung aller abhängigen Klassen, die für diesen Prozess nötig sind, erledigt.
@@ -195,57 +230,360 @@ Zulässig sind als “Value” definiert, nur die Zahlen Null, Eins, Zwei und Dr
 
 Eine mit Hilfe der AI DSL durch ANTLR generierte JavaScript-Klasse ermittelt auf Basis der aktuellen Richtung eines Geistes dessen Richtung für den folgenden Spielzug. Eingabe und Ausgabewert der AI-Klasse ist also die Richtung eines Geistes.  Aus diesem Grund ist ein Verständnis der Tokens nötig, die für das Ausdrücken einer Richtung eingesetzt werden.
 
-% \begin{tabular}{|c||c||c|}
-% \hline
-% Token & Beschreibung & Resultierende Richtung\\
-% \end{tabular}
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{An Example of a Table}
+\label{table_example2}
+\centering
 
-% \begin{tabular}{|c||c|c||c|c|c|}
-% \hline
-% -> & 2 & 1 & 1 & 3\\
-% \hline
-% <- & 1 & 0 & 1 & 3\\
-% \hline
-% => & 1 & 1 & 2 & 3\\
-% \hline
-% 3 & 3 & 3 & 3 & 3\\
-% \hline
-% \end{tabular}
-% \begin{tabular}{|c|c|}
-% 0 & freier Weg\\
-% 1 & Punkt\\
-% 2 & Frucht\\
-% 3 & Mauer/Hindernis
-% \end{tabular}
-% \end{table}
+\begin{tabular}{|c||c||c||c||c||c||}
+\hline
+ \multicolumn{1}{|c||}{\bfseries Token} &  \multicolumn{1}{|c||} {\bfseries Beschreibung} &  \multicolumn{4}{|c|} {\bfseries Richtung}\\
+\hline
+-> & Aktuelle Richtung & R & L & U & D \\
+\hline
+<- & Entgegengesetzte Richtung & L & R & D & U \\
+\hline
+=> & Alternative Richtung & D & U & L & R \\
+\hline
+<= & Entgegengesetzt alternative Richtung & U & D & R & L \\
+\hline
+\end{tabular}
+\end{table}
+
+Tabelle (REFERENZ EINFÜGEN) stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token -> wird mit einem Wert aus der Menge {UP, DOWN, RIGHT, LEFT} belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welche Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt.
+Die entstehende Simplifizierung wird durch folgenden Pseudocode verdeutlicht, der das Laufen in die entgegengesetzte Richtung implementiert:
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+if DIRECTION == RIGHT:
+    return LEFT
+elif  DIRECTION == LEFT:
+    return RIGHT
+elif DIRECTION == UP:
+    return DOWN
+elif DIRECTION == DOWN:
+    return UP
+\end{lstlisting}
+
+Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein <- Token genügen, um  die Logik des Pseudocodes abzubilden.
+
+Pac Man AI DSL beginnen mit dem Namen der DSL in runden Klammern. Innerhalb dieses Blocks werden Operatoren erwartet. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz (REFERENZ EINFÜGEN) beschrieben, ist im JavaScript-Spiel der Akteur Checkmove dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet folgende Operatoren an, um Checkmove anzusteuern:
+
+%\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\lstset{
+  breaklines=true
+  }
+
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{An Example of a Table}
+\label{table_example2}
+\centering
+\setlength\tabcolsep{1.5pt}
+\begin{tabular}{|c||l|c|l|}
+\hline
+& \textbf{Syntax} & \textbf{Beschreibung} & \textbf{Beispiel}\\
+
+\hline
+if* &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+if *(DIR) {
+  //BLOCK A
+} else {
+ //BLOCK B
+}
+\end{lstlisting} &
+
+\makecell{\textit{If-Free Operator}\\
+Ausführen von A,\\
+wenn Richtung DIR frei.\\
+Sonst Ausführen von B.} &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+if *(->) {
+  ->
+} else {
+  <-
+}
+\end{lstlisting} \\
+
+\hline
+** &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+**{
+  DIR;
+  DIR;
+}
+\end{lstlisting} &
+\makecell{\textit{Filter-Free Operator}\\
+Richtung die nicht\\
+begehbar sind, werden entfernt.} &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+**{
+  =>;
+  <=;
+}
+\end{lstlisting} \\
+\hline
+*n &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+*1{
+  DIR;
+  DIR;
+}
+\end{lstlisting} &
+
+\makecell{\textit{Filter-FreeN Operator}\\
+Filter gemäß Filter-Free Operator,\\
+Auswahl des n-ten Elements.} &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+ *1{
+  =>;
+  <=;
+}
+\end{lstlisting} \\
+\hline
+
+\end{tabular}
+\end{table}
+
+Bei den Operatoren ist zu beachten, dass der If-Free- und Filter-FreeN-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der Filter-Free-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von ANTLR compilierten DSL ab.
+
+Der Filter-Free-Operator darf also beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
+
+Die folgende DSL benutzt den Filter-FreeN-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Klar sichtbar ist, dass ein weiterlaufen in der aktuellen Richtung (->) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (=>, <=) auszuweichen, bevor umgekehrt wird (<-).
+
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+simple(
+    *1{
+      ->;
+      =>;
+      <=;
+      <-;
+    }
+)
+\end{lstlisting}
+
+Zum zufälligen Auswählen von Richtungen führen wir den Random-Operator ein:
+
+\begin{table}[!htb]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{An Example of a Table}
+\label{table_example2}
+\centering
+\setlength\tabcolsep{1.5pt}
+\begin{tabular}{|c||l|c|l|}
+\hline
+& \textbf{Syntax} & \textbf{Beschreibung} & \textbf{Beispiel}\\
+
+\hline
+\% &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+%(r:r) {
+  DIR;
+  DIR;
+}
+\end{lstlisting} &
+
+\makecell{\textit{Random Operator}\\
+Aus den Richtungen \texttt{DIR}\\ wird zufällig
+ein Wert ausgewählt.\\ Die Wahrscheinlichkeit\\
+ist durch den ratio-Parameter \\
+\texttt{r} festgelegt.} &
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+if *(->) {
+  ->
+} else {
+  <-
+}
+\end{lstlisting} \\
+\hline
+
+\end{tabular}
+\end{table}
 
 
 
+Mit Hilfe der vorgestellten Sprachmitteln lassen sich nun auch komplexere Strategien abbilden. In Listing (REFERENZ EINFÜGEN) ist ein If-Free-Block zu sehen. Ist die aktuelle Richtung des Geistes nicht frei, so wird der else-Block ausgewertet und mit Hilfe des Filter-FreeN Operators die erste freie Richtung gemäß der in Listing (REFERENZ EINFÜGEN) beschriebenen Rangordnung gewählt. Ist die aktuelle Richtung frei, so soll mit Hilfe einer Zufallsverteilung entschieden werden, ob diese weitergegangen oder eine der freien alternativen Richtungen eingeschlagen werden soll.
 
-\section{Conclusion}
-The conclusion goes here.
+\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+random(
+    if *(->) {
+        %(50:25:25) {
+            ->;
+            **{
+              =>;
+              <=;
+            }
+        }
+    } else {
+      *1 {
+        =>;
+        <=;
+        <-;
+      }
+    }
+)
+\end{lstlisting}
 
-\section*{Acknowledgment}
+In Listing  (REFERENZ EINFÜGEN) ist sichtbar, dass der Filter-Free Operator mit dem Random Operator geschachtelt wurde. Die DSL erlaubt beliebige Schachtelungstiefen. Beispielsweise wäre folgende Syntax ebenfalls zulässig:
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+if *(->) {
+  %(50:25:25) {
+    ->;
+    **{
+      %(50:25:25) {
+        ->;
+        **{
+          =>;
+          *1{
+            <-;
+            ->;
+          }
+          <=;
+        }
+    }
+    =>;
+    <=;
+  }
+}
+\end{lstlisting}
+
+Eine beliebige Verschachtelungstiefe, wie durch Listing (REFERENZ EINFÜGEN) demonstriert, wird durch die eingesetzte Grammatik nicht abgebildet. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (siehe Listing (REFERENZ EINFÜGEN) ).
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration||direction_statement);
+bracket_open: '{';
+bracket_close: '}';
+block_declaration: (if_free_statement|else_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
+\end{lstlisting}
+
+Das Aufbauen einer rekursiven Baumstruktur erfolgt in der Listener Implementation. Hierzu wurde für jeden in (REFERENZ EINFÜGEN) vorgestellten Operator eine Klasse erstellt, die von der abstrakten Klasse Node erbt.
 
 
-The authors would like to thank...
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=2.5in]{node_structure_node.png}
+
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
+
+Alle Unterklassen von Node (siehe Abbildung (REFERENZ EINFÜGEN)) enthalten intern eine List-Struktur, in der Kinder-Nodes geführt werden. Jeder Node implementiert eine renderCode()-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode childCode() erzeugt, die über die Kinder-Nodes iteriert, jeweils renderCode() aufruft und die Ergebnisse konkateniert. Methode childCode() wird per Konvention in jeder Node-Klasse bei renderCode() aufgerufen. Eine Node Klasse, erzeugt beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Zum Erzeugen der kompletten AI-JavaScript Klasse reicht das Aufrufen von renderCode() auf dem Wurzelknoten, der im Listener als initialNode geführt ist (siehe Abbildung (REFERENZ EINFÜGEN)). Abbildung (REFERENZ EINFÜGEN) zeigt die entstehende Baumstruktur zur DSL von Listing (REFERENZ EINFÜGEN).
+
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=2.5in]{node_structure_ex.png}
+\caption{Simulation results for the network.}
+\label{fig_sim}
+\end{figure}
+
+Der entstehende JavaScript-Code zur DSL in Listing (REFERENZ EINFÜGEN) ist in (REFERENZ EINFÜGEN) aufgeführt.
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+ define([], function() {
+    var strategy = function(queries) {
+        var direction = queries.currentDirection();
+        return (function() {
+            if (queries.isFree(direction)) {
+                return queries.randomWithDistribution([
+                    50, 25, 25
+                ], [
+                    direction,
+                    queries.filterFree([
+                        queries.alternative(direction),
+                        queries.alternativeOpposite(direction)
+                    ])
+                ]);
+            } else {
+                return queries.filterFreeN(1, [
+                    queries.alternative(direction),
+                    queries.alternativeOpposite(direction),
+                    queries.opposite(direction)
+                ]);
+                            }
+        })();
+    }
+    return strategy;
+});
+\end{lstlisting}
+
+Tabelle (REFERENZ EINFÜGEN) zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries, die der Funktion strategy der generierten AI-Klasse als Parameter queries übergeben wird. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgezeigt.
+
+%TODO: Make table
+
+
+\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{An Example of a Table}
+\label{table_example2}
+\centering
+\setlength\tabcolsep{1.5pt}
+\begin{tabular}{|c||c|}
+
+\hline
+\textbf{Operator} & \textbf{Methode in GhostQueries}\\
+
+\hline
+-> & currentDirection(): \emph{String} \\
+
+\hline
+<- & opposite(direction: String): \emph{String} \\
+
+\hline
+=> & alternative(direction: String): \emph{String} \\
+
+\hline
+<= & alternativeOpposite(direction: String): \emph{String} \\
+
+\hline
+if* & isFree(direction: String): \emph{Boolean} \\
+
+\hline
+** & filterFree(directions: List<String>): \emph{List<String>} \\
+
+\hline
+*n & filterFreeN(n: Number, List<String>): \emph{String} \\
+
+\hline
+\% & randomWithDistribution(distributions: \emph{List<Number>} \\
+
+\hline
+\end{tabular}
+\end{table}
 
 
 
-
-
-\begin{thebibliography}{1}
-
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-\end{thebibliography}
+Die Funktion strategy besitzt eine Abhängigkeit zur Klasse queries. Abbildung
 
 
 
+\section{Fazit und Ausblick}
+Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pacman Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei Ansäzte verfolgt. Zum einen die Erstellung des Spielfeldes und zum anderen die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt. Jedoch erwies sich die Entwicklung einer DSL für die KI komplexer und schwieriger umzusetzen als im Vorfeld
 
-% that's all folks
+
 \end{document}
 
 
