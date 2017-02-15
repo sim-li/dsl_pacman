@@ -269,7 +269,7 @@ elif DIRECTION == DOWN:
 \end{lstlisting}
 
 Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein \texttt{<-} Token genügen, um  die Logik des Pseudocodes abzubilden.
-
+\subsubsection{Überblick der Operatoren}
 \emph{Pac-Man AI DSLs} beginnen mit ihrem Namen in runden Klammern. Innerhalb dieses Blocks befinden sich Operatoren, die eine Richtung als Rückgabewert liefern. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz \ref{umsetz} beschrieben, ist im JavaScript-Spiel der Akteur \emph{Checkmove} dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle \ref{checkmove_operators_tbl} gelisteten Operatoren an, die eine Prüfung durch Checkmove auslösen.
 
 %\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
@@ -359,6 +359,7 @@ Auswahl des n-ten Elements.} &
 \end{table}
 
 Bei den Operatoren ist zu beachten, dass die \texttt{If-Free-} und \texttt{Filter-FreeN}-Operatoren jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts im Kontext der DSL bildet sich bei der Ausführung mit JavaScript Methoden ab.
+
 
 Der \texttt{Filter-Free}-Operator darf beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
 
@@ -465,6 +466,8 @@ if *(->) {
 }
 \end{lstlisting}
 
+\subsubsection{Aufbauen der Datenstruktur zur Codegenerierung}
+
 Die Verschachtelung von Operatoren wird nicht \emph{direkt} durch die Grammatik definiert. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (Listing \ref{ai_grammar}).
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Ausschnitt der AI Grammatik, label=ai_grammar]
@@ -523,6 +526,7 @@ Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine L
 });
 \end{lstlisting}
 
+\subsubsection{Einbindung der generierten Klassen}
 
 Klasse \texttt{GhostQueries} dient als Mittler der generieten Strategie mit dem Ghost-Objekt. Sie ruft Methoden \texttt{currentDirection}, \texttt{gridX()}, \texttt{gridY()} und \texttt{checkMove()} auf. Der Aufruf von \texttt{checkMove()} wird von Klasse \texttt{Ghost} an \texttt{Gameboard} deligiert.
 Der Aufruf der generierten Strategie mit Übergabe des Parameters GhostQueries wird in Abbildung \ref{ai_call} dargestellt.
@@ -579,6 +583,7 @@ if* & isFree(direction: String): \emph{Boolean} \\
 \end{tabular}
 \end{table}
 
+\subsubsection{JavaScript-Datenstrukturen}
 Neben der Abstraktion bezüglich der Richtungen (siehe Absatz \ref{dir_abstraction}) sorgt Klasse GhostQueries dafür, dass Listenstrukturen bei verschachtelten Aufrufen korrekt vereint werden. Eine Verschachtlung des \texttt{Random-Operators} mit \texttt{Filter-Free-Operator}, wie in
 Abbildung \ref{node_structure_ex} gezeigt, hat zur Folge dass Parameter \emph{directions} der \texttt{randomWithDistributions()}-Methode mit einer verschachtelten Liste
 befüllt wird. Die Ursache ist, dass es sich beim Ergebnis des \texttt{Filter-Free-Operator} ebenfalls um eine Liste handelt. Ein Beispiel einer entstehende Datenstruktur des directions-Parameter ist in Listing \ref{rwd_example} zu sehen.

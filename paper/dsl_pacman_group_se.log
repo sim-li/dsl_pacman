@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.6)  15 FEB 2017 14:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.6)  15 FEB 2017 14:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -682,20 +682,15 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <8> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 144.
-
-
-LaTeX Warning: Reference `spielfeldaufb' on page 3 undefined on input line 215.
-
-
-[3 <./images/code_gen_rough.png (PNG copy)>]
+ [3 <./images/code_gen_rough.png (PNG copy)>]
 Overfull \hbox (1.96661pt too wide) in paragraph at lines 242--255
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
-\T1/ptm/m/n/10 und \T1/pcr/m/n/10 Filter-FreeN\T1/ptm/m/n/10 -Operator je-weils
- ei-ne ein-zel-ne
+Underfull \hbox (badness 6910) in paragraph at lines 361--362
+\T1/ptm/m/n/10 und \T1/pcr/m/n/10 Filter-FreeN\T1/ptm/m/n/10 -Operatoren je-wei
+ls ei-ne ein-zel-ne
  []
 
 
@@ -703,119 +698,71 @@ Underfull \hbox (badness 8189) in paragraph at lines 361--362
 \T1/ptm/m/n/10 Rich-tung als Rück-ga-be-wert be-sit-zen, wo-hin-ge-gen der
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 361--362
-\T1/pcr/m/n/10 Filter-Free\T1/ptm/m/n/10 -Operator ei-ne Lis-te von Rich-tun-ge
-n
- []
-
-
-Underfull \hbox (badness 3229) in paragraph at lines 361--362
-\T1/ptm/m/n/10 zu-rück-gibt. Der Be-griff des Rück-ga-be-werts bil-det sich
- []
-
-
-Underfull \hbox (badness 2181) in paragraph at lines 361--362
-\T1/ptm/m/n/10 auf auf-ge-ru-fe-ne Ja-vaS-cript Me-tho-den der von \T1/pcr/m/n/
-10 ANTLR4
- []
-
 [4] <images/node_structure_node.png, id=28, 229.85875pt x 160.6pt>
 File: images/node_structure_node.png Graphic file (type png)
 
 <use images/node_structure_node.png>
-Package pdftex.def Info: images/node_structure_node.png used on input line 482.
+Package pdftex.def Info: images/node_structure_node.png used on input line 485.
 
 (pdftex.def)             Requested size: 122.85876pt x 85.8405pt.
 
-Underfull \hbox (badness 1895) in paragraph at lines 488--489
-[]\T1/ptm/m/n/10 Alle Un-ter-klas-sen von No-de (Ab-bil-dung 5[]) ent-hal-ten
+Underfull \hbox (badness 4872) in paragraph at lines 491--492
+[]\T1/ptm/m/n/10 Alle Un-ter-klas-sen von No-de (Ab-bil-dung 5[]) ent-hal-
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 488--489
-\T1/ptm/m/n/10 in-tern ei-ne Listen-Struktur, in der Kinder-Nodes ge-führt
+Underfull \hbox (badness 1960) in paragraph at lines 491--492
+\T1/ptm/m/n/10 ten in-tern ei-ne Listen-Struktur mit Kinder-Nodes. Je-der
  []
 
 
-Underfull \hbox (badness 2744) in paragraph at lines 488--489
-\T1/ptm/m/n/10 der Kinder-Nodes wird durch Me-tho-de \T1/pcr/m/n/10 childCode()
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 488--489
-\T1/ptm/m/n/10 er-zeugt, die über die Kinder-Nodes ite-riert, je-weils
- []
-
-
-Underfull \hbox (badness 1953) in paragraph at lines 488--489
-\T1/ptm/m/n/10 Me-tho-de \T1/pcr/m/n/10 childCode() \T1/ptm/m/n/10 wird per Kon
--ven-ti-on in je-der
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 488--489
-\T1/ptm/m/n/10 Klas-se, er-zeugt beim Code-Generieren eben-falls den
- []
-
-
-Underfull \hbox (badness 4084) in paragraph at lines 488--489
-\T1/ptm/m/n/10 JavaScript-Quellcode sei-ner Kin-der. Zum Er-zeu-gen der
+Underfull \hbox (badness 2680) in paragraph at lines 491--492
+\T1/ptm/m/n/10 No-de im-ple-men-tiert ei-ne \T1/pcr/m/n/10 renderCode()\T1/ptm/
+m/n/10 -Methode, die
  []
 
 <images/node_structure_ex.png, id=29, 501.875pt x 381.425pt>
 File: images/node_structure_ex.png Graphic file (type png)
 
 <use images/node_structure_ex.png>
-Package pdftex.def Info: images/node_structure_ex.png used on input line 493.
+Package pdftex.def Info: images/node_structure_ex.png used on input line 496.
 (pdftex.def)             Requested size: 252.94499pt x 192.2427pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 493--494
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 496--497
  [][] 
  []
 
 [5 <./images/node_structure_node.png>]
-Underfull \hbox (badness 3158) in paragraph at lines 574--576
-[]\T1/ptm/m/n/10 Klasse \T1/pcr/m/n/10 GhostQueries \T1/ptm/m/n/10 dient als Mi
-tt-ler der ge-ne-
- []
-
-
-Underfull \hbox (badness 4713) in paragraph at lines 574--576
-\T1/ptm/m/n/10 rie-ten Stra-te-gie mit dem Ghost-Objekt. Sie ruft Me-
+Underfull \hbox (badness 10000) in paragraph at lines 531--533
+ \T1/ptm/m/it/10 3) Ein-bin-dung der ge-ne-rier-ten Klas-sen: [][] \T1/ptm/m/n/
+10 Klas-se
  []
 
 <images/queries.png, id=34, 682.55pt x 592.2125pt>
 File: images/queries.png Graphic file (type png)
  <use images/queries.png>
-Package pdftex.def Info: images/queries.png used on input line 579.
+Package pdftex.def Info: images/queries.png used on input line 536.
 (pdftex.def)             Requested size: 238.49121pt x 206.92505pt.
 
-Underfull \hbox (badness 1975) in paragraph at lines 584--587
-\T1/ptm/m/n/10 he Ab-satz [][]) sorgt Klas-se Ghost-Que-ries da-für, dass
+Underfull \hbox (badness 4621) in paragraph at lines 587--590
+ \T1/ptm/m/it/10 4) JavaScript-Datenstrukturen: [][] \T1/ptm/m/n/10 Ne-ben der 
+Ab-strak-ti-on
  []
 
 
-Underfull \hbox (badness 5578) in paragraph at lines 584--587
-\T1/ptm/m/n/10 mit \T1/pcr/m/n/10 Filter-Free-Operator\T1/ptm/m/n/10 , wie in A
-b-bil-dung 6[]
- []
-
-
-Underfull \hbox (badness 4913) in paragraph at lines 584--587
-\T1/ptm/m/n/10 ge-zeigt, hat zur Fol-ge dass Pa-ra-me-ter \T1/ptm/m/it/10 di-re
-c-ti-ons \T1/ptm/m/n/10 der
+Underfull \hbox (badness 10000) in paragraph at lines 587--590
+\T1/pcr/m/n/10 Random-Operators \T1/ptm/m/n/10 mit \T1/pcr/m/n/10 Filter-Free-O
+perator\T1/ptm/m/n/10 ,
  []
 
 [6 <./images/node_structure_ex.png (PNG copy)> <./images/queries.png (PNG copy)
 >]
-Underfull \hbox (badness 4266) in paragraph at lines 616--617
+Underfull \hbox (badness 4266) in paragraph at lines 618--619
 []\T1/ptm/m/n/10 In der Klas-se \T1/pcr/m/n/10 AiBaseListenerImplementation
  []
 
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 628.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 630.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -827,31 +774,24 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7] (./dsl_pacman_group_se.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+[7] (./dsl_pacman_group_se.aux) ) 
 Here is how much of TeX's memory you used:
  5140 strings out of 493033
- 72270 string characters out of 6134140
- 266289 words of memory out of 5000000
- 8594 multiletter control sequences out of 15000+600000
- 122852 words of font info for 129 fonts, out of 8000000 for 9000
+ 72271 string characters out of 6134140
+ 278323 words of memory out of 5000000
+ 8595 multiletter control sequences out of 15000+600000
+ 121745 words of font info for 128 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 37i,15n,42p,1000b,1618s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
-exlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2
-015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
-1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/tim
-es/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on dsl_pacman_group_se.pdf (7 pages, 338137 bytes).
+ 37i,15n,42p,1021b,1616s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/
+dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/u
+crb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on dsl_pacman_group_se.pdf (7 pages, 338318 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  41 compressed objects within 1 object stream
