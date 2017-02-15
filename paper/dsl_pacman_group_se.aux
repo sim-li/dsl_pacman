@@ -1,0 +1,60 @@
+\relax 
+\@writefile{toc}{\contentsline {section}{\numberline {I}\IeC {\"U}ber das Spiel}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-A}}Spielprinzip}{1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-B}}Verwendete Technologien}{1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Reduziertes Klassendiagramm der zentralen Spielklassen}}{2}}
+\newlabel{main_classes}{{1}{2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {I-C}}Umsetzung}{2}}
+\newlabel{umsetz}{{\unhbox \voidb@x \hbox {I-C}}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Screenshot des ausgef\IeC {\"u}hrten Pac-Man Spiels.}}{2}}
+\newlabel{pac_screen}{{2}{2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces FMC-TAM Diagramm der umgesetzen Applikation}}{3}}
+\newlabel{fmc_tam}{{3}{3}}
+\@writefile{toc}{\contentsline {section}{\numberline {II}Codegenerierung}{3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Beteiligte Klassen bei der Codegenerierung mit ANTLR}}{3}}
+\newlabel{antlr_classes}{{4}{3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-A}}Level DSL}{3}}
+\newlabel{leveljs}{{1}{3}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Generierte Level-Klasse in JavaScript}{3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-A}1}Spielfeldaufbau}{3}}
+\@writefile{lot}{\contentsline {table}{\numberline {I}{\ignorespaces Spielfeld-Definition per DSL}}{4}}
+\newlabel{gameboard_dsl}{{I}{4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {\unhbox \voidb@x \hbox {II-A}2}Grammatik}{4}}
+\newlabel{level_grammar}{{2}{4}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Auszug aus der DSL spezifizierenden Grammatik level.g4}{4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {\unhbox \voidb@x \hbox {II-B}}AI DSL}{4}}
+\newlabel{ai_dsl}{{\unhbox \voidb@x \hbox {II-B}}{4}}
+\newlabel{dir_abstraction}{{\unhbox \voidb@x \hbox {II-B}}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {II}{\ignorespaces Richtungstokens der AI DSL mit examplarischer Belegung der Tokens}}{4}}
+\newlabel{ai_directions}{{II}{4}}
+\@writefile{lot}{\contentsline {table}{\numberline {III}{\ignorespaces Operatoren mit Syntaxbeispiel, die Methode Checkmove ansteuren}}{4}}
+\newlabel{checkmove_operators_tbl}{{III}{4}}
+\newlabel{direction_pseudo}{{3}{4}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}Umkehren der Richtung in Pseudocode}{4}}
+\newlabel{simpledsl}{{4}{5}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}AI DSL mit F\texttt  {Filter-FreeN}-Operator}{5}}
+\@writefile{lot}{\contentsline {table}{\numberline {IV}{\ignorespaces Random Operator mit Syntaxbeispiel}}{5}}
+\newlabel{random_op}{{IV}{5}}
+\newlabel{if_free_dsl}{{5}{5}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5}AI DSL mit \texttt  {If-Free}-Block und Zufallsverteilung}{5}}
+\newlabel{dsl_complex_nesting}{{6}{5}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6}Komplexere Verschachtelung in AI DSL}{5}}
+\newlabel{ai_grammar}{{7}{5}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {7}Ausschnitt der AI Grammatik}{5}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Node-Basisklasse als Halter der Datenstruktur zu Codegenerierung}}{6}}
+\newlabel{node_class}{{5}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Schematische Darstellung der Datenstruktur beim Parsen einer AI DSL (Laufzeit).}}{6}}
+\newlabel{node_structure_ex}{{6}{6}}
+\newlabel{if_free_output}{{8}{6}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {8}Beispiel zu generiertem JavaScript-Code einer AI DSL}{6}}
+\@writefile{lot}{\contentsline {table}{\numberline {V}{\ignorespaces Mapping von AI-Tokens auf JavaScript Methoden der Klasse \texttt  {GhostQueries}}}{6}}
+\newlabel{token_method_mapping}{{V}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Aufruf der generierten Strategie-Methode durch Klasse Ghost.}}{6}}
+\newlabel{ai_call}{{7}{6}}
+\newlabel{rwd_example}{{9}{7}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {9}Beispiel einer verschachtelten Datenstruktur als directions-Parameter von randomWithDistributions()}{7}}
+\newlabel{underscore_speaking}{{10}{7}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}Implementierung der Filter-Free Methode mit Hilfe von funktionalen Hilfsmitteln von underscore.js}{7}}
+\@writefile{toc}{\contentsline {section}{\numberline {III}Fazit und Ausblick}{7}}
+\newlabel{validation_intent}{{11}{7}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {11}Grundliegende Validierung beim Hinzuf\IeC {\"u}gen eines einer Node in \texttt  {AiBaseListenerImplementation}}{7}}
