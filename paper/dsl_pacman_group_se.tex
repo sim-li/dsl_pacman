@@ -52,22 +52,22 @@ Die folgenden Seiten beschreiben die Entwicklung eines Pac-Man Browserspiels mit
 Der Inhalt dieses Absatzes ist das Spielprinzip von Pac-Man und die Entwicklung der Spiellogik. Dabei werden die eingesetzten Technologien beschrieben.
 
 \subsection{Spielprinzip}
+
 Pac-Man ist eine Spielfigur, die durch ein Labyrinth so effektiv wie möglich gesteuert werden soll, um alle vorhandenen Punkte zu sammeln. Bewegliche Gegner (vier Geister), die vom Computer gesteuert werden, sowie ein komplexes Labyrinth erschweren den Siegeszug. Pro Spiel verfügt Pac-Man über drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
 
 Über Früchte, welche Pac-Man auf seinem Weg finden kann, gelangt dieser in den Angriffsmodus. In diesem Modus wird Pac-Man für eine kurze Zeit vom Gejagten zum Jäger und kann seinerseits Geister fressen, was ihm wiederum zu zusätzlichen Punkten verhilft. Sollte es Pac-Man innerhalb der drei Leben schaffen sämtliche Punkte auf dem Spielfeld zu konsumieren, so hat er das Level erfolgreich absolviert und startet ein neues Level.
 
 
-
 \subsection{Verwendete Technologien}
-Da das Spiel in JavaScript implementiert ist, muss der Codegenerator JavaScript-Code erzeugen, der von der Applikation angesteuert wird. Zur Interpretation von DSL-Dateien und Erzeugung von JavaScript-Code wird die Java-Implementierung von ANTLR4 verwendet.
+Da das Spiel in JavaScript implementiert ist, muss der Codegenerator JavaScript-Code erzeugen, der von der Applikation angesteuert wird. Zur Interpretation von DSL-Dateien und Erzeugung von JavaScript-Code wird die Java-Implementierung von \texttt{ANTLR4} verwendet.
 
-Ein naheliegender Gedanke in der Planungsphase war es, die JavaScript-Implementierung von ANTLR zu verwenden. Auf diese Weise ließe sich eine einheitliche Programmiersprache in der gesamten Codebasis  einsetzen.
+Ein naheliegender Gedanke in der Planungsphase war es, die JavaScript-Implementierung von \texttt{ANTLR4} zu verwenden. Auf diese Weise ließe sich eine einheitliche Programmiersprache in der gesamten Codebasis  einsetzen.
 
 Eine Rechtfertigung für dieses Vorgehen besteht darin, dass ein Team was sich nur auf eine Programmiersprache einarbeiten muss mit geringem Zeitaufwand einheitliche Coding-Standards etablieren kann, da diese nur für eine Sprache aufgestellt werden müssen.  Ein programmiertechnischer Austausch zwischen allen Teammitgliedern,  etwa durch Code Reviews oder die Klärung von sprachspezifischen  Problemen würde vermutlich ebenfalls erleichtert werden. Das Ziel eines einheitlichen Einsetzens von JavaScript wäre also das Erlangen höherer Codequalität gewesen.
 
-Da zur Java-Implementierung von ANTLR ausführlichere Dokumentation existiert als für die JavaScript-Variante und die Java-Implementierung etablierter erscheint, haben wir jedoch von der Verwendung von ANTLR für JavaScript abgesehen. Wir hatten die Vermutung, dass die zusätzliche Einarbeitungszeit und für uns unerwartetes Verhalten der JavaScript-Implementierung den zeitlichen Rahmen des Projektes übersteigen und in keinem Verhältnis zur  höheren Codequalität durch den Einsatz einer einheitlichen Programmiersprache stehen würde.
+Da zur Java-Implementierung von \texttt{ANTLR4} ausführlichere Dokumentation existiert als für die JavaScript-Variante und die Java-Implementierung etablierter erscheint, haben wir jedoch von der Verwendung von \texttt{ANTLR4} für JavaScript abgesehen. Wir hatten die Vermutung, dass die zusätzliche Einarbeitungszeit und für uns unerwartetes Verhalten der JavaScript-Implementierung den zeitlichen Rahmen des Projektes übersteigen und in keinem Verhältnis zur  höheren Codequalität durch den Einsatz einer einheitlichen Programmiersprache stehen würde.
 
-Wir haben jedoch für die in JavaScript verfasste Codebasis gezielt Technologien zur Qualitätssteigerung ausgewählt. Hierzu gehört das Framework RequireJS, welches die Modularisierung und das Importieren von Klassen ähnlich wie in Java ermöglicht. Für das Einbetten von durch ANTLR erzeugte JavaScript-Klassen müssen diese als Module ladbar sein - RequireJS war für uns deshalb Voraussetzung um unser  Vorhaben erfolgreich umsetzen zu können. Objektorientiertes Programmieren nach dem Paradigma Separation of Concerns (SoC) und der Aufbau einer übersichtlichen Projektstruktur werden durch Trennung von Klassen in einzelne Dateien durch RequireJS ebenfalls stark erleichtert.
+Wir haben jedoch für die in JavaScript verfasste Codebasis gezielt Technologien zur Qualitätssteigerung ausgewählt. Hierzu gehört das Framework RequireJS, welches die Modularisierung und das Importieren von Klassen ähnlich wie in Java ermöglicht. Für das Einbetten von durch \texttt{ANTLR4} erzeugte JavaScript-Klassen müssen diese als Module ladbar sein - RequireJS war für uns deshalb Voraussetzung um unser  Vorhaben erfolgreich umsetzen zu können. Objektorientiertes Programmieren nach dem Paradigma Separation of Concerns (SoC) und der Aufbau einer übersichtlichen Projektstruktur werden durch Trennung von Klassen in einzelne Dateien durch RequireJS ebenfalls stark erleichtert.
 
 Mit Underscore.js sind in kurzer Syntax und auf höherem Abstraktionsgrad insbesonders häufig eingesetzte Idiome wie Listeniterationen abbildbar. Hierdurch ergibt sich weniger Raum für Fehler. Underscore bietet eine Reihe von Helferfunktionen, die darauf ausgerichtet sind, funktionale Programmierung zu erleichtern\footnote[1]{Underscore.js Einführung, http://underscorejs.org/}.
 
@@ -103,7 +103,7 @@ Um die Bewegungen der Figuren sichtbar zu machen existiert die Funktion updateOn
 \label{pac_screen}
 \end{figure}
 
-Abbildung \ref{fmc_tam} stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pac-Man sind als Akteure dargestellt, die ihre Position in Abstimmung mit den Request-Antworten von checkMove aktualisieren. Akteur Strategy und Speicher Level werden durch ANTLR generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der AI DSL in Abschnitt \ref{ai_dsl} näher erläutert.
+Abbildung \ref{fmc_tam} stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pac-Man sind als Akteure dargestellt, die ihre Position in Abstimmung mit den Request-Antworten von checkMove aktualisieren. Akteur Strategy und Speicher Level werden durch \texttt{ANTLR4} generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der AI DSL in Abschnitt \ref{ai_dsl} näher erläutert.
 
 \begin{figure}[!t]
 \centering
@@ -118,7 +118,7 @@ Interessant ist, dass die Akteure sich nicht automatisch auf die gleiche Modular
 Es ist wahrscheinlich, dass eine Auslagerung von Hitdetection in eine eigenständige Klasse bei zunehmender Komplexität sinnvoll wäre und dadurch das Design durch die Einhaltung des SoC-Paradigmas verbessert werden würde. Durch die Aufstellung des FMC-TAM Diagramms lässt sich diese bevorstehende Designänderung antizipieren, auch wenn wir uns in der vorliegenden Implementierung dazu entschlossen haben, sie nicht umzusetzen.
 
 \section{Codegenerierung}
-ANTLR4 generiert auf Grundlage der DSL Lexer zur lexikalischen Analyse und Parser zur syntaktischen Analyse.
+\texttt{ANTLR4} generiert auf Grundlage der DSL Lexer zur lexikalischen Analyse und Parser zur syntaktischen Analyse.
 Wir haben uns bei der Umsetzung der Level- und der AI DSL für  das Einsetzen von Listener Klassen zum Traversieren des Abstrakten Syntaxbaums (AST) entschlossen.
 
 Für beide Grammatiken erstellten wir Subklassen der generierten Listener. Diese Klassen enthalten jeweils eine Datenstruktur als Instanzvariable, die beim Traversieren befüllt wird. Im Fall der Level DSL handelt es sich um eine Liste, bei der AI DSL um eine Baumstruktur.
@@ -211,7 +211,7 @@ Zulässig sind als \emph{Value} definiert, nur die Zahlen Null, Eins, Zwei und D
 
 
 \subsubsection{Grammatik}
-Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall werden diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Spezifikation der Arraygröße ist nicht Teil dieser DSL und die Überprüfung dafür findet an anderer Stelle statt welche im Kapitel “Codegenerierung mit ANTLR” beschrieben wird. Die in dem vorherigen Absatz, “Spielfeldeaufbau”, festgelegten Regeln werden in einer level.g4 Datei (Listing \ref{level_grammar}) formal festgelegt um dann mit dem ANTLR4 Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vergl. Listing\ref{leveljs}) verwendet wird.
+Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall werden diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Spezifikation der Arraygröße ist nicht Teil dieser DSL und die Überprüfung dafür findet an anderer Stelle statt welche im Kapitel “Codegenerierung mit ANTLR” beschrieben wird. Die in dem vorherigen Absatz, “Spielfeldeaufbau”, festgelegten Regeln werden in einer level.g4 Datei (Listing \ref{level_grammar}) formal festgelegt um dann mit dem \texttt{ANTLR4} Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vergl. Listing\ref{leveljs}) verwendet wird.
 
 \begin{lstlisting}[captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik level.g4}, label=level_grammar]
 grammar Level;
@@ -359,7 +359,7 @@ Auswahl des n-ten Elements.} &
 \end{tabular}
 \end{table}
 
-Bei den Operatoren ist zu beachten, dass der \texttt{If-Free-} und \texttt{Filter-FreeN}-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von ANTLR compilierten DSL ab.
+Bei den Operatoren ist zu beachten, dass der \texttt{If-Free-} und \texttt{Filter-FreeN}-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von \texttt{ANTLR4} compilierten DSL ab.
 
 Der \texttt{Filter-Free}-Operator darf also beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
 
@@ -612,9 +612,9 @@ return _.filter(_.flatten(directions), function(d) {
 \section{Fazit und Ausblick}
 Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pac-Man-Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei DSLs eingesetzt. Zum einen eine DSL für die Erstellung des Spielfeldes und zum anderen eine AI DSL für die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt.
 
-Bei der Implementierung der AI DSL hat sich bewährt, eine Baumstruktur in der entsprechende Listener-Klasse aufzubauen um diese bei der Codegeneriung zu traversieren. Hierbei taucht allerdings das Problem auf, dass \texttt{ANTLR} keine syntaktische Validierung in Bezug auf den Aufbau dieser Baumstruktur vornimmt. Es ist also ohne manuell implementierte Validierungen nicht zu gewährleisten, dass die Operatoren der AI DSL korrekt miteinander kombiniert werden - im schlimmsten Fall resultiert ein Laufzeitfehler im JavaScipt Code.
+Bei der Implementierung der AI DSL hat sich bewährt, eine Baumstruktur in der entsprechende Listener-Klasse aufzubauen um diese bei der Codegeneriung zu traversieren. Hierbei taucht allerdings das Problem auf, dass \texttt{ANTLR4} keine syntaktische Validierung in Bezug auf den Aufbau dieser Baumstruktur vornimmt. Es ist also ohne manuell implementierte Validierungen nicht zu gewährleisten, dass die Operatoren der AI DSL korrekt miteinander kombiniert werden - im schlimmsten Fall resultiert ein Laufzeitfehler im JavaScipt Code.
 
-In der Klasse \texttt{AiBaseListenerImplementation} wurde ein erster Ansatz implementiert, eine solche Validierung vorzunehmen (Listing \ref{validation_intent}). Um eine Aussagekraft für den Anwender zu haben, müsste jedoch eine präzisere Fehlermeldung mit entsprechender Zeilennummer der interpretierten DSL ausgegeben werden. Es ist abzusehen, dass der verfolgte Ansatz bei einer Erweiterung der Grammatik ungenügend ist. Hier wäre eine noch tiefere Auseinandersetzung mit ANTLR empfehlenswert, um womöglich einen standartisierten Lösungsweg verfolgen zu können.
+In der Klasse \texttt{AiBaseListenerImplementation} wurde ein erster Ansatz implementiert, eine solche Validierung vorzunehmen (Listing \ref{validation_intent}). Um eine Aussagekraft für den Anwender zu haben, müsste jedoch eine präzisere Fehlermeldung mit entsprechender Zeilennummer der interpretierten DSL ausgegeben werden. Es ist abzusehen, dass der verfolgte Ansatz bei einer Erweiterung der Grammatik ungenügend ist. Hier wäre eine noch tiefere Auseinandersetzung mit \texttt{ANTLR4} empfehlenswert, um womöglich einen standartisierten Lösungsweg verfolgen zu können.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Grundliegende Validierung beim Hinzufügen eines einer Node in \texttt{AiBaseListenerImplementation}, label=validation_intent]
 
