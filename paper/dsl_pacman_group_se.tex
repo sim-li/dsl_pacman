@@ -40,7 +40,7 @@ s67176@beuth-hochschule.de}
   basicstyle=\footnotesize\ttfamily
   }
 \begin{abstract}
-Die nachfolgenden Seiten beschreiben die Entwicklung eines Pac-Man Browserspiels mit JavaScript. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit domänenspezifischen Sprachen (DSL) für die Levels und die artifizielle Intelligenz (AI). Die DSL der AI beschreibt verschiedene Strategien der vom  Computer gesteuerten Spielfiguren.
+Die folgenden Seiten beschreiben die Entwicklung eines Pac-Man Browserspiels mit JavaScript. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit domänenspezifischen Sprachen (DSL) für die Levels und die artifizielle Intelligenz (AI). Die DSL der AI definiert verschiedene Strategien der vom  Computer gesteuerten Spielfiguren.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
@@ -49,10 +49,10 @@ Die nachfolgenden Seiten beschreiben die Entwicklung eines Pac-Man Browserspiels
 
 \section{Über das Spiel}
 
-In diesem Absatz wird das Spielprinzip von Pac-Man kurz vorgestellt und auf die Entwicklung eingegangen. Dabei werden auch die eingesetzten Technologien beschrieben.
+Der Inhalt dieses Absatzes ist das Spielprinzip von Pac-Man und die Entwicklung der Spiellogik. Dabei werden die eingesetzten Technologien beschrieben.
 
 \subsection{Spielprinzip}
-Pac-Man ist eine Spielfigur, die durch ein Labyrinth so schnell und effektiv wie möglich gesteuert werden soll um alle vorhanden Punkte einzusammeln. Auf dem Weg erschweren diverse Hindernisse den Siegeszug. Bewegliche Gegner (vier Geister) die von einer AI gesteuert werden sowie ein komplexes Labyrinth erschweren die Bewältigung des Spiels. Pro Spiel stehen verfügt Pac-Man drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
+Pac-Man ist eine Spielfigur, die durch ein Labyrinth so effektiv wie möglich gesteuert werden soll, um alle vorhandenen Punkte zu sammeln. Bewegliche Gegner (vier Geister), die vom Computer gesteuert werden, sowie ein komplexes Labyrinth erschweren den Siegeszug. Pro Spiel verfügt Pac-Man über drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
 
 Über Früchte, welche Pac-Man auf seinem Weg finden kann, gelangt dieser in den Angriffsmodus. In diesem Modus wird Pac-Man für eine kurze Zeit vom Gejagten zum Jäger und kann seinerseits Geister fressen, was ihm wiederum zu zusätzlichen Punkten verhilft. Sollte es Pac-Man innerhalb der drei Leben schaffen sämtliche Punkte auf dem Spielfeld zu konsumieren, so hat er das Level erfolgreich absolviert und startet ein neues Level.
 
