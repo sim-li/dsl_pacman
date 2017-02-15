@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.6)  15 FEB 2017 01:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.6)  15 FEB 2017 01:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -685,11 +685,6 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <8> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 144.
  [3 <./images/tam.png> <./images/code_gen_rough.png (PNG copy)>]
-Overfull \hbox (26.40283pt too wide) in paragraph at lines 220--222
-[][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
 Overfull \hbox (1.96661pt too wide) in paragraph at lines 243--256
  [][] 
  []
@@ -806,6 +801,12 @@ c-ti-ons \T1/ptm/m/n/10 der
 
 [6 <./images/node_structure_node.png> <./images/node_structure_ex.png (PNG copy
 )> <./images/queries.png (PNG copy)>]
+Underfull \hbox (badness 4266) in paragraph at lines 617--618
+[]\T1/ptm/m/n/10 In der Klas-se \T1/pcr/m/n/10 AiBaseListenerImplementation
+ []
+
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 629.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -817,28 +818,27 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7
-
-] (./dsl_pacman_group_se.aux) ) 
+[7] (./dsl_pacman_group_se.aux) ) 
 Here is how much of TeX's memory you used:
- 5120 strings out of 493033
- 72034 string characters out of 6134140
- 209886 words of memory out of 5000000
- 8577 multiletter control sequences out of 15000+600000
- 121008 words of font info for 126 fonts, out of 8000000 for 9000
+ 5138 strings out of 493033
+ 72249 string characters out of 6134140
+ 224895 words of memory out of 5000000
+ 8593 multiletter control sequences out of 15000+600000
+ 121745 words of font info for 128 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  37i,15n,42p,1000b,1538s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dv
-ips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucr
-b8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/loca
-l/texlive/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dsl_pacman_group_se.pdf (7 pages, 325760 bytes).
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/
+dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/u
+crb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr
+/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
+live/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on dsl_pacman_group_se.pdf (7 pages, 338433 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 38 compressed objects within 1 object stream
+ 68 PDF objects out of 1000 (max. 8388607)
+ 41 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

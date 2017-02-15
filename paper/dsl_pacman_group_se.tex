@@ -216,13 +216,13 @@ Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domän
 \begin{lstlisting}[captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik level.g4}, label=level_grammar]
 grammar Level;
 
-field       : row* EOF ;
-row         : value (Separator value)* (LineBreak | EOF) ;
+field: row* EOF ;
+row: value (Separator value)* (LineBreak | EOF) ;
 
-value       : Value ;
-Separator   : ';' ;
-LineBreak   : '\r'?'\n' | '\r';
-Value : ('0'|'1'|'2'|'3')+ ;
+value: Value ;
+Separator: ';' ;
+LineBreak: '\r'?'\n' | '\r';
+Value: ('0'|'1'|'2'|'3')+ ;
 \end{lstlisting}
 
 Zulässig sind als \emph{Value} definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als \emph{Separator} zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als \emph{row} festgelegt ist, erreicht wird. Das Zeilenende wird durch ein \emph{LineBreak} oder aber durch ein \emph{EOF} signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als \emph{field} spezifiziert.
@@ -496,7 +496,7 @@ Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine L
 \label{node_structure_ex}
 \end{figure}
 
-Der entstehende JavaScript-Code zur DSL in Listing \ref{if_free_dsl} ist in \ref{if_free_output} aufgeführt.
+Der entstehende JavaScript-Code zur DSL in Listing \ref{if_free_dsl} ist in Listing \ref{if_free_output} aufgeführt.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Beispiel zu generiertem JavaScript-Code einer AI DSL, label=if_free_output]
  define([], function() {
@@ -609,9 +609,35 @@ return _.filter(_.flatten(directions), function(d) {
 \end{lstlisting}
 
 
-
 \section{Fazit und Ausblick}
 Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pacman Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei DSLs eingesetzt. Zum einen eine DSL für die Erstellung des Spielfeldes und zum anderen eine AI DSL für die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt.
+
+Bei der Implementierung der AI DSL hat sich bewährt, eine Baumstruktur in der entsprechende Listener-Klasse aufzubauen um diese bei der Codegeneriung zu traversieren. Hierbei taucht allerdings das Problem auf, dass \texttt{ANTLR} keine syntaktische Validierung in Bezug auf den Aufbau dieser Baumstruktur vornimmt. Es ist also ohne manuell implementierte Validierungen nicht zu gewährleisten, dass die Operatoren der AI DSL korrekt miteinander kombiniert werden - im schlimmsten Fall resultiert ein Laufzeitfehler im JavaScipt Code.
+
+In der Klasse \texttt{AiBaseListenerImplementation} wurde ein erster Ansatz implementiert, eine solche Validierung vorzunehmen (Listing \ref{validation_intent}). Um eine Aussagekraft für den Anwender zu haben, müsste jedoch eine präzisere Fehlermeldung mit entsprechender Zeilennummer der interpretierten DSL ausgegeben werden. Es ist abzusehen, dass der verfolgte Ansatz bei einer Erweiterung der Grammatik ungenügend ist. Hier wäre eine noch tiefere Auseinandersetzung mit ANTLR empfehlenswert, um womöglich einen standartisierten Lösungsweg verfolgen zu können.
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=Grundliegende Validierung beim Hinzufügen eines einer Node in \texttt{AiBaseListenerImplementation}, label=validation_intent]
+
+private void add(Node n) {
+    if ((n instanceof Else) && !(currentNode instanceof IfContainer)) {
+        System.out.println("Tried to add else without preceding if block");
+    }
+    if (!(n instanceof Else) && !(n instanceof IfFree) && currentNode instanceof IfContainer) {
+        System.out.println("Illegal state, possible programming error: Opened an IfContainer and trying to add other than if or else block.");
+    }
+    this.currentNode.addChild(n);
+    // Flat elements that can't contain child nodes should not set themselves as currentNode
+    if (!(n instanceof Direction || n instanceof Reference || n instanceof Assignment)) {
+        this.currentNode = n;
+    }
+}
+
+\end{lstlisting}
+
+Spezialisierte Unit-Tests für die AI DSL aufzustellen wäre ein weiterer Schritt, um die Qualität der Implementierung zu erhöhen. Eine hohe Zuverlässigkeit auf Seite der DSL Implementation zu beheben wäre im realen Anwendungsfall eine Notwendigkeit.
+
+Das Erzeugen von Code mit Hilfe von DSLs scheint in dem gegegeben Anwendungsfall in Hinblick auf Arbeitsteilung im Team äußerst sinnvoll. Es ist wahrscheinlich, dass bei einer komplexeren Pac-Man Anwendung eigenständige Teams für Level-Gestaltung und AI-Entwurf eingesetzt werden würden. Diese Teams sollten von programmiertechnischen Aspekten der eigentlichen Spiels weitesgehend entkoppelt werden um effektiv arbeiten zu können. Durch Anpassung der Codegeneratoren wären die Anwendungsentwickler in der Lage, nach Bedarf neue Technologien einsetzten zu können ohne die anderen Teams in ihrer Arbeit zu stören.
+
 
 
 
