@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="" />
+    <list default="true" id="6627353f-b3bc-45d8-befd-b1ce420f524b" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.pdf" afterPath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.aux" afterPath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.aux" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.log" afterPath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.tex" afterPath="$PROJECT_DIR$/../paper/dsl_pacman_group_se.tex" />
+    </list>
     <ignored path="antlr.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />

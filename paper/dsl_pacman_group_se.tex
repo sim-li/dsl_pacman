@@ -40,7 +40,7 @@ s67176@beuth-hochschule.de}
   basicstyle=\footnotesize\ttfamily
   }
 \begin{abstract}
-Die nachfolgenden Seiten beschreiben die Entwicklung eines Pac Man Browserspiels mit JavaScript. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit domänenspezifischen Sprachen (DSL) für die Levels und die künstlichen Intelligenz (KI). Die DSL der KI beschreibt verschiedene Strategien der vom  Computer gesteuerten Spielfiguren.
+Die nachfolgenden Seiten beschreiben die Entwicklung eines Pac Man Browserspiels mit JavaScript. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit domänenspezifischen Sprachen (DSL) für die Levels und die artifizielle Intelligenz (AI). Die DSL der AI beschreibt verschiedene Strategien der vom  Computer gesteuerten Spielfiguren.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
@@ -52,7 +52,7 @@ Die nachfolgenden Seiten beschreiben die Entwicklung eines Pac Man Browserspiels
 In diesem Absatz wird das Spielprinzip von Pac Man kurz vorgestellt und auf die Entwicklung eingegangen. Dabei werden auch die eingesetzten Technologien beschrieben.
 
 \subsection{Spielprinzip}
-Pac Man ist eine Spielfigur, die durch ein Labyrinth so schnell und effektiv wie möglich gesteuert werden soll um alle vorhanden Punkte einzusammeln. Auf dem Weg erschweren diverse Hindernisse den Siegeszug. Bewegliche Gegner (vier Geister) die von einer KI gesteuert werden sowie ein komplexes Labyrinth erschweren die Bewältigung des Spiels. Pro Spiel stehen verfügt Pac Man drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
+Pac Man ist eine Spielfigur, die durch ein Labyrinth so schnell und effektiv wie möglich gesteuert werden soll um alle vorhanden Punkte einzusammeln. Auf dem Weg erschweren diverse Hindernisse den Siegeszug. Bewegliche Gegner (vier Geister) die von einer AI gesteuert werden sowie ein komplexes Labyrinth erschweren die Bewältigung des Spiels. Pro Spiel stehen verfügt Pac Man drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
 
 Über Früchte, welche Pac Man auf seinem Weg finden kann, gelangt dieser in den Angriffsmodus. In diesem Modus wird Pac Man für eine kurze Zeit vom Gejagten zum Jäger und kann seinerseits Geister fressen, was ihm wiederum zu zusätzlichen Punkten verhilft. Sollte es Pac Man innerhalb der drei Leben schaffen sämtliche Punkte auf dem Spielfeld zu konsumieren, so hat er das Level erfolgreich absolviert und startet ein neues Level.
 
@@ -69,48 +69,48 @@ Da zur Java-Implementierung von ANTLR ausführlichere Dokumentation existiert al
 
 Wir haben jedoch für die in JavaScript verfasste Codebasis gezielt Technologien zur Qualitätssteigerung ausgewählt. Hierzu gehört das Framework RequireJS, welches die Modularisierung und das Importieren von Klassen ähnlich wie in Java ermöglicht. Für das Einbetten von durch ANTLR erzeugte JavaScript-Klassen müssen diese als Module ladbar sein - RequireJS war für uns deshalb Voraussetzung um unser  Vorhaben erfolgreich umsetzen zu können. Objektorientiertes Programmieren nach dem Paradigma Separation of Concerns (SoC) und der Aufbau einer übersichtlichen Projektstruktur werden durch Trennung von Klassen in einzelne Dateien durch RequireJS ebenfalls stark erleichtert.
 
-Funktionale Programmierung ist unter JavaScript prinzipiell möglich. Da wir mit dem funktionalen  Programmierparadigma vertraut sind und es als modern und effizient empfinden,  lag es in unserem Interesse, den Teammitgliedern dessen Einsatz zu erleichtern. Hierzu wurde Underscore.js eingesetzt. In kurzer Syntax und auf höherem Abstraktionsgrad sind so insbesondere häufig eingesetzte Idiome wie Listeniterationen abbildbar. Hierdurch ergibt sich weniger Raum für Fehler.
+Mit Underscore.js sind in kurzer Syntax und auf höherem Abstraktionsgrad insbesonders häufig eingesetzte Idiome wie Listeniterationen abbildbar. Hierdurch ergibt sich weniger Raum für Fehler. Underscore bietet eine Reihe von Helferfunktionen, die darauf ausgerichtet sind, funktionale Programmierung zu erleichtern\footnote[1]{Underscore.js Einführung, http://underscorejs.org/}.
 
 Kritische Funktionen wurden in JavaScript mit Unit Tests versehen. Hierzu setzen wir das Framework Jasmine ein. Eine hohe Testabdeckung, wie sie mit Test Driven Development möglich ist, haben wir jedoch nicht priorisiert.
 
 \subsection{Umsetzung}
-
+\label{umsetz}
 Das zu spielende Level  wird durch ein 2-Dimensionales Array abgebildet. Die Elementes des Spielfelds sind durch Zahlencodes im Array abgebildet. Eine Null steht dabei für ein freies Stück Weg. Die Eins und die Zwei stehen für ein begehbares Feld mit einem Punkt oder einer Frucht darauf. Wände werden durch eine Drei repräsentiert und sind von Pac Man und den Gegnern nicht begehbar. Auf diese Art und Weise können beliebig komplexe Levels erstellt und in das Spiel geladen werden.
 
 Zur Darstellung werden für die genannten Elemente Bildobjekte in das Spiel geladen, die auf einem Canvas-Element des HTML Dokuments gezeichnet werden. Zum Zeichnen der Bildobjekte wird durch das Array iteriert und für jedes Array-Element das dem Zahlencode zugehörige Bildobjekt auf den 2D Kontext des Canvas gezeichnet.
 
 Für die Spielfiguren wird ein zweites Canvas-Element verwendet, das transparent über den Canvas-Element des Levels liegt. Die Motivation hierfür ist, dass der Zustand der Spielfiguren sich in der Regel häufiger ändert als der des Spielfeldes. Ein Flackern, was durch zusätzliches Neuzeichnen des Levels bei jeder Figurveränderung entstehen kann, wird durch Trennung in zwei Canvas-Elemente reduziert.
 
-Die Figuren werden  genauso wie die Objekte des Levels als Bilder geladen. Sie operieren auf dem selben Koordinatensystem wie das Level.
+Die Figuren werden  genauso wie die Objekte des Levels als Bilder geladen. Sie operieren auf dem selben Koordinatensystem wie das Level. Abbildung \ref{pac_screen} zeigt das ausgeführte Spiel.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=2.5in]{gameboard_and_figures.png}
 
-\caption{Simulation results for the network.}
-\label{fig_sim}
+\caption{Reduziertes Klassendiagramm der zentralen Spielklassen}
+\label{main_classes}
 \end{figure}
 
-Abbildung (REFERENZ EINFÜGEN) ist ein reduziertes Klassendiagramm und stellt den zuvor beschriebenen Sachverhalt dar. Die Objekte von Spieler und Gegner (Pac und Ghost) besitzen die Instanzvariablen gridX und gridY, die wie beschrieben den Wertebereich des Levels besitzen. Die Funktion checkMove() der Klasse Gameboard gleicht den nächsten Schritt einer Figur mit dem Array des Levels ab. Bei Zahlencode Null, Eins oder Zwei liefert sie true zurück und erlaubt den gewünschten Schritt der Figur. Entsprechend wird bei einer Drei, also einer Wand false zurückgeliefert und verhindert somit den nächsten Schritt der Spielfigur. Diese Funktion wird von Klassen Ghost und Pac bei der Umsetzung des nächsten Spielzugs verwendet.
+Das Klassendiagramm in Abbildung \ref{main_classes} stellt den zuvor beschriebenen Sachverhalt dar. Die Objekte von Spieler und Gegner (Pac und Ghost) besitzen die Instanzvariablen gridX und gridY, die wie beschrieben den Wertebereich des Levels besitzen. Die Funktion checkMove() der Klasse Gameboard gleicht den nächsten Schritt einer Figur mit dem Array des Levels ab. Bei Zahlencode Null, Eins oder Zwei liefert sie true zurück und erlaubt den gewünschten Schritt der Figur. Entsprechend wird bei einer Drei, also einer Wand false zurückgeliefert und verhindert somit den nächsten Schritt der Spielfigur. Diese Funktion wird von Klassen Ghost und Pac bei der Umsetzung des nächsten Spielzugs verwendet.
 
-Um die Bewegungen der Figuren sichtbar zu machen existiert die Funktion updateOnInterval(), die durch den Scheduler des Browsers  alle 150 Millisekunden aufgerufen wird. Sie zeichnet das Level und die Spielfiguren mit den entsprechenden Informationen und Positionen neu. In der Methode werden Kollisionsabfragen der Klasse GameBoard aufgerufen, die prüfen ob Pac Man gerade einen Punkt bzw. eine Frucht frisst (Methode checkPacsEating()) oder mit einem Geist kollidiert ist (Methode checkKills()). Die im Spiel agierende KI berechnet in jedem Interval die Richtung der Geister neu. Ihre Berechnung bezieht sich also immer genau auf einen Spielzug und hat dementsprechend die nächste zu gehenden Richtung als Rückgabewert.
+Um die Bewegungen der Figuren sichtbar zu machen existiert die Funktion updateOnInterval(), die durch den Scheduler des Browsers  alle 150 Millisekunden aufgerufen wird. Sie zeichnet das Level und die Spielfiguren mit den entsprechenden Informationen und Positionen neu. In der Methode werden Kollisionsabfragen der Klasse GameBoard aufgerufen, die prüfen ob Pac Man gerade einen Punkt bzw. eine Frucht frisst (Methode checkPacsEating()) oder mit einem Geist kollidiert ist (Methode checkKills()). Die im Spiel agierende AI berechnet in jedem Interval die Richtung der Geister neu. Ihre Berechnung bezieht sich also immer genau auf einen Spielzug und hat dementsprechend die nächste zu gehenden Richtung als Rückgabewert.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=2.5in]{screenshot.png}
 
-\caption{Simulation results for the network.}
-\label{fig_sim}
+\caption{Screenshot des ausgeführten Pac-Man Spiels.}
+\label{pac_screen}
 \end{figure}
 
-Abbildung (REFERENZ EINFÜGEN) stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pacman sind als Akteure dargestellt, die ihre Position in Abstimmung mit den Request-Antworten von checkMove aktualisieren. Akteur Strategy und Speicher Level werden durch ANTLR generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der KI DSL in Abschnitt (REFERENZ EINFÜGEN) näher erläutert.
+Abbildung \ref{fmc_tam} stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pacman sind als Akteure dargestellt, die ihre Position in Abstimmung mit den Request-Antworten von checkMove aktualisieren. Akteur Strategy und Speicher Level werden durch ANTLR generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der AI DSL in Abschnitt \ref{ai_dsl} näher erläutert.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=2.5in]{tam.png}
 
-\caption{Simulation results for the network.}
-\label{fig_sim}
+\caption{FMC-TAM Diagramm der umgesetzen Applikation}
+\label{fmc_tam}
 \end{figure}
 
 Interessant ist, dass die Akteure sich nicht automatisch auf die gleiche Modularisierungseinheit, also Beispielsweise nur  Klassen abbilden. Checkmove etwa wird im aktuellen Entwicklungsstand durch eine einzelne Methode repräsentiert, Hitdetection durch mehrere Methoden der Klasse Gameboard. Akteure Pacman und Ghost beispielsweise existieren als eigene Klassen, ebenso wie Strategy und GhostQuery.
@@ -123,23 +123,23 @@ Wir haben uns bei der Umsetzung der Level- und der AI DSL für  das Einsetzen vo
 
 Für beide Grammatiken erstellten wir Subklassen der generierten Listener. Diese Klassen enthalten jeweils eine Datenstruktur als Instanzvariable, die beim Traversieren befüllt wird. Im Fall der Level DSL handelt es sich um eine Liste, bei der AI DSL um eine Baumstruktur.
 
-Erst nach Beenden der Traversierung werden die Daten in der Klasse CodeGenerator durch Interpretation der Datenstrukturen, die in den Listenern erzeugt wurden, geschrieben. Abbildung (REFERENZ EINFÜGEN) stellt die beteiligten Klassen dar. Bei totalValues und initialRoot handelt es sich um die erwähnten Datenstrukturen.
+Erst nach Beenden der Traversierung werden die Daten in der Klasse CodeGenerator durch Interpretation der Datenstrukturen, die in den Listenern erzeugt wurden, geschrieben. Abbildung \ref{antlr_classes} stellt die beteiligten Klassen dar. Bei totalValues und initialRoot handelt es sich um die erwähnten Datenstrukturen.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=2.5in]{code_gen_rough.png}
 
-\caption{Simulation results for the network.}
-\label{fig_sim}
+\caption{Beteiligte Klassen bei der Codegenerierung mit ANTLR}
+\label{antlr_classes}
 \end{figure}
 
 \subsection{Level DSL}
 Der LevelListener ist für das Auslesen der Daten zuständig. In der Java Klasse LevelBaseListenerImplementation.java welche von der LevelListener.java erbt ist zum einen der Zugriff auf die Daten möglich zum anderen wurde an dieser Stelle die Überprüfung der Spielfeldgröße umgesetzt welches genau eine Arraygröße von 20x20 voraussetzt. Die parseLevel() Methode welche in der PacmanParseExecuter.java Klasse definiert ist erwartet eine .csv Datei als Argument. welche nach dem Schema wie in Tabelle 1 aufgebaut ist. Des Weiteren wird in dieser Methode die Initialisierung aller abhängigen Klassen, die für diesen Prozess nötig sind, erledigt.
 
-Die CodeGenerator.java Klasse ist neben der Generierung für die KI auch für die Erstellung einer level.js Datei zuständig welche nach JavaScript Syntax erstellt wird. Obwohl die durch ANTLR4 generierten Lexer, Listener und Parser sowie der Codegenerator auf Java basiert muss der Codegenerator eine JavaScript-Datei erstellen. Diese ist insofern nötig da das Spiel auf auf dieser Technologie basiert und für die Weiterverarbeitung im Projekt unumgänglich ist. Die level.js%(Abb.???)
+Die CodeGenerator.java Klasse ist neben der Generierung für die AI auch für die Erstellung einer level.js Datei zuständig welche nach JavaScript Syntax erstellt wird. Die Datei level.js (Abbildung \ref{leveljs})
 wird direkt in dem Ordner \texttt{/dsl\_pacman/pacman/levels/} generiert und von der Gameboardklasse verwendet um das Level zu erzeugen.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Generierte Level-Klasse in JavaScript, label=leveljs]
 define([], function () {
   return {
     floor: 0,
@@ -173,29 +173,18 @@ define([], function () {
 \end{lstlisting}
 
 \subsubsection{Spielfeldaufbau}
-Wie im Kapitel “Über das Spiel” beschreiben bildet das Spielfeld ein zweidimensionales Array ab, welches je nach Spielfeld-Design mit Zahlen von Null bis Drei befüllt wird. Für jeden Wert im Array werden dann die festgelegten Gegenstände auf der grafischen Oberfläche, dem Canvas Objekt dargestellt. Die Spezifikation sieht vor, dass ein Array der Größe von exakt 20x20 erstellt werden muss. Die Definition des Arrays wird in einer .csv Datei als Tabelle erstellt.  Eine beispielhafte Darstellung die das Prinzip für den Aufbau des Spielfeldes veranschaulicht ist in Tabelle 1 dargestellt.
+Das Spielfeld bildet ein zweidimensionales Array ab, welches je nach Spielfeld-Design mit Zahlen von Null bis Drei befüllt wird. Für jeden Wert im Array werden dann die festgelegten Gegenstände auf der grafischen Oberfläche, dem Canvas Objekt dargestellt. Die Spezifikation sieht vor, dass ein Array der Größe von exakt 20x20 erstellt werden muss. Die Definition des Arrays wird in einer .csv Datei als Tabelle erstellt und ist die DSL. Eine beispielhafte Darstellung die das Prinzip für den Aufbau des Spielfeldes veranschaulicht ist in Listing \ref{gameboard_dsl} dargestellt.
 
-Zulässig sind als “Value” definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als “Separator” zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als “row” festgelegt ist, erreicht wird. Das Zeilenende wird durch ein “LineBreak” oder aber durch ein “EOF” signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als “field” spezifiziert.
+Zulässig sind als \emph{Value} definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als \emph{Separator} zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als \emph{row} festgelegt ist, erreicht wird. Das Zeilenende wird durch ein \emph{LineBreak} oder aber durch ein \emph{EOF} signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als \emph{field} spezifiziert.
 
-\begin{lstlisting}[captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik level.g4}, label=blabla22]
-grammar Level;
-
-field       : row* EOF ;
-row    : value (Separator value)* (LineBreak | EOF) ;
-
-value       : Value ;
-Separator   : ';' ;
-LineBreak   : '\r'?'\n' | '\r';
-Value : ('0'|'1'|'2'|'3')+ ;
-\end{lstlisting}
 
 \begin{table}[!t]
 %% increase table row spacing, adjust to taste
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{An Example of a Table}
-\label{table_example}
+\caption{Spielfeld-Definition per DSL}
+\label{gameboard_dsl}
 \centering
 %% Some packages, such as MDW tools, offer better commands for making tables
 %% than the plain LaTeX2e tabular which is used here.
@@ -222,21 +211,33 @@ Value : ('0'|'1'|'2'|'3')+ ;
 
 
 \subsubsection{Grammatik}
-Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall werden diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Spezifikation der Arraygröße ist nicht Teil dieser DSL und die Überprüfung dafür findet an anderer Stelle statt welche im Kapitel “Codegenerierung mit ANTLR” beschrieben wird. Die in dem vorherigen Absatz, “Spielfeldeaufbau”, festgelegten Regeln werden in einer level.g4 Datei(Abb.???) formal festgelegt um dann mit dem ANTLR4 Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vgl. Tab. 1) verwendet wird.
+Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall werden diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Spezifikation der Arraygröße ist nicht Teil dieser DSL und die Überprüfung dafür findet an anderer Stelle statt welche im Kapitel “Codegenerierung mit ANTLR” beschrieben wird. Die in dem vorherigen Absatz, “Spielfeldeaufbau”, festgelegten Regeln werden in einer level.g4 Datei (Listing \ref{level_grammar}) formal festgelegt um dann mit dem ANTLR4 Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vergl. Listing\ref{leveljs}) verwendet wird.
 
-Zulässig sind als “Value” definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als “Separator” zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als “row” festgelegt ist, erreicht wird. Das Zeilenende wird durch ein “LineBreak” oder aber durch ein “EOF” signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als “field” spezifiziert
+\begin{lstlisting}[captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik level.g4}, label=level_grammar]
+grammar Level;
+
+field       : row* EOF ;
+row         : value (Separator value)* (LineBreak | EOF) ;
+
+value       : Value ;
+Separator   : ';' ;
+LineBreak   : '\r'?'\n' | '\r';
+Value : ('0'|'1'|'2'|'3')+ ;
+\end{lstlisting}
+
+Zulässig sind als \emph{Value} definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als \emph{Separator} zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als \emph{row} festgelegt ist, erreicht wird. Das Zeilenende wird durch ein \emph{LineBreak} oder aber durch ein \emph{EOF} signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als \emph{field} spezifiziert.
 
 \subsection{AI DSL}
-
-Eine mit Hilfe der AI DSL durch ANTLR generierte JavaScript-Klasse ermittelt auf Basis der aktuellen Richtung eines Geistes dessen Richtung für den folgenden Spielzug. Eingabe und Ausgabewert der AI-Klasse ist also die Richtung eines Geistes.  Aus diesem Grund ist ein Verständnis der Tokens nötig, die für das Ausdrücken einer Richtung eingesetzt werden.
+\label{ai_dsl}
+Die durch Intrepretation der AI DSL generierten JavaScript-Klassen ermittelt auf Basis der aktuellen Richtung eines Geistes dessen Richtung für den folgenden Spielzug. Eingabe und Ausgabewert der AI-Klasse ist also die Richtung eines Geistes.  Aus diesem Grund ist ein Verständnis der Tokens nötig, die für das Ausdrücken einer Richtung eingesetzt werden.
 
 \begin{table}[!t]
 %% increase table row spacing, adjust to taste
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{An Example of a Table}
-\label{table_example2}
+\caption{Richtungstokens der AI DSL mit examplarischer Belegung der Tokens}
+\label{ai_directions}
 \centering
 
 \begin{tabular}{|c||c||c||c||c||c||}
@@ -253,11 +254,11 @@ Eine mit Hilfe der AI DSL durch ANTLR generierte JavaScript-Klasse ermittelt auf
 \hline
 \end{tabular}
 \end{table}
+\label{dir_abstraction}
+Tabelle \ref{ai_directions} stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token \texttt{->} wird mit einem Wert aus der Menge \texttt{{UP, DOWN, RIGHT, LEFT}} belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welche Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt.
+Die entstehende Simplifizierung wird durch den Pseudocode in Listing \ref{direction_pseudo}, der das Laufen in die entgegengesetzte Richtung implementiert.
 
-Tabelle (REFERENZ EINFÜGEN) stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token -> wird mit einem Wert aus der Menge {UP, DOWN, RIGHT, LEFT} belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welche Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt.
-Die entstehende Simplifizierung wird durch folgenden Pseudocode verdeutlicht, der das Laufen in die entgegengesetzte Richtung implementiert:
-
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Umkehren der Richtung in Pseudocode, label=direction_pseudo]
 if DIRECTION == RIGHT:
     return LEFT
 elif  DIRECTION == LEFT:
@@ -268,9 +269,9 @@ elif DIRECTION == DOWN:
     return UP
 \end{lstlisting}
 
-Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein <- Token genügen, um  die Logik des Pseudocodes abzubilden.
+Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein \texttt{<-} Token genügen, um  die Logik des Pseudocodes abzubilden.
 
-Pac Man AI DSL beginnen mit dem Namen der DSL in runden Klammern. Innerhalb dieses Blocks werden Operatoren erwartet. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz (REFERENZ EINFÜGEN) beschrieben, ist im JavaScript-Spiel der Akteur Checkmove dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet folgende Operatoren an, um Checkmove anzusteuern:
+\emph{Pac-Man AI DSLs} beginnen mit dem Namen der DSL in runden Klammern. Innerhalb dieses Blocks werden Operatoren erwartet. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz \ref{umsetz} beschrieben, ist im JavaScript-Spiel der Akteur \emph{Checkmove} dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle \ref{checkmove_operators_tbl} gelisteten Operatoren an, um Checkmove anzusteuern.
 
 %\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
 \lstset{
@@ -282,8 +283,8 @@ Pac Man AI DSL beginnen mit dem Namen der DSL in runden Klammern. Innerhalb dies
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{An Example of a Table}
-\label{table_example2}
+\caption{Operatoren mit Syntaxbeispiel, die Methode Checkmove ansteuren}
+\label{checkmove_operators_tbl}
 \centering
 \setlength\tabcolsep{1.5pt}
 \begin{tabular}{|c||l|c|l|}
@@ -358,14 +359,14 @@ Auswahl des n-ten Elements.} &
 \end{tabular}
 \end{table}
 
-Bei den Operatoren ist zu beachten, dass der If-Free- und Filter-FreeN-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der Filter-Free-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von ANTLR compilierten DSL ab.
+Bei den Operatoren ist zu beachten, dass der \texttt{If-Free-} und \texttt{Filter-FreeN}-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von ANTLR compilierten DSL ab.
 
-Der Filter-Free-Operator darf also beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
+Der \texttt{Filter-Free}-Operator darf also beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
 
-Die folgende DSL benutzt den Filter-FreeN-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Klar sichtbar ist, dass ein weiterlaufen in der aktuellen Richtung (->) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (=>, <=) auszuweichen, bevor umgekehrt wird (<-).
+Die DSL in Listing \ref{simpledsl} benutzt den \texttt{Filter-FreeN}-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Klar sichtbar ist, dass ein weiterlaufen in der aktuellen Richtung (\texttt{->}) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (\texttt{=>}, \texttt{<=}) auszuweichen, bevor umgekehrt wird (\texttt{<-}).
 
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=AI DSL mit F\texttt{Filter-FreeN}-Operator, label=simpledsl]
 simple(
     *1{
       ->;
@@ -376,15 +377,15 @@ simple(
 )
 \end{lstlisting}
 
-Zum zufälligen Auswählen von Richtungen führen wir den Random-Operator ein:
+Zum zufälligen Auswählen von Richtungen führen wir den Random-Operator (Tabelle \ref{random_op}) ein.
 
 \begin{table}[!htb]
 %% increase table row spacing, adjust to taste
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{An Example of a Table}
-\label{table_example2}
+\caption{Random Operator mit Syntaxbeispiel}
+\label{random_op}
 \centering
 \setlength\tabcolsep{1.5pt}
 \begin{tabular}{|c||l|c|l|}
@@ -419,11 +420,9 @@ if *(->) {
 \end{tabular}
 \end{table}
 
+Durch die vorgestellte Sprachmitteln lassen sich nun auch komplexere Strategien abbilden. In der DSL aus Listing \ref{if_free_dsl} ist ein \texttt{If-Free}-Block zu sehen. Ist die aktuelle Richtung des Geistes nicht frei, so wird der \texttt{else}-Block ausgewertet und mit Hilfe des \texttt{Filter-FreeN}-Operators die erste freie Richtung gemäß der gleichen Rangordnung von Listing \ref{simpledsl} gewählt. Ist die aktuelle Richtung frei, so soll mit Hilfe einer Zufallsverteilung entschieden werden, ob diese weitergegangen oder eine der freien alternativen Richtungen eingeschlagen werden soll.
 
-
-Mit Hilfe der vorgestellten Sprachmitteln lassen sich nun auch komplexere Strategien abbilden. In Listing (REFERENZ EINFÜGEN) ist ein If-Free-Block zu sehen. Ist die aktuelle Richtung des Geistes nicht frei, so wird der else-Block ausgewertet und mit Hilfe des Filter-FreeN Operators die erste freie Richtung gemäß der in Listing (REFERENZ EINFÜGEN) beschriebenen Rangordnung gewählt. Ist die aktuelle Richtung frei, so soll mit Hilfe einer Zufallsverteilung entschieden werden, ob diese weitergegangen oder eine der freien alternativen Richtungen eingeschlagen werden soll.
-
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=AI DSL mit \texttt{If-Free}-Block und Zufallsverteilung, label=if_free_dsl]
 random(
     if *(->) {
         %(50:25:25) {
@@ -443,9 +442,9 @@ random(
 )
 \end{lstlisting}
 
-In Listing  (REFERENZ EINFÜGEN) ist sichtbar, dass der Filter-Free Operator mit dem Random Operator geschachtelt wurde. Die DSL erlaubt beliebige Schachtelungstiefen. Beispielsweise wäre folgende Syntax ebenfalls zulässig:
+In Listing \ref{if_free_dsl} ist sichtbar, dass der Filter-Free Operator mit dem Random Operator geschachtelt wurde. Die DSL erlaubt beliebige Schachtelungstiefen. Beispielsweise die Syntax von Listing \ref{dsl_complex_nesting} ebenfalls zulässig.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Komplexere Verschachtelung in AI DSL, label=dsl_complex_nesting]
 if *(->) {
   %(50:25:25) {
     ->;
@@ -467,39 +466,39 @@ if *(->) {
 }
 \end{lstlisting}
 
-Eine beliebige Verschachtelungstiefe, wie durch Listing (REFERENZ EINFÜGEN) demonstriert, wird durch die eingesetzte Grammatik nicht abgebildet. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (siehe Listing (REFERENZ EINFÜGEN) ).
+Eine beliebige Verschachtelungstiefe, wie durch Listing \ref{dsl_complex_nesting} demonstriert, wird  nicht \emph{direkt} durch die Grammatik definiert. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (Listing \ref{ai_grammar}).
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Ausschnitt der AI Grammatik, label=ai_grammar]
 ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration||direction_statement);
 bracket_open: '{';
 bracket_close: '}';
 block_declaration: (if_free_statement|else_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
 \end{lstlisting}
 
-Das Aufbauen einer rekursiven Baumstruktur erfolgt in der Listener Implementation. Hierzu wurde für jeden in (REFERENZ EINFÜGEN) vorgestellten Operator eine Klasse erstellt, die von der abstrakten Klasse Node erbt.
+Das Aufbauen einer rekursiven Baumstruktur erfolgt in der Listener Implementation. Hierzu wird für jeden geparsten \emph{Operator} eine Klasse erstellt, die von der abstrakten Klasse \texttt{Node} erbt.
 
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=2.5in]{node_structure_node.png}
 
-\caption{Simulation results for the network.}
-\label{fig_sim}
+\caption{Node-Basisklasse als Halter der Datenstruktur zu Codegenerierung}
+\label{node_class}
 \end{figure}
 
-Alle Unterklassen von Node (siehe Abbildung (REFERENZ EINFÜGEN)) enthalten intern eine List-Struktur, in der Kinder-Nodes geführt werden. Jeder Node implementiert eine renderCode()-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode childCode() erzeugt, die über die Kinder-Nodes iteriert, jeweils renderCode() aufruft und die Ergebnisse konkateniert. Methode childCode() wird per Konvention in jeder Node-Klasse bei renderCode() aufgerufen. Eine Node Klasse, erzeugt beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Zum Erzeugen der kompletten AI-JavaScript Klasse reicht das Aufrufen von renderCode() auf dem Wurzelknoten, der im Listener als initialNode geführt ist (siehe Abbildung (REFERENZ EINFÜGEN)). Abbildung (REFERENZ EINFÜGEN) zeigt die entstehende Baumstruktur zur DSL von Listing (REFERENZ EINFÜGEN).
+Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine Listen-Struktur, in der Kinder-Nodes geführt werden. Jeder Node implementiert eine \texttt{renderCode()}-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode \texttt{childCode()} erzeugt, die über die Kinder-Nodes iteriert, jeweils \texttt{renderCode()} aufruft und die Ergebnisse konkateniert. Methode \texttt{childCode()} wird per Konvention in jeder Node-Klasse bei \texttt{renderCode()} aufgerufen. Eine Node Klasse, erzeugt beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Zum Erzeugen der kompletten AI-JavaScript Klasse reicht das Aufrufen von \texttt{renderCode()} auf dem Wurzelknoten, der im Listener als Instanzvariable \texttt{initialNode} geführt ist (siehe Abbildung \ref{antlr_classes}). Abbildung \ref{node_structure_ex} zeigt die entstehende Baumstruktur zur DSL von Listing \ref{if_free_dsl}.
 
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=2.5in]{node_structure_ex.png}
-\caption{Simulation results for the network.}
-\label{fig_sim}
+\caption{Schematische Darstellung der Datenstruktur beim Parsen einer AI DSL (Laufzeit).}
+\label{node_structure_ex}
 \end{figure}
 
-Der entstehende JavaScript-Code zur DSL in Listing (REFERENZ EINFÜGEN) ist in (REFERENZ EINFÜGEN) aufgeführt.
+Der entstehende JavaScript-Code zur DSL in Listing \ref{if_free_dsl} ist in \ref{if_free_output} aufgeführt.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Beispiel zu generiertem JavaScript-Code einer AI DSL, label=if_free_output]
  define([], function() {
     var strategy = function(queries) {
         var direction = queries.currentDirection();
@@ -520,31 +519,30 @@ Der entstehende JavaScript-Code zur DSL in Listing (REFERENZ EINFÜGEN) ist in (
                     queries.alternativeOpposite(direction),
                     queries.opposite(direction)
                 ]);
-                            }
+            }
         })();
     }
     return strategy;
 });
 \end{lstlisting}
 
-Tabelle (REFERENZ EINFÜGEN) zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries, die der Funktion strategy der generierten AI-Klasse als Parameter queries übergeben wird. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgezeigt.
-
-%TODO: Make table
+Tabelle \ref{token_method_mapping} zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries, die der Funktion strategy der generierten AI-Klasse als Parameter queries übergeben wird. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgezeigt.
 
 
-\begin{table}[!t]
+
+\begin{table}[!htb]
 %% increase table row spacing, adjust to taste
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{An Example of a Table}
-\label{table_example2}
+\caption{Mapping von AI-Tokens auf JavaScript Methoden der Klasse \texttt{GhostQueries}}
+\label{token_method_mapping}
 \centering
 \setlength\tabcolsep{1.5pt}
-\begin{tabular}{|c||c|}
+\begin{tabular}{|l||l|}
 
 \hline
-\textbf{Operator} & \textbf{Methode in GhostQueries}\\
+\textbf{Op} & \textbf{Methode in GhostQueries}\\
 
 \hline
 -> & currentDirection(): \emph{String} \\
@@ -565,23 +563,57 @@ if* & isFree(direction: String): \emph{Boolean} \\
 ** & filterFree(directions: List<String>): \emph{List<String>} \\
 
 \hline
-*n & filterFreeN(n: Number, List<String>): \emph{String} \\
+*n & filterFreeN(n: Number, directions: List<String>): \emph{String} \\
 
 \hline
-\% & randomWithDistribution(distributions: \emph{List<Number>} \\
+\% & randomWithDistribution(ratios: \emph{List<Number>}, dirs: \emph{List<String>})\\
 
 \hline
 \end{tabular}
 \end{table}
 
+Klasse \texttt{GhostQueries} dient als Mittler der generieten Strategie mit dem Ghost-Objekt. Sie ruft Methoden \texttt{currentDirection}, \texttt{gridX()}, \texttt{gridY()} und \texttt{checkMove()} auf. Der Aufruf von \texttt{checkMove()} wird von Klasse \texttt{Ghost} an \texttt{Gameboard} deligiert.
+Der Aufruf der generierten Strategie mit Übergabe des Parameters GhostQueries wird in Abbildung \ref{ai_call} dargestellt.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=2.5in]{queries.png}
+\caption{Aufruf der generierten Strategie-Methode durch Klasse Ghost.}
+\label{ai_call}
+\end{figure}
+
+Neben der Abstraktion bezüglich der Richtungen (siehe Absatz \ref{dir_abstraction}) sorgt Klasse GhostQueries dafür, dass Listenstrukturen bei verschachtelten Aufrufen korrekt vereint werden. Eine Verschachtlung des \texttt{Random-Operators} mit \texttt{Filter-Free-Operator}, wie in
+Abbildung \ref{node_structure_ex} gezeigt, hat zur Folge dass Parameter \emph{directions} der \texttt{randomWithDistributions()}-Methode mit einer verschachtelten Liste
+befüllt wird. Die Ursache ist, dass es sich beim Ergebnis des \texttt{Filter-Free-Operator} ebenfalls um eine Liste handelt. Ein Beispiel einer entstehende Datenstruktur des directions-Parameter ist in Listing \ref{rwd_example} zu sehen.
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=Beispiel einer verschachtelten Datenstruktur als directions-Parameter von randomWithDistributions(), label=rwd_example]
+[
+  "UP",
+  "DOWN",
+  [
+    "LEFT",
+    "RIGHT"
+  ]
+]
+\end{lstlisting}
 
 
-Die Funktion strategy besitzt eine Abhängigkeit zur Klasse queries. Abbildung
+Die Vereingung der Liste wird durch die underscore.js-Methode \texttt{flatten} vorgenommen. Die Idiome zur Iteration von underscore.js bestehen aus Funktionen,
+die als Parameter zum einem die zu iterierende Listenstruktur übergeben bekommen und zum anderen eine Funktion die das jeweilige Listenelement
+als Parameter empfängt. Für die Implementierung der Klasse GhostQueries war es sehr hilfreich, sprechende Schreibweisen wie die aus Listing \ref{underscore_speaking} einsetzen zu können. Die Syntax erinnert an moderne Programmiersprachen wie Python oder Scala, die funktionale Idiome unterstützen.
+
+\begin{lstlisting}[language=Java, captionpos=b, caption=Implementierung der Filter-Free Methode mit Hilfe von funktionalen Hilfsmitteln von underscore.js, label=underscore_speaking]
+return _.filter(_.flatten(directions), function(d) {
+                return isFree(d);
+            });
+\end{lstlisting}
 
 
 
 \section{Fazit und Ausblick}
-Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pacman Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei Ansäzte verfolgt. Zum einen die Erstellung des Spielfeldes und zum anderen die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt. Jedoch erwies sich die Entwicklung einer DSL für die KI komplexer und schwieriger umzusetzen als im Vorfeld
+Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pacman Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei DSLs eingesetzt. Zum einen eine DSL für die Erstellung des Spielfeldes und zum anderen eine AI DSL für die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt.
+
+
 
 
 \end{document}
