@@ -1,0 +1,4626 @@
+#LyX file created by tex2lyx 2.1
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass IEEEtran
+\begin_preamble
+
+
+%\usepackage{cite}
+\usepackage{listings}
+\usepackage{makecell}
+%\usepackage[section]{placeins}
+
+
+  \usepackage[pdftex]{graphicx}
+\graphicspath{{images/}}
+%   \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+
+\end_preamble
+\options conference
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package \usepackage{ngerman}
+\inputencoding utf8
+\fontencoding T1
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Entwicklung domänenspezifischer Sprachen mit ANTLR am Beispiel eines Pac-Man-Klons
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+bigbreak
+\end_layout
+
+\end_inset
+
+ 
+\size large
+Studiengang Medieninformatik Master
+\begin_inset Newline newline
+\end_inset
+
+Beuth Hochschule für Technik Berlin
+\end_layout
+
+\begin_layout Author
+
+\begin_inset Flex Flex:Author Name
+status collapsed
+
+\begin_layout Plain Layout
+Marcel Brüning
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Flex:Author Affiliation
+status collapsed
+
+\begin_layout Plain Layout
+ s67176@beuth-hochschule.de
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Flex:Author Name
+status collapsed
+
+\begin_layout Plain Layout
+Simon Lischka
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Flex:Author Affiliation
+status collapsed
+
+\begin_layout Plain Layout
+simon@lischka.co
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Flex:Author Name
+status collapsed
+
+\begin_layout Plain Layout
+Marcel Piater
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Flex Flex:Author Affiliation
+status collapsed
+
+\begin_layout Plain Layout
+s67357@beuth-hochschule.de
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+lstset
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+basicstyle=
+\size footnotesize
+
+\family typewriter
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Abstract
+Die nachfolgenden Seiten beschreiben die Entwicklung eines Pac Man Browserspiels mit JavaScript. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit domänenspezifischen Sprachen (DSL) für die Levels und die artifizielle Intelligenz (AI). Die DSL der AI beschreibt verschiedene Strategien der vom Computer gesteuerten Spielfiguren. 
+\end_layout
+
+\begin_layout Peer Review Title
+
+\end_layout
+
+\begin_layout Section
+Über das Spiel
+\end_layout
+
+\begin_layout Standard
+In diesem Absatz wird das Spielprinzip von Pac Man kurz vorgestellt und auf die Entwicklung eingegangen. Dabei werden auch die eingesetzten Technologien beschrieben.
+\end_layout
+
+\begin_layout Subsection
+Spielprinzip
+\end_layout
+
+\begin_layout Standard
+Pac Man ist eine Spielfigur, die durch ein Labyrinth so schnell und effektiv wie möglich gesteuert werden soll um alle vorhanden Punkte einzusammeln. Auf dem Weg erschweren diverse Hindernisse den Siegeszug. Bewegliche Gegner (vier Geister) die von einer AI gesteuert werden sowie ein komplexes Labyrinth erschweren die Bewältigung des Spiels. Pro Spiel stehen verfügt Pac Man drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
+\end_layout
+
+\begin_layout Standard
+Über Früchte, welche Pac Man auf seinem Weg finden kann, gelangt dieser in den Angriffsmodus. In diesem Modus wird Pac Man für eine kurze Zeit vom Gejagten zum Jäger und kann seinerseits Geister fressen, was ihm wiederum zu zusätzlichen Punkten verhilft. Sollte es Pac Man innerhalb der drei Leben schaffen sämtliche Punkte auf dem Spielfeld zu konsumieren, so hat er das Level erfolgreich absolviert und startet ein neues Level.
+\end_layout
+
+\begin_layout Subsection
+Verwendete Technologien
+\end_layout
+
+\begin_layout Standard
+Da das Spiel in JavaScript implementiert ist, muss der Codegenerator JavaScript-Code erzeugen, der von der Applikation angesteuert wird. Zur Interpretation von DSL-Dateien und Erzeugung von JavaScript-Code wird die Java-Implementierung von ANTLR4 verwendet.
+\end_layout
+
+\begin_layout Standard
+Ein naheliegender Gedanke in der Planungsphase war es, die JavaScript-Implementierung von ANTLR zu verwenden. Auf diese Weise ließe sich eine einheitliche Programmiersprache in der gesamten Codebasis einsetzen.
+\end_layout
+
+\begin_layout Standard
+Eine Rechtfertigung für dieses Vorgehen besteht darin, dass ein Team was sich nur auf eine Programmiersprache einarbeiten muss mit geringem Zeitaufwand einheitliche Coding-Standards etablieren kann, da diese nur für eine Sprache aufgestellt werden müssen. Ein programmiertechnischer Austausch zwischen allen Teammitgliedern, etwa durch Code Reviews oder die Klärung von sprachspezifischen Problemen würde vermutlich ebenfalls erleichtert werden. Das Ziel eines einheitlichen Einsetzens von JavaScript wäre also das Erlangen höherer Codequalität gewesen.
+\end_layout
+
+\begin_layout Standard
+Da zur Java-Implementierung von ANTLR ausführlichere Dokumentation existiert als für die JavaScript-Variante und die Java-Implementierung etablierter erscheint, haben wir jedoch von der Verwendung von ANTLR für JavaScript abgesehen. Wir hatten die Vermutung, dass die zusätzliche Einarbeitungszeit und für uns unerwartetes Verhalten der JavaScript-Implementierung den zeitlichen Rahmen des Projektes übersteigen und in keinem Verhältnis zur höheren Codequalität durch den Einsatz einer einheitlichen Programmiersprache stehen würde.
+\end_layout
+
+\begin_layout Standard
+Wir haben jedoch für die in JavaScript verfasste Codebasis gezielt Technologien zur Qualitätssteigerung ausgewählt. Hierzu gehört das Framework RequireJS, welches die Modularisierung und das Importieren von Klassen ähnlich wie in Java ermöglicht. Für das Einbetten von durch ANTLR erzeugte JavaScript-Klassen müssen diese als Module ladbar sein - RequireJS war für uns deshalb Voraussetzung um unser Vorhaben erfolgreich umsetzen zu können. Objektorientiertes Programmieren nach dem Paradigma Separation of Concerns (SoC) und der Aufbau einer übersichtlichen Projektstruktur werden durch Trennung von Klassen in einzelne Dateien durch RequireJS ebenfalls stark erleichtert.
+\end_layout
+
+\begin_layout Standard
+Mit Underscore.js sind in kurzer Syntax und auf höherem Abstraktionsgrad insbesonders häufig eingesetzte Idiome wie Listeniterationen abbildbar. Hierdurch ergibt sich weniger Raum für Fehler. Underscore bietet eine Reihe von Helferfunktionen, die darauf ausgerichtet sind, funktionale Programmierung zu erleichtern
+\begin_inset Foot
+status collapsed
+
+
+\begin_layout Standard
+[
+\end_layout
+
+\end_inset
+
+1]
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+Underscore.js Einführung, http://underscorejs.org/
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Kritische Funktionen wurden in JavaScript mit Unit Tests versehen. Hierzu setzen wir das Framework Jasmine ein. Eine hohe Testabdeckung, wie sie mit Test Driven Development möglich ist, haben wir jedoch nicht priorisiert.
+\end_layout
+
+\begin_layout Subsection
+Umsetzung
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "umsetz"
+
+\end_inset
+
+ Das zu spielende Level wird durch ein 2-Dimensionales Array abgebildet. Die Elementes des Spielfelds sind durch Zahlencodes im Array abgebildet. Eine Null steht dabei für ein freies Stück Weg. Die Eins und die Zwei stehen für ein begehbares Feld mit einem Punkt oder einer Frucht darauf. Wände werden durch eine Drei repräsentiert und sind von Pac Man und den Gegnern nicht begehbar. Auf diese Art und Weise können beliebig komplexe Levels erstellt und in das Spiel geladen werden.
+\end_layout
+
+\begin_layout Standard
+Zur Darstellung werden für die genannten Elemente Bildobjekte in das Spiel geladen, die auf einem Canvas-Element des HTML Dokuments gezeichnet werden. Zum Zeichnen der Bildobjekte wird durch das Array iteriert und für jedes Array-Element das dem Zahlencode zugehörige Bildobjekt auf den 2D Kontext des Canvas gezeichnet.
+\end_layout
+
+\begin_layout Standard
+Für die Spielfiguren wird ein zweites Canvas-Element verwendet, das transparent über den Canvas-Element des Levels liegt. Die Motivation hierfür ist, dass der Zustand der Spielfiguren sich in der Regel häufiger ändert als der des Spielfeldes. Ein Flackern, was durch zusätzliches Neuzeichnen des Levels bei jeder Figurveränderung entstehen kann, wird durch Trennung in zwei Canvas-Elemente reduziert.
+\end_layout
+
+\begin_layout Standard
+Die Figuren werden genauso wie die Objekte des Levels als Bilder geladen. Sie operieren auf dem selben Koordinatensystem wie das Level. Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "pac_screen"
+
+\end_inset
+
+ zeigt das ausgeführte Spiel.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename gameboard_and_figures.png
+	width 2.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Reduziertes Klassendiagramm der zentralen Spielklassen
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "main_classes"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das Klassendiagramm in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "main_classes"
+
+\end_inset
+
+ stellt den zuvor beschriebenen Sachverhalt dar. Die Objekte von Spieler und Gegner (Pac und Ghost) besitzen die Instanzvariablen gridX und gridY, die wie beschrieben den Wertebereich des Levels besitzen. Die Funktion checkMove() der Klasse Gameboard gleicht den nächsten Schritt einer Figur mit dem Array des Levels ab. Bei Zahlencode Null, Eins oder Zwei liefert sie true zurück und erlaubt den gewünschten Schritt der Figur. Entsprechend wird bei einer Drei, also einer Wand false zurückgeliefert und verhindert somit den nächsten Schritt der Spielfigur. Diese Funktion wird von Klassen Ghost und Pac bei der Umsetzung des nächsten Spielzugs verwendet.
+\end_layout
+
+\begin_layout Standard
+Um die Bewegungen der Figuren sichtbar zu machen existiert die Funktion updateOnInterval(), die durch den Scheduler des Browsers alle 150 Millisekunden aufgerufen wird. Sie zeichnet das Level und die Spielfiguren mit den entsprechenden Informationen und Positionen neu. In der Methode werden Kollisionsabfragen der Klasse GameBoard aufgerufen, die prüfen ob Pac Man gerade einen Punkt bzw. eine Frucht frisst (Methode checkPacsEating()) oder mit einem Geist kollidiert ist (Methode checkKills()). Die im Spiel agierende AI berechnet in jedem Interval die Richtung der Geister neu. Ihre Berechnung bezieht sich also immer genau auf einen Spielzug und hat dementsprechend die nächste zu gehenden Richtung als Rückgabewert.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename screenshot.png
+	width 2.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Screenshot des ausgeführten Pac-Man Spiels.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "pac_screen"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fmc_tam"
+
+\end_inset
+
+ stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pacman sind als Akteure dargestellt, die ihre Position in Abstimmung mit den Request-Antworten von checkMove aktualisieren. Akteur Strategy und Speicher Level werden durch ANTLR generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der AI DSL in Abschnitt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ai_dsl"
+
+\end_inset
+
+ näher erläutert.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !t
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename tam.png
+	width 2.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+FMC-TAM Diagramm der umgesetzen Applikation
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fmc_tam"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Interessant ist, dass die Akteure sich nicht automatisch auf die gleiche Modularisierungseinheit, also Beispielsweise nur Klassen abbilden. Checkmove etwa wird im aktuellen Entwicklungsstand durch eine einzelne Methode repräsentiert, Hitdetection durch mehrere Methoden der Klasse Gameboard. Akteure Pacman und Ghost beispielsweise existieren als eigene Klassen, ebenso wie Strategy und GhostQuery.
+\end_layout
+
+\begin_layout Standard
+Es ist wahrscheinlich, dass eine Auslagerung von Hitdetection in eine eigenständige Klasse bei zunehmender Komplexität sinnvoll wäre und dadurch das Design durch die Einhaltung des SoC-Paradigmas verbessert werden würde. Durch die Aufstellung des FMC-TAM Diagramms lässt sich diese bevorstehende Designänderung antizipieren, auch wenn wir uns in der vorliegenden Implementierung dazu entschlossen haben, sie nicht umzusetzen.
+\end_layout
+
+\begin_layout Section
+Codegenerierung
+\end_layout
+
+\begin_layout Standard
+ANTLR4 generiert auf Grundlage der DSL Lexer zur lexikalischen Analyse und Parser zur syntaktischen Analyse. Wir haben uns bei der Umsetzung der Level- und der AI DSL für das Einsetzen von Listener Klassen zum Traversieren des Abstrakten Syntaxbaums (AST) entschlossen.
+\end_layout
+
+\begin_layout Standard
+Für beide Grammatiken erstellten wir Subklassen der generierten Listener. Diese Klassen enthalten jeweils eine Datenstruktur als Instanzvariable, die beim Traversieren befüllt wird. Im Fall der Level DSL handelt es sich um eine Liste, bei der AI DSL um eine Baumstruktur.
+\end_layout
+
+\begin_layout Standard
+Erst nach Beenden der Traversierung werden die Daten in der Klasse CodeGenerator durch Interpretation der Datenstrukturen, die in den Listenern erzeugt wurden, geschrieben. Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "antlr_classes"
+
+\end_inset
+
+ stellt die beteiligten Klassen dar. Bei totalValues und initialRoot handelt es sich um die erwähnten Datenstrukturen.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename code_gen_rough.png
+	width 2.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beteiligte Klassen bei der Codegenerierung mit ANTLR
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "antlr_classes"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Level DSL
+\end_layout
+
+\begin_layout Standard
+Der LevelListener ist für das Auslesen der Daten zuständig. In der Java Klasse LevelBaseListenerImplementation.java welche von der LevelListener.java erbt ist zum einen der Zugriff auf die Daten möglich zum anderen wurde an dieser Stelle die Überprüfung der Spielfeldgröße umgesetzt welches genau eine Arraygröße von 20x20 voraussetzt. Die parseLevel() Methode welche in der PacmanParseExecuter.java Klasse definiert ist erwartet eine .csv Datei als Argument. welche nach dem Schema wie in Tabelle 1 aufgebaut ist. Des Weiteren wird in dieser Methode die Initialisierung aller abhängigen Klassen, die für diesen Prozess nötig sind, erledigt.
+\end_layout
+
+\begin_layout Standard
+Die CodeGenerator.java Klasse ist neben der Generierung für die AI auch für die Erstellung einer level.js Datei zuständig welche nach JavaScript Syntax erstellt wird. Die Datei level.js (Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "leveljs"
+
+\end_inset
+
+) wird direkt in dem Ordner 
+\family typewriter
+/dsl_pacman/pacman/levels/
+\family default
+ generiert und von der Gameboardklasse verwendet um das Level zu erzeugen.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Generierte Level-Klasse in JavaScript, label=leveljs"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+define([], function () {
+\end_layout
+
+\begin_layout Plain Layout
+  return {
+\end_layout
+
+\begin_layout Plain Layout
+    floor: 0,
+\end_layout
+
+\begin_layout Plain Layout
+    point: 1,
+\end_layout
+
+\begin_layout Plain Layout
+    fruit: 2,
+\end_layout
+
+\begin_layout Plain Layout
+    wall: 3,
+\end_layout
+
+\begin_layout Plain Layout
+    map: [
+\end_layout
+
+\begin_layout Plain Layout
+      [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,1,1,1,1,1,1,1,3,1,1,1,1,1,3,1,1,2,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,1,3,3,1,3,1,3,1,3,3,3,1,3,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,1,1,1,1,1,1,1,1,1,1,3,1,3,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,3,3,3,1,3,3,3,3,3,1,3,1,3,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,1,1,1,1,1,1,1,3,1,1,1,3,1,1,1,1,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,3,3,3,1,3,1,3,1,3,1,3,3,3,3,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,3,1,1,1,1,1,2,1,1,1,1,1,1,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,1,3,1,3,1,3,0,3,0,3,1,3,3,3,1,1,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,3,1,3,2,3,1,3,0,0,0,3,1,3,2,1,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,1,3,1,3,1,3,3,3,3,3,1,3,1,3,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,3,1,1,1,1,1,1,1,1,1,3,1,3,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,3,3,3,1,3,1,3,1,3,1,1,1,1,1,1,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,1,1,1,1,1,3,1,3,1,3,1,3,3,3,3,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,1,1,1,1,3,3,3,3,3,1,3,3,3,1,1,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,1,3,3,1,1,1,3,1,1,1,1,1,1,1,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,1,3,1,3,3,1,3,1,1,1,3,3,3,3,3,3,3,1,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,2,1,1,1,1,1,1,1,3,1,1,1,1,1,1,1,1,2,3],
+\end_layout
+
+\begin_layout Plain Layout
+      [3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]
+\end_layout
+
+\begin_layout Plain Layout
+    ]
+\end_layout
+
+\begin_layout Plain Layout
+  }
+\end_layout
+
+\begin_layout Plain Layout
+});
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Spielfeldaufbau
+\end_layout
+
+\begin_layout Standard
+Das Spielfeld bildet ein zweidimensionales Array ab, welches je nach Spielfeld-Design mit Zahlen von Null bis Drei befüllt wird. Für jeden Wert im Array werden dann die festgelegten Gegenstände auf der grafischen Oberfläche, dem Canvas Objekt dargestellt. Die Spezifikation sieht vor, dass ein Array der Größe von exakt 20x20 erstellt werden muss. Die Definition des Arrays wird in einer .csv Datei als Tabelle erstellt und ist die DSL. Eine beispielhafte Darstellung die das Prinzip für den Aufbau des Spielfeldes veranschaulicht ist in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "gameboard_dsl"
+
+\end_inset
+
+ dargestellt.
+\end_layout
+
+\begin_layout Standard
+Zulässig sind als 
+\emph on
+Value
+\emph default
+ definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als 
+\emph on
+Separator
+\emph default
+ zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als 
+\emph on
+row
+\emph default
+ festgelegt ist, erreicht wird. Das Zeilenende wird durch ein 
+\emph on
+LineBreak
+\emph default
+ oder aber durch ein 
+\emph on
+EOF
+\emph default
+ signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als 
+\emph on
+field
+\emph default
+ spezifiziert.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% increase table row spacing, adjust to taste
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% if using array.sty, it might be a good idea to tweak the value of
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% 
+\backslash
+extrarowheight as needed to properly center the text within the cells
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement !t
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spielfeld-Definition per DSL
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "gameboard_dsl"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% Some packages, such as MDW tools, offer better commands for making tables
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% than the plain LaTeX2e tabular which is used here.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="5" columns="6">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="4" columns="2">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+freier Weg
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Punkt
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+2 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Frucht
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+3 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Mauer/Hindernis 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Grammatik
+\end_layout
+
+\begin_layout Standard
+Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall werden diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Spezifikation der Arraygröße ist nicht Teil dieser DSL und die Überprüfung dafür findet an anderer Stelle statt welche im Kapitel “Codegenerierung mit ANTLR” beschrieben wird. Die in dem vorherigen Absatz, “Spielfeldeaufbau”, festgelegten Regeln werden in einer level.g4 Datei (Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "level_grammar"
+
+\end_inset
+
+) formal festgelegt um dann mit dem ANTLR4 Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vergl. Listing
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "leveljs"
+
+\end_inset
+
+) verwendet wird.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik level.g4}, label=level_grammar"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+grammar Level;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+field: row* EOF ;
+\end_layout
+
+\begin_layout Plain Layout
+row: value (Separator value)* (LineBreak | EOF) ;
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+value: Value ;
+\end_layout
+
+\begin_layout Plain Layout
+Separator: ';' ;
+\end_layout
+
+\begin_layout Plain Layout
+LineBreak: '
+\backslash
+r'?'
+\backslash
+n' | '
+\backslash
+r';
+\end_layout
+
+\begin_layout Plain Layout
+Value: ('0'|'1'|'2'|'3')+ ;
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zulässig sind als 
+\emph on
+Value
+\emph default
+ definiert, nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als 
+\emph on
+Separator
+\emph default
+ zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als 
+\emph on
+row
+\emph default
+ festgelegt ist, erreicht wird. Das Zeilenende wird durch ein 
+\emph on
+LineBreak
+\emph default
+ oder aber durch ein 
+\emph on
+EOF
+\emph default
+ signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays beziehungsweise beendet das Einlesen der Zeilen. Alle Zeilen zusammen werden als 
+\emph on
+field
+\emph default
+ spezifiziert.
+\end_layout
+
+\begin_layout Subsection
+AI DSL
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "ai_dsl"
+
+\end_inset
+
+ Die durch Intrepretation der AI DSL generierten JavaScript-Klassen ermittelt auf Basis der aktuellen Richtung eines Geistes dessen Richtung für den folgenden Spielzug. Eingabe und Ausgabewert der AI-Klasse ist also die Richtung eines Geistes. Aus diesem Grund ist ein Verständnis der Tokens nötig, die für das Ausdrücken einer Richtung eingesetzt werden.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% increase table row spacing, adjust to taste
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% if using array.sty, it might be a good idea to tweak the value of
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% 
+\backslash
+extrarowheight as needed to properly center the text within the cells
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement !t
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Richtungstokens der AI DSL mit examplarischer Belegung der Tokens
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "ai_directions"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Tabular 
+<lyxtabular version="3" rows="5" columns="6">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="none" valignment="top" special="c|">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special="c|">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Token
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special="c|">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Beschreibung
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Richtung
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+-> 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Aktuelle Richtung 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+L 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+U 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+D 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+<- 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Entgegengesetzte Richtung 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+L 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+D 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+U 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+=> 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Alternative Richtung 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+D 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+U 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+L 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+R 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+<= 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Entgegengesetzt alternative Richtung 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+U 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+D 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+R 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+L 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "dir_abstraction"
+
+\end_inset
+
+ Tabelle 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ai_directions"
+
+\end_inset
+
+ stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token 
+\family typewriter
+->
+\family default
+ wird mit einem Wert aus der Menge 
+\family typewriter
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+UP, DOWN, RIGHT, LEFT
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\family default
+ belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welche Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt. Die entstehende Simplifizierung wird durch den Pseudocode in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "direction_pseudo"
+
+\end_inset
+
+, der das Laufen in die entgegengesetzte Richtung implementiert.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Umkehren der Richtung in Pseudocode, label=direction_pseudo"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+if DIRECTION == RIGHT:
+\end_layout
+
+\begin_layout Plain Layout
+    return LEFT
+\end_layout
+
+\begin_layout Plain Layout
+elif  DIRECTION == LEFT:
+\end_layout
+
+\begin_layout Plain Layout
+    return RIGHT
+\end_layout
+
+\begin_layout Plain Layout
+elif DIRECTION == UP:
+\end_layout
+
+\begin_layout Plain Layout
+    return DOWN
+\end_layout
+
+\begin_layout Plain Layout
+elif DIRECTION == DOWN:
+\end_layout
+
+\begin_layout Plain Layout
+    return UP
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein 
+\family typewriter
+<-
+\family default
+ Token genügen, um die Logik des Pseudocodes abzubilden.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Pac-Man AI DSLs
+\emph default
+ beginnen mit dem Namen der DSL in runden Klammern. Innerhalb dieses Blocks werden Operatoren erwartet. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "umsetz"
+
+\end_inset
+
+ beschrieben, ist im JavaScript-Spiel der Akteur 
+\emph on
+Checkmove
+\emph default
+ dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "checkmove_operators_tbl"
+
+\end_inset
+
+ gelisteten Operatoren an, um Checkmove anzusteuern.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+lstset
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+ breaklines=true 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% increase table row spacing, adjust to taste
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% if using array.sty, it might be a good idea to tweak the value of
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% 
+\backslash
+extrarowheight as needed to properly center the text within the cells
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement !t
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Operatoren mit Syntaxbeispiel, die Methode Checkmove ansteuren
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "checkmove_operators_tbl"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+setlength{
+\backslash
+tabcolsep}{1.5pt}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular 
+<lyxtabular version="3" rows="11" columns="4">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Syntax
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Beschreibung
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Beispiel
+\series default
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+if* 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+if *(DIR) {
+\end_layout
+
+\begin_layout Plain Layout
+  //BLOCK A
+\end_layout
+
+\begin_layout Plain Layout
+} else {
+\end_layout
+
+\begin_layout Plain Layout
+ //BLOCK B
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+makecell
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\shape italic
+If-Free Operator
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Ausführen von A,
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+wenn Richtung DIR frei.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Sonst Ausführen von B.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+if *(->) {
+\end_layout
+
+\begin_layout Plain Layout
+  ->
+\end_layout
+
+\begin_layout Plain Layout
+} else {
+\end_layout
+
+\begin_layout Plain Layout
+  <-
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+** 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+**{
+\end_layout
+
+\begin_layout Plain Layout
+  DIR;
+\end_layout
+
+\begin_layout Plain Layout
+  DIR;
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+makecell
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\shape italic
+Filter-Free Operator
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Richtung die nicht
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+begehbar sind, werden entfernt.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+**{
+\end_layout
+
+\begin_layout Plain Layout
+  =>;
+\end_layout
+
+\begin_layout Plain Layout
+  <=;
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*n 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+*1{
+\end_layout
+
+\begin_layout Plain Layout
+  DIR;
+\end_layout
+
+\begin_layout Plain Layout
+  DIR;
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+makecell
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\shape italic
+Filter-FreeN Operator
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Filter gemäß Filter-Free Operator,
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Auswahl des n-ten Elements.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+ *1{
+\end_layout
+
+\begin_layout Plain Layout
+  =>;
+\end_layout
+
+\begin_layout Plain Layout
+  <=;
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bei den Operatoren ist zu beachten, dass der 
+\family typewriter
+If-Free-
+\family default
+ und 
+\family typewriter
+Filter-FreeN
+\family default
+-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der 
+\family typewriter
+Filter-Free
+\family default
+-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von ANTLR compilierten DSL ab.
+\end_layout
+
+\begin_layout Standard
+Der 
+\family typewriter
+Filter-Free
+\family default
+-Operator darf also beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
+\end_layout
+
+\begin_layout Standard
+Die DSL in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "simpledsl"
+
+\end_inset
+
+ benutzt den 
+\family typewriter
+Filter-FreeN
+\family default
+-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Klar sichtbar ist, dass ein weiterlaufen in der aktuellen Richtung (
+\family typewriter
+->
+\family default
+) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (
+\family typewriter
+=>
+\family default
+, 
+\family typewriter
+<=
+\family default
+) auszuweichen, bevor umgekehrt wird (
+\family typewriter
+<-
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=AI DSL mit F\texttt{Filter-FreeN}-Operator, label=simpledsl"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+simple(
+\end_layout
+
+\begin_layout Plain Layout
+    *1{
+\end_layout
+
+\begin_layout Plain Layout
+      ->;
+\end_layout
+
+\begin_layout Plain Layout
+      =>;
+\end_layout
+
+\begin_layout Plain Layout
+      <=;
+\end_layout
+
+\begin_layout Plain Layout
+      <-;
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zum zufälligen Auswählen von Richtungen führen wir den Random-Operator (Tabelle 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "random_op"
+
+\end_inset
+
+) ein.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% increase table row spacing, adjust to taste
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% if using array.sty, it might be a good idea to tweak the value of
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% 
+\backslash
+extrarowheight as needed to properly center the text within the cells
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement !htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Random Operator mit Syntaxbeispiel
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "random_op"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+setlength{
+\backslash
+tabcolsep}{1.5pt}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular 
+<lyxtabular version="3" rows="7" columns="4">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Syntax
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Beschreibung
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Beispiel
+\series default
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+% 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+%(r:r) {
+\end_layout
+
+\begin_layout Plain Layout
+  DIR;
+\end_layout
+
+\begin_layout Plain Layout
+  DIR;
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+makecell
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\shape italic
+Random Operator
+\shape default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Aus den Richtungen 
+\family typewriter
+DIR
+\family default
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+wird zufällig ein Wert ausgewählt.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+Die Wahrscheinlichkeit
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+ist durch den ratio-Parameter 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\family typewriter
+r
+\family default
+ festgelegt.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "basicstyle=\scriptsize\ttfamily"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+if *(->) {
+\end_layout
+
+\begin_layout Plain Layout
+  ->
+\end_layout
+
+\begin_layout Plain Layout
+} else {
+\end_layout
+
+\begin_layout Plain Layout
+  <-
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Durch die vorgestellte Sprachmitteln lassen sich nun auch komplexere Strategien abbilden. In der DSL aus Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "if_free_dsl"
+
+\end_inset
+
+ ist ein 
+\family typewriter
+If-Free
+\family default
+-Block zu sehen. Ist die aktuelle Richtung des Geistes nicht frei, so wird der 
+\family typewriter
+else
+\family default
+-Block ausgewertet und mit Hilfe des 
+\family typewriter
+Filter-FreeN
+\family default
+-Operators die erste freie Richtung gemäß der gleichen Rangordnung von Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "simpledsl"
+
+\end_inset
+
+ gewählt. Ist die aktuelle Richtung frei, so soll mit Hilfe einer Zufallsverteilung entschieden werden, ob diese weitergegangen oder eine der freien alternativen Richtungen eingeschlagen werden soll.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=AI DSL mit \texttt{If-Free}-Block und Zufallsverteilung, label=if_free_dsl"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+random(
+\end_layout
+
+\begin_layout Plain Layout
+    if *(->) {
+\end_layout
+
+\begin_layout Plain Layout
+        %(50:25:25) {
+\end_layout
+
+\begin_layout Plain Layout
+            ->;
+\end_layout
+
+\begin_layout Plain Layout
+            **{
+\end_layout
+
+\begin_layout Plain Layout
+              =>;
+\end_layout
+
+\begin_layout Plain Layout
+              <=;
+\end_layout
+
+\begin_layout Plain Layout
+            }
+\end_layout
+
+\begin_layout Plain Layout
+        }
+\end_layout
+
+\begin_layout Plain Layout
+    } else {
+\end_layout
+
+\begin_layout Plain Layout
+      *1 {
+\end_layout
+
+\begin_layout Plain Layout
+        =>;
+\end_layout
+
+\begin_layout Plain Layout
+        <=;
+\end_layout
+
+\begin_layout Plain Layout
+        <-;
+\end_layout
+
+\begin_layout Plain Layout
+      }
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "if_free_dsl"
+
+\end_inset
+
+ ist sichtbar, dass der Filter-Free Operator mit dem Random Operator geschachtelt wurde. Die DSL erlaubt beliebige Schachtelungstiefen. Beispielsweise die Syntax von Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "dsl_complex_nesting"
+
+\end_inset
+
+ ebenfalls zulässig.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Komplexere Verschachtelung in AI DSL, label=dsl_complex_nesting"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+if *(->) {
+\end_layout
+
+\begin_layout Plain Layout
+  %(50:25:25) {
+\end_layout
+
+\begin_layout Plain Layout
+    ->;
+\end_layout
+
+\begin_layout Plain Layout
+    **{
+\end_layout
+
+\begin_layout Plain Layout
+      %(50:25:25) {
+\end_layout
+
+\begin_layout Plain Layout
+        ->;
+\end_layout
+
+\begin_layout Plain Layout
+        **{
+\end_layout
+
+\begin_layout Plain Layout
+          =>;
+\end_layout
+
+\begin_layout Plain Layout
+          *1{
+\end_layout
+
+\begin_layout Plain Layout
+            <-;
+\end_layout
+
+\begin_layout Plain Layout
+            ->;
+\end_layout
+
+\begin_layout Plain Layout
+          }
+\end_layout
+
+\begin_layout Plain Layout
+          <=;
+\end_layout
+
+\begin_layout Plain Layout
+        }
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+    =>;
+\end_layout
+
+\begin_layout Plain Layout
+    <=;
+\end_layout
+
+\begin_layout Plain Layout
+  }
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eine beliebige Verschachtelungstiefe, wie durch Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "dsl_complex_nesting"
+
+\end_inset
+
+ demonstriert, wird nicht 
+\emph on
+direkt
+\emph default
+ durch die Grammatik definiert. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ai_grammar"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Ausschnitt der AI Grammatik, label=ai_grammar"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration||direction_statement);
+\end_layout
+
+\begin_layout Plain Layout
+bracket_open: '{';
+\end_layout
+
+\begin_layout Plain Layout
+bracket_close: '}';
+\end_layout
+
+\begin_layout Plain Layout
+block_declaration: (if_free_statement|else_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das Aufbauen einer rekursiven Baumstruktur erfolgt in der Listener Implementation. Hierzu wird für jeden geparsten 
+\emph on
+Operator
+\emph default
+ eine Klasse erstellt, die von der abstrakten Klasse 
+\family typewriter
+Node
+\family default
+ erbt.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename node_structure_node.png
+	width 2.5in
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Node-Basisklasse als Halter der Datenstruktur zu Codegenerierung
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "node_class"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Alle Unterklassen von Node (Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "node_class"
+
+\end_inset
+
+) enthalten intern eine Listen-Struktur, in der Kinder-Nodes geführt werden. Jeder Node implementiert eine 
+\family typewriter
+renderCode()
+\family default
+-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode 
+\family typewriter
+childCode()
+\family default
+ erzeugt, die über die Kinder-Nodes iteriert, jeweils 
+\family typewriter
+renderCode()
+\family default
+ aufruft und die Ergebnisse konkateniert. Methode 
+\family typewriter
+childCode()
+\family default
+ wird per Konvention in jeder Node-Klasse bei 
+\family typewriter
+renderCode()
+\family default
+ aufgerufen. Eine Node Klasse, erzeugt beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Zum Erzeugen der kompletten AI-JavaScript Klasse reicht das Aufrufen von 
+\family typewriter
+renderCode()
+\family default
+ auf dem Wurzelknoten, der im Listener als Instanzvariable 
+\family typewriter
+initialNode
+\family default
+ geführt ist (siehe Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "antlr_classes"
+
+\end_inset
+
+). Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "node_structure_ex"
+
+\end_inset
+
+ zeigt die entstehende Baumstruktur zur DSL von Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "if_free_dsl"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename node_structure_ex.png
+	width 2.5in
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schematische Darstellung der Datenstruktur beim Parsen einer AI DSL (Laufzeit).
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "node_structure_ex"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der entstehende JavaScript-Code zur DSL in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "if_free_dsl"
+
+\end_inset
+
+ ist in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "if_free_output"
+
+\end_inset
+
+ aufgeführt.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Beispiel zu generiertem JavaScript-Code einer AI DSL, label=if_free_output"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+ define([], function() {
+\end_layout
+
+\begin_layout Plain Layout
+    var strategy = function(queries) {
+\end_layout
+
+\begin_layout Plain Layout
+        var direction = queries.currentDirection();
+\end_layout
+
+\begin_layout Plain Layout
+        return (function() {
+\end_layout
+
+\begin_layout Plain Layout
+            if (queries.isFree(direction)) {
+\end_layout
+
+\begin_layout Plain Layout
+                return queries.randomWithDistribution([
+\end_layout
+
+\begin_layout Plain Layout
+                    50, 25, 25
+\end_layout
+
+\begin_layout Plain Layout
+                ], [
+\end_layout
+
+\begin_layout Plain Layout
+                    direction,
+\end_layout
+
+\begin_layout Plain Layout
+                    queries.filterFree([
+\end_layout
+
+\begin_layout Plain Layout
+                        queries.alternative(direction),
+\end_layout
+
+\begin_layout Plain Layout
+                        queries.alternativeOpposite(direction)
+\end_layout
+
+\begin_layout Plain Layout
+                    ])
+\end_layout
+
+\begin_layout Plain Layout
+                ]);
+\end_layout
+
+\begin_layout Plain Layout
+            } else {
+\end_layout
+
+\begin_layout Plain Layout
+                return queries.filterFreeN(1, [
+\end_layout
+
+\begin_layout Plain Layout
+                    queries.alternative(direction),
+\end_layout
+
+\begin_layout Plain Layout
+                    queries.alternativeOpposite(direction),
+\end_layout
+
+\begin_layout Plain Layout
+                    queries.opposite(direction)
+\end_layout
+
+\begin_layout Plain Layout
+                ]);
+\end_layout
+
+\begin_layout Plain Layout
+            }
+\end_layout
+
+\begin_layout Plain Layout
+        })();
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+    return strategy;
+\end_layout
+
+\begin_layout Plain Layout
+});
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Tabelle 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "token_method_mapping"
+
+\end_inset
+
+ zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries, die der Funktion strategy der generierten AI-Klasse als Parameter queries übergeben wird. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgezeigt.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%% increase table row spacing, adjust to taste
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+renewcommand{
+\backslash
+arraystretch}{1.3}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% if using array.sty, it might be a good idea to tweak the value of
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+% 
+\backslash
+extrarowheight as needed to properly center the text within the cells
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+placement !htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Mapping von AI-Tokens auf JavaScript Methoden der Klasse 
+\family typewriter
+GhostQueries
+\family default
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "token_method_mapping"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+setlength{
+\backslash
+tabcolsep}{1.5pt}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Tabular 
+<lyxtabular version="3" rows="9" columns="2">
+<features rotate="0" tabularvalignment="middle" tabularwidth="0pt">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Op
+\series default
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+
+\series bold
+Methode in GhostQueries
+\series default
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+-> 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+currentDirection(): 
+\emph on
+String
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+<- 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+opposite(direction: String): 
+\emph on
+String
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+=> 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+alternative(direction: String): 
+\emph on
+String
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+<= 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+alternativeOpposite(direction: String): 
+\emph on
+String
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+if* 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+isFree(direction: String): 
+\emph on
+Boolean
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+** 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+filterFree(directions: List<String>): 
+\emph on
+List<String>
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+*n 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+filterFreeN(n: Number, directions: List<String>): 
+\emph on
+String
+\emph default
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+% 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Standard
+randomWithDistribution(ratios: 
+\emph on
+List<Number>
+\emph default
+, dirs: 
+\emph on
+List<String>
+\emph default
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Klasse 
+\family typewriter
+GhostQueries
+\family default
+ dient als Mittler der generieten Strategie mit dem Ghost-Objekt. Sie ruft Methoden 
+\family typewriter
+currentDirection
+\family default
+, 
+\family typewriter
+gridX()
+\family default
+, 
+\family typewriter
+gridY()
+\family default
+ und 
+\family typewriter
+checkMove()
+\family default
+ auf. Der Aufruf von 
+\family typewriter
+checkMove()
+\family default
+ wird von Klasse 
+\family typewriter
+Ghost
+\family default
+ an 
+\family typewriter
+Gameboard
+\family default
+ deligiert. Der Aufruf der generierten Strategie mit Übergabe des Parameters GhostQueries wird in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "ai_call"
+
+\end_inset
+
+ dargestellt.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Float figure
+placement !htb
+wide false
+sideways false
+status open
+
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics 
+	filename queries.png
+	width 2.5in
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Aufruf der generierten Strategie-Methode durch Klasse Ghost.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "ai_call"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Neben der Abstraktion bezüglich der Richtungen (siehe Absatz 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "dir_abstraction"
+
+\end_inset
+
+) sorgt Klasse GhostQueries dafür, dass Listenstrukturen bei verschachtelten Aufrufen korrekt vereint werden. Eine Verschachtlung des 
+\family typewriter
+Random-Operators
+\family default
+ mit 
+\family typewriter
+Filter-Free-Operator
+\family default
+, wie in Abbildung 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "node_structure_ex"
+
+\end_inset
+
+ gezeigt, hat zur Folge dass Parameter 
+\emph on
+directions
+\emph default
+ der 
+\family typewriter
+randomWithDistributions()
+\family default
+-Methode mit einer verschachtelten Liste befüllt wird. Die Ursache ist, dass es sich beim Ergebnis des 
+\family typewriter
+Filter-Free-Operator
+\family default
+ ebenfalls um eine Liste handelt. Ein Beispiel einer entstehende Datenstruktur des directions-Parameter ist in Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "rwd_example"
+
+\end_inset
+
+ zu sehen.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Beispiel einer verschachtelten Datenstruktur als directions-Parameter von randomWithDistributions(), label=rwd_example"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+[
+\end_layout
+
+\begin_layout Plain Layout
+  "UP",
+\end_layout
+
+\begin_layout Plain Layout
+  "DOWN",
+\end_layout
+
+\begin_layout Plain Layout
+  [
+\end_layout
+
+\begin_layout Plain Layout
+    "LEFT",
+\end_layout
+
+\begin_layout Plain Layout
+    "RIGHT"
+\end_layout
+
+\begin_layout Plain Layout
+  ]
+\end_layout
+
+\begin_layout Plain Layout
+]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Vereingung der Liste wird durch die underscore.js-Methode 
+\family typewriter
+flatten
+\family default
+ vorgenommen. Die Idiome zur Iteration von underscore.js bestehen aus Funktionen, die als Parameter zum einem die zu iterierende Listenstruktur übergeben bekommen und zum anderen eine Funktion die das jeweilige Listenelement als Parameter empfängt. Für die Implementierung der Klasse GhostQueries war es sehr hilfreich, sprechende Schreibweisen wie die aus Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "underscore_speaking"
+
+\end_inset
+
+ einsetzen zu können. Die Syntax erinnert an moderne Programmiersprachen wie Python oder Scala, die funktionale Idiome unterstützen.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Implementierung der Filter-Free Methode mit Hilfe von funktionalen Hilfsmitteln von underscore.js, label=underscore_speaking"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+return _.filter(_.flatten(directions), function(d) {
+\end_layout
+
+\begin_layout Plain Layout
+                return isFree(d);
+\end_layout
+
+\begin_layout Plain Layout
+            });
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Fazit und Ausblick
+\end_layout
+
+\begin_layout Standard
+Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pacman Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden. Dabei wurden zwei DSLs eingesetzt. Zum einen eine DSL für die Erstellung des Spielfeldes und zum anderen eine AI DSL für die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt.
+\end_layout
+
+\begin_layout Standard
+Bei der Implementierung der AI DSL hat sich bewährt, eine Baumstruktur in der entsprechende Listener-Klasse aufzubauen um diese bei der Codegeneriung zu traversieren. Hierbei taucht allerdings das Problem auf, dass 
+\family typewriter
+ANTLR
+\family default
+ keine syntaktische Validierung in Bezug auf den Aufbau dieser Baumstruktur vornimmt. Es ist also ohne manuell implementierte Validierungen nicht zu gewährleisten, dass die Operatoren der AI DSL korrekt miteinander kombiniert werden - im schlimmsten Fall resultiert ein Laufzeitfehler im JavaScipt Code.
+\end_layout
+
+\begin_layout Standard
+In der Klasse 
+\family typewriter
+AiBaseListenerImplementation
+\family default
+ wurde ein erster Ansatz implementiert, eine solche Validierung vorzunehmen (Listing 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "validation_intent"
+
+\end_inset
+
+). Um eine Aussagekraft für den Anwender zu haben, müsste jedoch eine präzisere Fehlermeldung mit entsprechender Zeilennummer der interpretierten DSL ausgegeben werden. Es ist abzusehen, dass der verfolgte Ansatz bei einer Erweiterung der Grammatik ungenügend ist. Hier wäre eine noch tiefere Auseinandersetzung mit ANTLR empfehlenswert, um womöglich einen standartisierten Lösungsweg verfolgen zu können.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset listings
+lstparams "language=Java, captionpos=b, caption=Grundliegende Validierung beim Hinzufügen eines einer Node in \texttt{AiBaseListenerImplementation}, label=validation_intent"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+private void add(Node n) {
+\end_layout
+
+\begin_layout Plain Layout
+    if ((n instanceof Else) && !(currentNode instanceof IfContainer)) {
+\end_layout
+
+\begin_layout Plain Layout
+        System.out.println("Tried to add else without preceding if block");
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+    if (!(n instanceof Else) && !(n instanceof IfFree) && currentNode instanceof IfContainer) {
+\end_layout
+
+\begin_layout Plain Layout
+        System.out.println("Illegal state, possible programming error: Opened an IfContainer and trying to add other than if or else block.");
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+    this.currentNode.addChild(n);
+\end_layout
+
+\begin_layout Plain Layout
+    // Flat elements that can't contain child nodes should not set themselves as currentNode
+\end_layout
+
+\begin_layout Plain Layout
+    if (!(n instanceof Direction || n instanceof Reference || n instanceof Assignment)) {
+\end_layout
+
+\begin_layout Plain Layout
+        this.currentNode = n;
+\end_layout
+
+\begin_layout Plain Layout
+    }
+\end_layout
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Spezialisierte Unit-Tests für die AI DSL aufzustellen wäre ein weiterer Schritt, um die Qualität der Implementierung zu erhöhen. Eine hohe Zuverlässigkeit auf Seite der DSL Implementation zu beheben wäre im realen Anwendungsfall eine Notwendigkeit.
+\end_layout
+
+\begin_layout Standard
+Das Erzeugen von Code mit Hilfe von DSLs scheint in dem gegegeben Anwendungsfall in Hinblick auf Arbeitsteilung im Team äußerst sinnvoll. Es ist wahrscheinlich, dass bei einer komplexeren Pac-Man Anwendung eigenständige Teams für Level-Gestaltung und AI-Entwurf eingesetzt werden würden. Diese Teams sollten von programmiertechnischen Aspekten der eigentlichen Spiels weitesgehend entkoppelt werden um effektiv arbeiten zu können. Durch Anpassung der Codegeneratoren wären die Anwendungsentwickler in der Lage, nach Bedarf neue Technologien einsetzten zu können ohne die anderen Teams in ihrer Arbeit zu stören.
+\end_layout
+
+\end_body
+\end_document
