@@ -25,8 +25,7 @@
 
 
 \author{\IEEEauthorblockN{Marcel Brüning}
-\IEEEauthorblockA{
-s67176@beuth-hochschule.de}
+\IEEEauthorblockA{s67176@beuth-hochschule.de}
 \and
 \IEEEauthorblockN{Simon Lischka}
 \IEEEauthorblockA{simon@lischka.co}
@@ -40,13 +39,13 @@ s67176@beuth-hochschule.de}
   basicstyle=\footnotesize\ttfamily
   }
 \begin{abstract}
-Die folgenden Seiten beschreiben die Entwicklung eines Pac-Man Browserspiels mit JavaScript. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit domänenspezifischen Sprachen (DSL) für die Levels und die artifizielle Intelligenz (AI). Die DSL der AI definiert verschiedene Strategien der vom  Computer gesteuerten Spielfiguren.
+Die folgenden Seiten beschreiben die Entwicklung eines Pac-Man Browserspiels mit \emph{JavaScript}. Die Schwerpunkte des Projekts liegen in der automatischen Codegenerierung mit \emph{domänenspezifischen Sprachen (DSL)} für die Levels und die \emph{artifizielle Intelligenz (AI)}. Die DSL der AI definiert verschiedene Strategien der vom  Computer gesteuerten Spielfiguren.
 \end{abstract}
 
 \IEEEpeerreviewmaketitle
 
 \section{Hinweis zur Begriffsverwendung}
-Im vorliegenden Text wird der Begriff \emph{JavaScript} als Synonym für JavaScript-Implementierungen nach \emph{ECMAScript5}-Standard verwendet.
+Im vorliegenden Text wird der Begriff \emph{JavaScript} als Synonym für \emph{JavaScript}-Implementierungen nach \emph{ECMAScript5}-Standard verwendet.
 
 \section{Über das Spiel}
 
@@ -54,33 +53,33 @@ Der Inhalt dieses Absatzes ist das Spielprinzip von Pac-Man und die Entwicklung 
 
 \subsection{Spielprinzip}
 
-Pac-Man ist eine Spielfigur, die durch ein Labyrinth so effektiv wie möglich gesteuert werden soll, um alle vorhandenen Punkte zu sammeln. Bewegliche Gegner (vier Geister), die vom Computer gesteuert werden, sowie ein komplexes Labyrinth erschweren den Siegeszug. Pro Spiel verfügt Pac-Man über drei Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
+Pac-Man ist eine Spielfigur, die durch ein Labyrinth so effektiv wie möglich gesteuert werden soll, um alle vorhandenen Punkte zu sammeln. Bewegliche Gegner (\emph{vier} Geister), die vom Computer gesteuert werden, sowie ein komplexes Labyrinth erschweren den Siegeszug. Pro Spiel verfügt Pac-Man über \emph{drei} Leben. Wird er von einem Gegner gefasst, so geht ein Leben verloren. In dem Labyrinth gibt es durch das Sammeln von Münzen die Möglichkeit, die Gesamtpunktzahl zu erhöhen.
 
-Über Früchte in den Ecken des Spielfelds gelangt Pac-Man in den Angriffsmodus. Er wird für kurze Zeit vom Gejagten zum Jäger und kann seinerseits Geister fressen. Das verhilft ihm zu zusätzlichen Punkten. Schafft es Pac-Man innerhalb der drei Leben sämtliche Punkte auf dem Spielfeld zu konsumieren, so hat er das Level erfolgreich absolviert und startet ein neues Level.
+Über Früchte in den Ecken des Spielfelds gelangt Pac-Man in den Angriffsmodus. Er wird für kurze Zeit vom Gejagten zum Jäger und kann seinerseits Geister fressen. Das verhilft ihm zu zusätzlichen Punkten. Schafft es Pac-Man innerhalb der \emph{drei} Leben sämtliche Punkte auf dem Spielfeld zu konsumieren, so hat er das Level erfolgreich absolviert und startet ein neues Level.
 
 
 \subsection{Verwendete Technologien}
-Das Spiel ist in JavaScript implementiert. Teile des Codes werden mit dem Parser-Generator \texttt{ANTLR4} auf Basis der DSL erzeugt. Dieser Code wird von der Applikation angesteuert.
+Das Spiel ist in \emph{JavaScript} implementiert. Teile des Codes werden mit dem Parser-Generator \texttt{ANTLR4} auf Basis der DSL erzeugt. Dieser Code wird von der Applikation angesteuert.\footnote[1]{Einführung in ANTLR, http://www.antlr.org/}
 
-Ein naheliegender Gedanke in der Planungsphase war es, die JavaScript-Implementierung von \texttt{ANTLR4} zu verwenden. Auf diese Weise ließe sich eine einheitliche Programmiersprache in der gesamten Codebasis einsetzen. Ein programmiertechnischer Austausch zwischen allen Teammitgliedern könnte dadurch erleichtert werden. Dieser Austausch kann aus Code-Reviews und dem Klären von sprachspezifischen Problemen bestehen.
+Ein naheliegender Gedanke in der Planungsphase war es, die \emph{JavaScript}-Implementierung von \texttt{ANTLR4} zu verwenden. Auf diese Weise ließe sich eine einheitliche Programmiersprache in der gesamten Codebasis einsetzen. Ein programmiertechnischer Austausch zwischen allen Teammitgliedern könnte dadurch erleichtert werden. Dieser Austausch kann aus Code-Reviews und dem Klären von sprachspezifischen Problemen bestehen.
 
-Da die Java-Implementierung von \texttt{ANTLR4} etablierter erscheint und über ausführlichere Dokumentation verfügt als die JavaScript-Variante, haben wir von der Verwendung von \texttt{ANTLR4} für JavaScript abgesehen. Wir hatten die Vermutung, dass die zusätzliche Einarbeitungszeit und für uns unerwartetes Verhalten der JavaScript-Implementierung den zeitlichen Rahmen des Projektes übersteigen würde.
+Da die \emph{Java}-Implementierung von \texttt{ANTLR4} etablierter erscheint und über ausführlichere Dokumentation verfügt als die \emph{JavaScript}-Variante, haben wir von der Verwendung von \texttt{ANTLR4} für \emph{JavaScript} abgesehen. Wir hatten die Vermutung, dass die zusätzliche Einarbeitungszeit und für uns unerwartetes Verhalten der \emph{JavaScript}-Implementierung den zeitlichen Rahmen des Projektes übersteigen würde.
 
-Wir haben jedoch für die JavaScript-Codebasis gezielt Technologien zur Qualitätssteigerung ausgewählt. Hierzu gehört das Framework \texttt{RequireJS}, welches die Modularisierung und das Importieren von Klassen ähnlich wie in Java ermöglicht. Von \texttt{ANTLR4} erzeugte JavaScript-Klassen müssen als Module ladbar sein. \texttt{RequireJS} war für uns deshalb Voraussetzung um unser  Vorhaben erfolgreich umsetzen zu können.
+Wir haben jedoch für die \emph{JavaScript}-Codebasis gezielt Technologien zur Qualitätssteigerung ausgewählt. Hierzu gehört das Framework \texttt{RequireJS}, welches die Modularisierung und das Importieren von Klassen ähnlich wie in \emph{Java} ermöglicht.\footnote[2]{Require.js Einführung, http://requirejs.org/} Von \texttt{ANTLR4} erzeugte \emph{JavaScript}-Klassen müssen als Module ladbar sein. \texttt{RequireJS} war für uns deshalb Voraussetzung um unser  Vorhaben erfolgreich umsetzen zu können.
 
 Objektorientiertes Programmieren nach dem Paradigma \emph{Separation of Concerns} (SoC) und der Aufbau einer übersichtlichen Projektstruktur werden durch Trennung von Klassen in einzelne Dateien durch \texttt{RequireJS} ebenfalls stark erleichtert.
 
-\texttt{Underscore.js} bietet eine Reihe von Helferfunktionen, die darauf ausgerichtet sind, funktionale Programmierung zu erleichtern\footnote[1]{Underscore.js Einführung, http://underscorejs.org/}. Mit \texttt{Underscore.js} sind häufig eingesetzte Idiome wie Listeniterationenin in kürzerer Syntax und auf höherem Abstraktionsgrad als durch native JavaScript-Sprachmittel abbildbar. Hierdurch ergibt sich weniger Raum für Fehler.
+\texttt{Underscore.js} bietet eine Reihe von Helferfunktionen, die darauf ausgerichtet sind, funktionale Programmierung zu erleichtern\footnote[3]{Underscore.js Einführung, http://underscorejs.org/}. Mit \texttt{Underscore.js} sind häufig eingesetzte Idiome wie Listeniterationen in kürzerer Syntax und auf höherem Abstraktionsgrad als durch native \emph{JavaScript}-Sprachmittel abbildbar. Hierdurch ergibt sich weniger Raum für Fehler.
 
-Kritische Funktionen wurden in JavaScript mit \texttt{Jasmine}-Unit Tests versehen. Eine hohe Testabdeckung, wie sie mit Test Driven Development möglich ist, haben wir jedoch nicht priorisiert.
+Kritische Funktionen wurden in \emph{JavaScript} mit \texttt{Jasmine}-Unit Tests versehen. Eine hohe Testabdeckung, wie sie mit \emph{Test Driven Development} möglich ist, haben wir jedoch nicht priorisiert.
 
 \subsection{Umsetzung}
 \label{umsetz}
-Das zu spielende Level besteht aus einem 2-dimensionalem Array. Die Elementes des Spielfelds sind durch Zahlencodes abgebildet. Eine Null steht dabei für ein freies Stück Weg. Codes Eins und Zwei stehen für ein begehbares Feld mit einem Punkt oder einer Frucht. Wände werden durch Code Drei repräsentiert und sind von Pac-Man und den Gegnern nicht begehbar.
+Das zu spielende Level besteht aus einem zweidimensionalem Array. Die Elementes des Spielfelds sind durch Zahlencodes abgebildet. Eine \emph{null} steht dabei für ein freies Stück Weg. Codes \emph{eins} und \emph{zwei} stehen für ein begehbares Feld mit einem Punkt oder einer Frucht. Wände werden durch Code \emph{drei} repräsentiert und sind von Pac-Man und den Gegnern nicht begehbar.
 
-Zur Darstellung laden wir Bildobjekte und zeichen sie auf einem Canvas-Element des HTML Dokuments. Zum Darstellen der Bildobjekte wird durch das Array iteriert und für jedes Array-Element ein dem Zahlencode zugehörige Bildobjekt auf den 2D-Kontext des Canvas gezeichnet.
+Zur Darstellung laden wir Bildobjekte und zeichnen diese auf einem \emph{Canvas}-Element des \emph{HTML} Dokuments. Zum Darstellen der Bildobjekte wird durch das Array iteriert und für jedes Array-Element ein dem Zahlencode zugehörige Bildobjekt auf den 2D-Kontext des \emph{Canvas} gezeichnet.
 
-Ein zweites Canvas-Element stellt Spielfiguren dar. Es ist transparent über dem Canvas-Element des Levels positioniert. Die Motivation hierfür ist, dass der Zustand der Spielfiguren sich in der Regel häufiger ändert als der des Spielfeldes. Ein Flackern, was durch zusätzliches Neuzeichnen des Levels bei jeder Figurveränderung entstehen kann, wird durch Trennung in zwei Canvas-Elemente reduziert.
+Ein \emph{zweites Canvas}-Element stellt Spielfiguren dar. Es ist transparent über dem \emph{Canvas}-Element des Levels positioniert. Die Motivation hierfür ist, dass der Zustand der Spielfiguren sich in der Regel häufiger ändert als der des Spielfeldes. Ein Flackern, was durch zusätzliches Neuzeichnen des Levels bei jeder Figurveränderung entstehen kann, wird durch Trennung in \emph{zwei Canvas}-Elemente reduziert.
 
 Die Figuren operieren auf dem selben Koordinatensystem wie das Level. Abbildung \ref{pac_screen} zeigt das ausgeführte Spiel.
 
@@ -92,37 +91,37 @@ Die Figuren operieren auf dem selben Koordinatensystem wie das Level. Abbildung 
 \label{main_classes}
 \end{figure}
 
-Das Klassendiagramm in Abbildung \ref{main_classes} stellt die beteiligten JavaScript-Objekte dar. Die Objekte von Spieler und Gegner (Pac und Ghost) führen die Instanzvariablen gridX und gridY, die Koordinaten des Levels sind. Die Funktion checkMove() der Klasse Gameboard gleicht den nächsten Schritt einer Figur mit dem Array des Levels ab. Bei Zahlencode Null, Eins oder Zwei liefert sie \texttt{true} zurück und erlaubt den gewünschten Schritt der Figur. Entsprechend wird bei einer Drei, also einer Wand \texttt{false} zurückgeliefert und verhindert somit den nächsten Schritt der Spielfigur. Diese Funktion wird von Klassen Ghost und Pac bei der Umsetzung des nächsten Spielzugs verwendet.
+Das Klassendiagramm in Abbildung \ref{main_classes} stellt die beteiligten \emph{JavaScript}-Objekte dar. Die Objekte von Spieler und Gegner (\emph{Pac} und \emph{Ghost}) führen die Instanzvariablen \texttt{gridX} und \texttt{gridY}, die Koordinaten des Levels sind. Die Funktion \texttt{checkMove()} der Klasse \texttt{Gameboard} gleicht den nächsten Schritt einer Figur mit dem Array des Levels ab. Bei Zahlencode \emph{null, eins} oder \emph{zwei} liefert sie \texttt{true} zurück und erlaubt den gewünschten Schritt der Figur. Entsprechend wird bei einer \emph{drei}, also einer Wand \texttt{false} zurückgeliefert und verhindert somit den nächsten Schritt der Spielfigur. Diese Funktion wird von Klassen \texttt{Ghost} und \texttt{Pac} bei der Umsetzung des nächsten Spielzugs verwendet.
 
-Um die Bewegungen der Figuren sichtbar zu machen, existiert die Funktion updateOnInterval(), die durch den Scheduler des Browsers alle 150 Millisekunden aufgerufen wird. Sie zeichnet das Level und die Spielfiguren nach vorgenommener Aktualisierung neu. In der Methode werden Kollisionsabfragen der Klasse GameBoard aufgerufen, die prüfen ob Pac-Man gerade einen Punkt bzw. eine Frucht frisst (Methode \texttt{checkPacsEating()}) oder mit einem Geist kollidiert (Methode \texttt{checkKills()}). Die im Spiel agierende AI berechnet in jedem Interval die Richtung der Geister neu. Ihre Berechnung bezieht sich also immer genau auf einen Spielzug.
+Um die Bewegungen der Figuren sichtbar zu machen, existiert die Funktion\texttt{ updateOnInterval()}, die durch den Scheduler des \emph{Browsers} alle 150 Millisekunden aufgerufen wird. Sie zeichnet das Level und die Spielfiguren nach vorgenommener Aktualisierung neu. In der Methode werden Kollisionsabfragen der Klasse \texttt{Gameboard} aufgerufen, die prüfen ob Pac-Man gerade einen Punkt beziehungsweise eine Frucht frisst (Methode \texttt{checkPacsEating()}) oder mit einem Geist kollidiert (Methode \texttt{checkKills()}). Die im Spiel agierende AI berechnet in jedem Intervall die Richtung der Geister neu. Ihre Berechnung bezieht sich also immer genau auf einen Spielzug.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=2.9in]{screenshot.png}
+\includegraphics[width=3.1in]{screenshot.png}
 
-\caption{Screenshot des ausgeführten Pac-Man Spiels.}
+\caption{Screenshot des ausgeführten Pac-Man Spiels}
 \label{pac_screen}
 \end{figure}
 
-Abbildung \ref{fmc_tam} stellt das FMC-TAM Diagramm des Spiels dar. Ghost und Pac-Man sind als Akteure dargestellt, die ihre Position in Abstimmung mit dem Ergebnis von \texttt{checkMove()} aktualisieren. Akteur Strategy und Speicher Level werden durch \texttt{ANTLR4} generiert. Im Zusammenhang mit Strategy ist Mittler GhostQuery relevant. GhostQuery stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der AI DSL in Abschnitt \ref{ai_dsl} näher erläutert.
+Abbildung \ref{fmc_tam} stellt das \emph{FMC-TAM} Diagramm des Spiels dar. \emph{Ghost} und \emph{Pac-Man} sind als Akteure dargestellt, die ihre Position in Abstimmung mit dem Ergebnis von \texttt{checkMove()} aktualisieren. Akteur \emph{Strategy} und \emph{Speicher Leve}l werden durch \texttt{ANTLR4} generiert. Im Zusammenhang mit \emph{Strategy} ist Mittler \emph{GhostQuery} relevant. \emph{GhostQuery} stellt die Schnittstelle des generierten Codes zum Spiel dar und wird bei der Beschreibung der AI DSL in Abschnitt \ref{ai_dsl} näher erläutert.
 
 \begin{figure}[!t]
 \centering
-\includegraphics[width=3.0in]{tam.png}
+\includegraphics[width=3.4in]{tam.png}
 
-\caption{FMC-TAM Diagramm der umgesetzen Applikation}
+\caption{\emph{FMC-TAM} Diagramm der umgesetzten Applikation}
 \label{fmc_tam}
 \end{figure}
 
-Interessant ist, dass die Akteure sich nicht auf eine einheitliche Modularisierungseinheit, also Beispielsweise nur Klassen abbilden. \texttt{Checkmove} wird im vorliegenden Entwicklungsstand durch eine einzelne Methode repräsentiert, Hitdetection durch mehrere Methoden der Klasse Gameboard. Akteure \texttt{Pac-Man} und \texttt{Ghost} existieren als eigene Klassen, ebenso wie \texttt{Strategy} und \texttt{GhostQuery}.
+Interessant ist, dass die Akteure sich nicht auf eine einheitliche Modularisierungseinheit, also Beispielsweise nur Klassen abbilden. \emph{Checkmove} wird im vorliegenden Entwicklungsstand durch eine einzelne Methode repräsentiert, \emph{Hitdetection} durch mehrere Methoden der Klasse \texttt{Gameboard}. Akteure \emph{Pac-Man} und \emph{Ghost} existieren als eigene Klassen, ebenso wie \emph{Strategy} und \emph{GhostQuery}.
 
-Es ist wahrscheinlich, dass eine Auslagerung von Hitdetection in eine eigenständige Klasse bei zunehmender Komplexität sinnvoll wäre und dadurch das Design durch die Einhaltung des SoC-Paradigmas verbessert werden würde. Durch die Aufstellung des FMC-TAM Diagramms lässt sich diese bevorstehende Designänderung antizipieren, auch wenn wir uns in der vorliegenden Implementierung dazu entschlossen haben, sie nicht umzusetzen.
+Es ist wahrscheinlich, dass eine Auslagerung von \emph{Hitdetection} in eine eigenständige Klasse bei zunehmender Komplexität sinnvoll wäre und dadurch das Design durch die Einhaltung des SoC-Paradigmas verbessert werden würde. Durch die Aufstellung des \emph{FMC-TAM} Diagramms lässt sich diese bevorstehende Designänderung antizipieren, auch wenn wir uns in der vorliegenden Implementierung dazu entschlossen haben, sie nicht umzusetzen.
 
 \section{Codegenerierung}
-\texttt{ANTLR4} generiert auf Grundlage der DSL Lexer zur lexikalischen Analyse und Parser zur syntaktischen Analyse.
-Wir haben uns bei der Umsetzung der Level- und der AI DSL für  das Einsetzen von Listener Klassen zum Traversieren des Abstrakten Syntaxbaums (AST) entschlossen.
+\texttt{ANTLR4} generiert auf Grundlage der DSL \texttt{Lexer} zur lexikalischen Analyse und \texttt{Parser} zur syntaktischen Analyse.
+Wir haben uns bei der Umsetzung der Level- und der AI DSL für  das Einsetzen von Listener Klassen zum Traversieren des \emph{Abstrakten Syntaxbaums (AST)} entschlossen.
 
-Für beide Grammatiken erstellten wir Subklassen der generierten Listener. Diese Klassen enthalten jeweils eine Datenstruktur als Instanzvariable, die beim Traversieren des AST befüllt wird. Im Fall der Level DSL handelt es sich um eine Liste und bei der AI DSL um eine Baumstruktur.
+Für beide Grammatiken erstellten wir Subklassen der generierten Listener. Diese Klassen enthalten jeweils eine Datenstruktur als Instanzvariable, die beim Traversieren des AST befüllt wird. Im Fall der Level DSL handelt es sich um eine \texttt{Liste} und bei der AI DSL um eine \texttt{Baumstruktur}.
 
 Erst nach Beenden der Traversierung werden die Daten in der Klasse \texttt{CodeGenerator} durch Interpretation der Datenstrukturen, die in den Listenern erzeugt wurden, geschrieben. Abbildung \ref{antlr_classes} stellt die beteiligten Klassen dar. Bei \texttt{totalValues} und \texttt{initialRoot} handelt es sich um diese Datenstrukturen.
 
@@ -130,17 +129,17 @@ Erst nach Beenden der Traversierung werden die Daten in der Klasse \texttt{CodeG
 \centering
 \includegraphics[width=3.3in]{code_gen_rough.png}
 
-\caption{Beteiligte Klassen bei der Codegenerierung mit ANTLR}
+\caption{Beteiligte Klassen bei der Codegenerierung mit \texttt{ANTLR4}}
 \label{antlr_classes}
 \end{figure}
 
 \subsection{Level DSL}
-Eine Level DSL entspricht dem CSV-Format. In der Java Klasse \texttt{LevelBaseListenerImplementation.java}, welche von LevelListener.java erbt, wird eine verschachtelte Listenstruktur erzeugt, die das Spielfeld Zeilen- und Felderweise abbildet. Die \texttt{parseLevel()} Methode, welche in der PacmanParseExecuter.java Klasse definiert ist, erwartet den Pfad zu einer .csv-Datei als Argument. Des Weiteren wird in dieser Methode die Initialisierung aller abhängigen Klassen, die für diesen Prozess nötig sind, erledigt.
+Eine Level DSL entspricht dem \emph{CSV}-Format. In der Java Klasse \texttt{LevelBaseListenerImplementation}, welche von \texttt{LevelListener} erbt, wird eine verschachtelte Listenstruktur erzeugt, die das Spielfeld Zeilen- und Felderweise abbildet. Die \texttt{parseLevel()} Methode, welche in der \texttt{PacmanParseExecuter} Klasse definiert ist, erwartet den Pfad zu einer \emph{.csv}-Datei als Argument. Des Weiteren wird in dieser Methode die Initialisierung aller abhängigen Klassen, die für diesen Prozess nötig sind, erledigt.
 
-Die CodeGenerator.java Klasse ist neben der Generierung für die AI auch für die Erstellung einer level.js Datei zuständig welche nach JavaScript Syntax erstellt wird. Die Datei level.js (Abbildung \ref{leveljs})
+Die \texttt{CodeGenerator} Klasse ist neben der Generierung für die AI auch für die Erstellung einer \texttt{level.js} Datei zuständig welche nach \texttt{JavaScript}-Syntax erstellt wird. Die Datei \texttt{level.js} (Abbildung \ref{leveljs})
 wird direkt in dem Ordner \texttt{/dsl\_pacman/pacman/levels/} generiert und von der \texttt{Gameboard}-Klasse importiert.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=Generierte Level-Klasse in JavaScript, label=leveljs]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Generierte Level Klasse in \emph{JavaScript}, label=leveljs]
 define([], function () {
   return {
     floor: 0,
@@ -175,9 +174,9 @@ define([], function () {
 
 \subsubsection{Spielfeldaufbau}
 \label{spielfeldaufb}
-Das Spielfeld bildet ein zweidimensionales Array ab, welches je nach Spielfeld-Design mit Zahlen von Null bis Drei befüllt wird. Die Spezifikation sieht vor, dass ein Array der Größe von exakt 20x20 erstellt werden muss. Eine beispielhafte Darstellung, die das Prinzip für den Aufbau des Spielfeldes veranschaulicht, ist in Listing \ref{gameboard_dsl} zu finden.
+Das Spielfeld bildet ein zweidimensionales Array ab, welches je nach Spielfeld-Design mit Zahlen von \emph{null} bis \emph{drei} befüllt wird. Die Spezifikation sieht vor, dass ein Array der Größe von exakt 20x20 erstellt werden muss. Eine beispielhafte Darstellung, die das Prinzip für den Aufbau des Spielfeldes veranschaulicht, ist in Listing \ref{gameboard_dsl} zu finden.
 
-Zulässige Tokens sind als \emph{Value} definiert. Dies sind nur die Zahlen Null, Eins, Zwei und Drei in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als \emph{Separator} zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als \emph{row} festgelegt ist, erreicht wird. Das Zeilenende wird durch ein \emph{LineBreak} oder aber durch ein \emph{EOF} signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays. Alle Zeilen zusammen bilden ein \emph{field}.
+Zulässige Tokens sind als \emph{Value} definiert. Dies sind nur die Zahlen \emph{null, eins, zwei} und \emph{drei} in beliebiger Reihenfolge. Als Trennsymbol einzelner Values ist allein das Semikolon als \emph{Separator} zulässig. Diese Anreihung von Value und Trennsymbol kann beliebig oft vorkommen solange bis das Ende einer Zeile, welche als \emph{row} festgelegt ist, erreicht wird. Das Zeilenende wird durch ein \emph{LineBreak} oder aber durch ein \emph{EOF} signalisiert. Letzteres dient als terminales Symbol und signalisiert das Ende des einzulesenden Spielfeld-Arrays. Alle Zeilen zusammen bilden ein \emph{field}.
 
 
 \begin{table}[!t]
@@ -213,9 +212,10 @@ Zulässige Tokens sind als \emph{Value} definiert. Dies sind nur die Zahlen Null
 
 
 \subsubsection{Grammatik}
-Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall sind diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Anzahl der erlaubten Spalten ist nicht in der DSL spezifiziert. Sie wird in der \texttt{LevelListenerImplementatino} überprüft. Die im vorherigen Absatz \ref{spielfeldaufb} festgelegten Regeln werden in der Datei level.g4 (Listing \ref{level_grammar}) formal festgelegt um dann mit dem \texttt{ANTLR4} Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vergl. Listing\ref{leveljs}) verwendet wird.
+Um den korrekten Aufbau des Spielfelds zu gewährleisten werden zunächst domänenspezifische Gültigkeitsregeln festgelegt. In unserem Fall sind diese durch Zahlen, Sonderzeichen und reguläre Ausdrücke repräsentiert. Die Anzahl der erlaubten Spalten ist nicht in der DSL spezifiziert. Sie wird in der \texttt{
+ListenerImplementation} überprüft. Die im vorherigen Absatz \ref{spielfeldaufb} festgelegten Regeln werden in der Datei \texttt{level.g4} (Listing \ref{level_grammar}) formal festgelegt um dann mit dem \texttt{ANTLR4} Tool Java Code zu generieren welcher zur Überprüfung der Gültigkeit des aufzubauenden Spielfeldes (Vergl. Listing\ref{leveljs}) verwendet wird.
 
-\begin{lstlisting}[captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik level.g4}, label=level_grammar]
+\begin{lstlisting}[captionpos=b, caption={Auszug aus der DSL spezifizierenden Grammatik \texttt{level.g4}}, label=level_grammar]
 grammar Level;
 
 field: row* EOF ;
@@ -229,14 +229,14 @@ Value: ('0'|'1'|'2'|'3')+ ;
 
 \subsection{AI DSL}
 \label{ai_dsl}
-Die durch Intrepretation der AI DSL generierten JavaScript-Klassen ermittelt auf Basis der aktuellen Richtung eines Geistes dessen Richtung für den folgenden Spielzug. Eingabe und Ausgabewert einer AI ist also die Richtung eines Geistes.  Aus diesem Grund ist ein Verständnis der Tokens nötig, die für das Ausdrücken einer Richtung eingesetzt werden.
+Die durch Interpretation der AI DSL generierten \emph{JavaScript}-Klassen ermittelt auf Basis der aktuellen Richtung eines Geistes dessen Richtung für den folgenden Spielzug. Eingabe und Ausgabewert einer AI ist also die Richtung eines Geistes.  Aus diesem Grund ist ein Verständnis der Tokens nötig, die für das Ausdrücken einer Richtung eingesetzt werden.
 
 \begin{table}[!t]
 %% increase table row spacing, adjust to taste
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{Richtungstokens der AI DSL mit examplarischer Belegung der Tokens}
+\caption{Richtungstokens der AI DSL mit exemplarischer Belegung der Tokens}
 \label{ai_directions}
 \centering
 
@@ -256,7 +256,7 @@ Die durch Intrepretation der AI DSL generierten JavaScript-Klassen ermittelt auf
 \end{table}
 \label{dir_abstraction}
 Tabelle \ref{ai_directions} stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token \texttt{->} wird mit einem Wert aus der Menge \texttt{\{UP, DOWN, RIGHT, LEFT\}} belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welcher Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden, ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt.
-Die entstehende Simplifizierung wird durch den Pseudocode in Listing \ref{direction_pseudo} demonstriert, der das Laufen in die entgegengesetzte Richtung ohne Abstraktionen der AI-DSL darstellt.
+Die entstehende Simplifizierung wird durch den Pseudocode in Listing \ref{direction_pseudo} demonstriert, der das Laufen in die entgegengesetzte Richtung ohne Abstraktionen der AI DSL darstellt.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Umkehren der Richtung in Pseudocode, label=direction_pseudo]
 if DIRECTION == RIGHT:
@@ -271,7 +271,7 @@ elif DIRECTION == DOWN:
 
 Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein \texttt{<-} Token genügen, um  die Logik des Pseudocodes abzubilden.
 \subsubsection{Überblick der Operatoren}
-\emph{Pac-Man AI DSLs} beginnen mit ihrem Namen in runden Klammern. Innerhalb dieses Blocks befinden sich Operatoren, die eine Richtung als Rückgabewert liefern. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz \ref{umsetz} beschrieben, ist im JavaScript-Spiel der Akteur \emph{Checkmove} dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle \ref{checkmove_operators_tbl} gelisteten Operatoren an, die eine Prüfung durch Checkmove auslösen.
+\emph{Pac-Man AI DSLs} beginnen mit ihrem Namen in runden Klammern. Innerhalb dieses Blocks befinden sich Operatoren, die eine Richtung als Rückgabewert liefern. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz \ref{umsetz} beschrieben, ist im \emph{JavaScript}-Spiel der Akteur \emph{Checkmove} dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle \ref{checkmove_operators_tbl} gelisteten Operatoren an, die eine Prüfung durch \emph{Checkmove} auslösen.
 
 %\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
 \lstset{
@@ -283,7 +283,7 @@ Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richt
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{Operatoren mit Syntaxbeispiel, die Methode Checkmove ansteuren}
+\caption{Operatoren mit Syntaxbeispiel, die die Methode \texttt{checkMove()} ansteuern}
 \label{checkmove_operators_tbl}
 \centering
 \setlength\tabcolsep{1.5pt}
@@ -359,15 +359,15 @@ Auswahl des n-ten Elements.} &
 \end{tabular}
 \end{table}
 
-Bei den Operatoren ist zu beachten, dass die \texttt{If-Free-} und \texttt{Filter-FreeN}-Operatoren jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts im Kontext der DSL bildet sich bei der Ausführung mit JavaScript Methoden ab.
+Bei den Operatoren ist zu beachten, dass die \texttt{If-Free-} und \texttt{Filter-FreeN}-Operatoren jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewertes im Kontext der DSL bildet sich bei der Ausführung mit \texttt{JavaScript}-Methoden ab.
 
 
-Der \texttt{Filter-Free}-Operator darf beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
+Der \texttt{Filter-Free}-Operator darf beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da \emph{JavaScript} eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
 
 Die DSL in Listing \ref{simpledsl} benutzt den \texttt{Filter-FreeN}-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Erkennbar ist, dass ein Weiterlaufen in der aktuellen Richtung (\texttt{->}) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (\texttt{=>}, \texttt{<=}) auszuweichen, bevor umgekehrt wird (\texttt{<-}).
 
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=AI DSL mit F\texttt{Filter-FreeN}-Operator, label=simpledsl]
+\begin{lstlisting}[language=Java, captionpos=b, caption=AI DSL mit \texttt{Filter-FreeN}-Operator, label=simpledsl]
 simple(
     *1{
       ->;
@@ -378,7 +378,7 @@ simple(
 )
 \end{lstlisting}
 
-Zum zufälligen Auswählen von Richtungen führen wir den Random-Operator (Tabelle \ref{random_op}) ein.
+Zum zufälligen Auswählen von Richtungen führen wir den \texttt{Random}-Operator (Tabelle \ref{random_op}) ein.
 
 \begin{table}[!htb]
 %% increase table row spacing, adjust to taste
@@ -443,7 +443,7 @@ random(
 )
 \end{lstlisting}
 
-In Listing \ref{if_free_dsl} ist der Filter-Free Operator mit dem Random Operator geschachtelt. Die DSL erlaubt beliebige Schachtelungstiefen. Die Syntax von Listing \ref{dsl_complex_nesting} ist deshalb ebenfalls zulässig.
+In Listing \ref{if_free_dsl} ist der \texttt{Filter-Free} Operator mit dem \texttt{Random} Operator geschachtelt. Die DSL erlaubt beliebige Schachtelungstiefen. Die Syntax von Listing \ref{dsl_complex_nesting} ist deshalb ebenfalls zulässig.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Komplexere Verschachtelung in AI DSL, label=dsl_complex_nesting]
 if *(->) {
@@ -469,7 +469,7 @@ if *(->) {
 
 \subsubsection{Aufbauen der Datenstruktur zur Codegenerierung}
 
-Die Verschachtelung von Operatoren wird nicht \emph{direkt} durch die Grammatik definiert. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (Listing \ref{ai_grammar}).
+Die Verschachtelung von Operatoren wird nicht \emph{direkt} durch die Grammatik definiert. Die AI Grammatik erkennt lediglich die notwendigen Tokens (Listing \ref{ai_grammar}).
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Ausschnitt der AI Grammatik, label=ai_grammar]
 ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration||direction_statement);
@@ -485,17 +485,17 @@ Die Listener Implementation baut eine Baumstruktur auf. Hierzu wird für jeden g
 \centering
 \includegraphics[width=1.7in]{node_structure_node.png}
 
-\caption{Node-Basisklasse als Halter der Datenstruktur zu Codegenerierung}
+\caption{\texttt{Node}-Basisklasse als Halter der Datenstruktur zu Codegenerierung}
 \label{node_class}
 \end{figure}
 
-Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine Listen-Struktur mit Kinder-Nodes. Jeder Node implementiert eine \texttt{renderCode()}-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode \texttt{childCode()} erzeugt, die über die Kinder-Nodes iteriert, jeweils \texttt{renderCode()} aufruft und die Ergebnisse als String konkateniert. Methode \texttt{childCode()} wird per Konvention in jeder Node-Klasse bei \texttt{renderCode()} aufgerufen. Eine Node-Klasse erzeugt so beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Beim Generieren einer AI-Strategie wird \texttt{renderCode()} auf dem Wurzelknoten aufgerufen, der im Listener als Instanzvariable \texttt{initialNode} geführt ist (siehe Abbildung \ref{antlr_classes}). Abbildung \ref{node_structure_ex} zeigt die Baumstruktur zur DSL von Listing \ref{if_free_dsl}, Listing \ref{if_free_output} den generierten JavaScript-Code.
+Alle Unterklassen von \texttt{Node} (Abbildung  \ref{node_class}) enthalten intern eine Listen-Struktur mit Kinder-Nodes. Jeder  \texttt{Node} implementiert eine \texttt{renderCode()}-Methode, die \emph{JavaScript}-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode \texttt{childCode()} erzeugt, die über die Kinder-Nodes iteriert, jeweils \texttt{renderCode()} aufruft und die Ergebnisse als String konkateniert. Methode \texttt{childCode()} wird per Konvention in jeder  \texttt{Node}-Klasse bei \texttt{renderCode()} aufgerufen. Eine  \texttt{Node}-Klasse erzeugt so beim Code-Generieren ebenfalls den \emph{JavaScript}-Quellcode seiner Kinder. Beim Generieren einer AI Strategie wird \texttt{renderCode()} auf dem Wurzelknoten aufgerufen, der im Listener als Instanzvariable \texttt{initialNode} geführt ist (siehe Abbildung \ref{antlr_classes}). Abbildung \ref{node_structure_ex} zeigt die Baumstruktur zur DSL von Listing \ref{if_free_dsl}, Listing \ref{if_free_output} den generierten \emph{JavaScript}-Code.
 
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=3.5in]{node_structure_ex.png}
-\caption{Schematische Darstellung der Datenstruktur beim Parsen einer AI DSL (Laufzeit).}
+\caption{Schematische Darstellung der Datenstruktur beim Parsen einer AI DSL (Laufzeit)}
 \label{node_structure_ex}
 \end{figure}
 
@@ -529,17 +529,17 @@ Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine L
 
 \subsubsection{Einbindung der generierten Klassen}
 
-Klasse \texttt{GhostQueries} dient als Mittler der generieten Strategie mit dem Ghost-Objekt. Sie ruft Methoden \texttt{currentDirection}, \texttt{gridX()}, \texttt{gridY()} und \texttt{checkMove()} auf. Der Aufruf von \texttt{checkMove()} wird von Klasse \texttt{Ghost} an \texttt{Gameboard} deligiert.
-Der Aufruf der generierten Strategie mit Übergabe des Parameters GhostQueries wird in Abbildung \ref{ai_call} dargestellt.
+Klasse \texttt{GhostQueries} dient als Mittler der generierten Strategie mit dem \texttt{Ghost}-Objekt. Sie ruft Methoden \texttt{currentDirection()}, \texttt{gridX()}, \texttt{gridY()} und \texttt{checkMove()} auf. Der Aufruf von \texttt{checkMove()} wird von Klasse \texttt{Ghost} an \texttt{Gameboard} deligiert.
+Der Aufruf der generierten Strategie mit Übergabe des Parameters \texttt{GhostQueries} wird in Abbildung \ref{ai_call} dargestellt.
 
 \begin{figure}[!htb]
 \centering
 \includegraphics[width=3.3in]{queries.png}
-\caption{Aufruf der generierten Strategie-Methode durch Klasse Ghost.}
+\caption{Aufruf der generierten Strategie-Methode durch Klasse \texttt{Ghost}}
 \label{ai_call}
 \end{figure}
 
-Tabelle \ref{token_method_mapping} zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgeführt.
+Tabelle \ref{token_method_mapping} zeigt die Abbildung der Tokens der DSL auf \emph{JavaScript}-Methoden der Klasse \texttt{GhostQueries}. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgeführt.
 
 
 \begin{table}[!htb]
@@ -547,7 +547,7 @@ Tabelle \ref{token_method_mapping} zeigt die Abbildung der Tokens der DSL auf Ja
 %\renewcommand{\arraystretch}{1.3}
 % if using array.sty, it might be a good idea to tweak the value of
 % \extrarowheight as needed to properly center the text within the cells
-\caption{Mapping von AI-Tokens auf JavaScript Methoden der Klasse \texttt{GhostQueries}}
+\caption{Mapping von AI Tokens auf \emph{JavaScript}-Methoden der Klasse \texttt{GhostQueries}}
 \label{token_method_mapping}
 \centering
 \setlength\tabcolsep{1.5pt}
@@ -585,11 +585,11 @@ if* & isFree(direction: String): \emph{Boolean} \\
 \end{table}
 
 \subsubsection{JavaScript-Datenstrukturen}
-Neben der Abstraktion bezüglich der Richtungen (siehe Absatz \ref{dir_abstraction}) sorgt Klasse GhostQueries dafür, dass Listenstrukturen bei verschachtelten Aufrufen korrekt vereint werden. Eine Verschachtlung des \texttt{Random-Operators} mit \texttt{Filter-Free-Operator}, wie in
+Neben der Abstraktion bezüglich der Richtungen (siehe Absatz \ref{dir_abstraction}) sorgt Klasse \texttt{GhostQueries} dafür, dass Listenstrukturen bei verschachtelten Aufrufen korrekt vereint werden. Eine Verschachtlung des \texttt{Random}-Operators mit \texttt{Filter-Free}-Operator, wie in
 Abbildung \ref{node_structure_ex} gezeigt, hat zur Folge dass Parameter \emph{directions} der \texttt{randomWithDistributions()}-Methode mit einer verschachtelten Liste
-befüllt wird. Die Ursache ist, dass es sich beim Ergebnis des \texttt{Filter-Free-Operator} ebenfalls um eine Liste handelt. Ein Beispiel einer entstehende Datenstruktur des directions-Parameter ist in Listing \ref{rwd_example} zu sehen.
+befüllt wird. Die Ursache ist, dass es sich beim Ergebnis des \texttt{Filter-Free}-Operator ebenfalls um eine Liste handelt. Ein Beispiel einer entstehende Datenstruktur des directions-Parameter ist in Listing \ref{rwd_example} zu sehen.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=Beispiel einer verschachtelten Datenstruktur als directions-Parameter von randomWithDistributions(), label=rwd_example]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Beispiel einer verschachtelten Datenstruktur als directions-Parameter von \texttt{randomWithDistributions()}, label=rwd_example]
 [
   "UP",
   "DOWN",
@@ -601,11 +601,11 @@ befüllt wird. Die Ursache ist, dass es sich beim Ergebnis des \texttt{Filter-Fr
 \end{lstlisting}
 
 
-Die Vereingung der Liste wird durch die underscore.js-Methode \texttt{flatten} vorgenommen. Die Idiome zur Iteration von underscore.js bestehen aus Funktionen,
+Die Vereinigung der Liste wird durch die \texttt{Underscore.js}-Methode \texttt{flatten} vorgenommen. Die Idiome zur Iteration von \texttt{Underscore.js} bestehen aus Funktionen,
 die als Parameter zum einem die zu iterierende Listenstruktur übergeben bekommen und zum anderen eine Funktion die das jeweilige Listenelement
-als Parameter empfängt. Für die Implementierung der Klasse GhostQueries war es sehr hilfreich, sprechende Schreibweisen wie die aus Listing \ref{underscore_speaking} einsetzen zu können. Die Syntax erinnert an moderne Programmiersprachen wie Python oder Scala, die funktionale Idiome unterstützen.
+als Parameter empfängt. Für die Implementierung der Klasse \texttt{GhostQueries} war es sehr hilfreich, sprechende Schreibweisen wie die aus Listing \ref{underscore_speaking} einsetzen zu können. Die Syntax erinnert an moderne Programmiersprachen wie \emph{Python} oder \emph{Scala}, die funktionale Idiome unterstützen.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=Implementierung der Filter-Free Methode mit Hilfe von funktionalen Hilfsmitteln von underscore.js, label=underscore_speaking]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Implementierung der \texttt{Filter-Free}-Methode mit Hilfe von funktionalen Hilfsmitteln von \texttt{Underscore.js}, label=underscore_speaking]
 return _.filter(_.flatten(directions), function(d) {
                 return isFree(d);
             });
@@ -614,11 +614,11 @@ return _.filter(_.flatten(directions), function(d) {
 \subsubsection{Validierung}
 \label{valid}
 
-Bei der Implementierung der AI DSL hat sich bewährt, eine Baumstruktur in der entsprechende Listener-Klasse aufzubauen um diese bei der Codegeneriung zu traversieren. Hierbei taucht allerdings das Problem auf, dass \texttt{ANTLR4} keine syntaktische Validierung in Bezug auf den Aufbau dieser Baumstruktur vornimmt. Es ist also ohne manuell implementierte Validierungen nicht zu gewährleisten, dass die Operatoren der AI DSL korrekt miteinander kombiniert werden - im schlimmsten Fall resultiert ein Laufzeitfehler im JavaScipt Code.
+Bei der Implementierung der AI DSL hat sich bewährt, eine Baumstruktur in der entsprechende Listener Klasse aufzubauen um diese bei der Codegenerierung zu traversieren. Hierbei taucht allerdings das Problem auf, dass \texttt{ANTLR4} keine syntaktische Validierung in Bezug auf den Aufbau dieser Baumstruktur vornimmt. Es ist also ohne manuell implementierte Validierungen nicht zu gewährleisten, dass die Operatoren der AI DSL korrekt miteinander kombiniert werden - im schlimmsten Fall resultiert ein Laufzeitfehler im \emph{JavaScipt}-Code.
 
-In der Klasse \texttt{AiBaseListenerImplementation} wurde ein erster Ansatz implementiert, eine solche Validierung vorzunehmen (Listing \ref{validation_intent}). Um eine Aussagekraft für den Anwender zu haben, müsste jedoch eine präzisere Fehlermeldung mit entsprechender Zeilennummer der interpretierten DSL ausgegeben werden. Es ist abzusehen, dass der verfolgte Ansatz bei einer Erweiterung der Grammatik ungenügend ist. Hier wäre eine noch tiefere Auseinandersetzung mit \texttt{ANTLR4} empfehlenswert, um womöglich einen standartisierten Lösungsweg verfolgen zu können.
+In der Klasse \texttt{AiBaseListenerImplementation} wurde ein erster Ansatz implementiert, eine solche Validierung vorzunehmen (Listing \ref{validation_intent}). Um eine Aussagekraft für den Anwender zu haben, müsste jedoch eine präzisere Fehlermeldung mit entsprechender Zeilennummer der interpretierten DSL ausgegeben werden. Es ist abzusehen, dass der verfolgte Ansatz bei einer Erweiterung der Grammatik ungenügend ist. Hier wäre eine noch tiefere Auseinandersetzung mit \texttt{ANTLR4} empfehlenswert, um womöglich einen standardisierten Lösungsweg verfolgen zu können.
 
-\begin{lstlisting}[language=Java, captionpos=b, caption=Grundliegende Validierung beim Hinzufügen eines einer Node in \texttt{AiBaseListenerImplementation}, label=validation_intent]
+\begin{lstlisting}[language=Java, captionpos=b, caption=Grundliegende Validierung beim Hinzufügen eines  \texttt{Node} in \texttt{AiBaseListenerImplementation}, label=validation_intent]
 
 private void add(Node n) {
     if ((n instanceof Else) && !(currentNode instanceof IfContainer)) {
@@ -638,11 +638,11 @@ private void add(Node n) {
 
 
 \section{Fazit und Ausblick}
-Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pac-Man-Klons. Ein Teil des Quellcodes sollte aus voher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei DSLs eingesetzt. Zum einen eine DSL für die Erstellung des Spielfeldes und zum anderen eine AI DSL für die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Leveldesigns bzw. unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt.
+Ziel dieses Projekts war die Umsetzung eines funktionsfähigen Pac-Man-Klons. Ein Teil des Quellcodes sollte aus vorher detailliert spezifizierten Modellen automatisch generiert werden.  Dabei wurden zwei DSLs eingesetzt. Zum einen eine DSL für die Erstellung des Spielfeldes und zum anderen eine AI DSL für die Umsetzung verschiedenen Strategien für die Bewegung der von Computer gesteuerten Figuren. Somit ist es möglich verschiedene Level Designs beziehungsweise unterschiedliche Bewegungsstrategien (Erhöhung des Schwierigkeitsgrades) unabhängig vom Basiscode des Spiels zu generieren. Alle im Vorfeld gesetzten Kriterien wurden erfolgreich umgesetzt.
 
-Ausbaubedarf besteht im Bereich der AI-DSL insbesonders bei der Validierung (siehe Abschnitt \ref{valid}). Sprechende Fehlermeldungen mit entsprechenden Zeilennummern erleichtern den Einsatz der DSL erheblich. Spezialisierte Unit-Tests für die AI DSL aufzustellen wäre ein weiterer Schritt, um die Qualität der Implementierung zu erhöhen. Eine hohe Zuverlässigkeit auf Seite der DSL Implementation sicherzustellen, wäre im realen Anwendungsfall eine Notwendigkeit.
+Ausbaubedarf besteht im Bereich der AI DSL insbesondere bei der Validierung (siehe Abschnitt \ref{valid}). Sprechende Fehlermeldungen mit entsprechenden Zeilennummern erleichtern den Einsatz der DSL erheblich. Spezialisierte Unit-Tests für die AI DSL aufzustellen wäre ein weiterer Schritt, um die Qualität der Implementierung zu erhöhen. Eine hohe Zuverlässigkeit auf Seite der DSL Implementation sicherzustellen, wäre im realen Anwendungsfall eine Notwendigkeit.
 
-Das Erzeugen von Code mit Hilfe von DSLs scheint in dem gegegeben Anwendungsfall in Hinblick auf Arbeitsteilung im Team äußerst sinnvoll. Es ist wahrscheinlich, dass bei einer komplexeren Pac-Man Anwendung eigenständige Teams für Level-Gestaltung und AI-Entwurf eingesetzt werden würden. Diese Teams sollten von programmiertechnischen Aspekten der eigentlichen Spiels weitesgehend entkoppelt werden um effektiv arbeiten zu können. Durch Anpassung der Codegeneratoren wären die Anwendungsentwickler in der Lage, nach Bedarf neue Technologien einsetzten zu können ohne die anderen Teams in ihrer Arbeit zu stören.
+Das Erzeugen von Code mit Hilfe von DSLs scheint in dem gegebenen Anwendungsfall in Hinblick auf Arbeitsteilung im Team äußerst sinnvoll. Es ist wahrscheinlich, dass bei einer komplexeren Pac-Man Anwendung eigenständige Teams für Level Gestaltung und AI Entwurf eingesetzt werden würden. Diese Teams sollten von programmiertechnischen Aspekten des eigentlichen Spiels weitestgehend entkoppelt werden um effektiv arbeiten zu können. Durch Anpassung der Codegeneratoren wären die Anwendungsentwickler in der Lage, nach Bedarf neue Technologien einsetzten zu können ohne die anderen Teams in ihrer Arbeit zu stören.
 
 
 \end{document}
