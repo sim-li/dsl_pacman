@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.6)  15 FEB 2017 14:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.6)  15 FEB 2017 14:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -631,19 +631,19 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 62.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 63.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 72.
+(Font)              <7> on input line 73.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 72.
+(Font)              <5> on input line 73.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 72.
+(Font)              <8> on input line 73.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 72.
+(Font)              <6> on input line 73.
  [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -652,7 +652,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 File: images/gameboard_and_figures.png Graphic file (type png)
 
 <use images/gameboard_and_figures.png>
-Package pdftex.def Info: images/gameboard_and_figures.png used on input line 88
+Package pdftex.def Info: images/gameboard_and_figures.png used on input line 89
 .
 (pdftex.def)             Requested size: 238.49121pt x 172.44742pt.
 
@@ -660,41 +660,40 @@ Package pdftex.def Info: images/gameboard_and_figures.png used on input line 88
 File: images/screenshot.png Graphic file (type png)
 
 <use images/screenshot.png>
-Package pdftex.def Info: images/screenshot.png used on input line 100.
+Package pdftex.def Info: images/screenshot.png used on input line 101.
 (pdftex.def)             Requested size: 209.58255pt x 209.57837pt.
  <images/tam.png, id=14, 711.65875pt x 936.49875pt>
 File: images/tam.png Graphic file (type png)
 
 <use images/tam.png>
-Package pdftex.def Info: images/tam.png used on input line 110.
+Package pdftex.def Info: images/tam.png used on input line 111.
 (pdftex.def)             Requested size: 216.81pt x 285.29588pt.
- [2 <./images/gameboard_and_figures.png (PNG copy)> <./images/screenshot.png> <
-./images/tam.png>]
-<images/code_gen_rough.png, id=20, 843.15pt x 602.25pt>
+ [2 <./images/gameboard_and_figures.png (PNG copy)> <./images/screenshot.png>] 
+<images/code_gen_rough.png, id=19, 843.15pt x 602.25pt>
 File: images/code_gen_rough.png Graphic file (type png)
 
 <use images/code_gen_rough.png>
-Package pdftex.def Info: images/code_gen_rough.png used on input line 130.
+Package pdftex.def Info: images/code_gen_rough.png used on input line 131.
 (pdftex.def)             Requested size: 238.49121pt x 170.34729pt.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <8> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 144.
- [3 <./images/code_gen_rough.png (PNG copy)>]
-Overfull \hbox (1.96661pt too wide) in paragraph at lines 242--255
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 145.
+ [3 <./images/tam.png> <./images/code_gen_rough.png (PNG copy)>]
+Overfull \hbox (1.96661pt too wide) in paragraph at lines 243--256
  [][] 
  []
 
 
-Underfull \hbox (badness 6910) in paragraph at lines 361--362
+Underfull \hbox (badness 6910) in paragraph at lines 362--363
 \T1/ptm/m/n/10 und \T1/pcr/m/n/10 Filter-FreeN\T1/ptm/m/n/10 -Operatoren je-wei
 ls ei-ne ein-zel-ne
  []
 
 
-Underfull \hbox (badness 8189) in paragraph at lines 361--362
+Underfull \hbox (badness 8189) in paragraph at lines 362--363
 \T1/ptm/m/n/10 Rich-tung als Rück-ga-be-wert be-sit-zen, wo-hin-ge-gen der
  []
 
@@ -702,21 +701,21 @@ Underfull \hbox (badness 8189) in paragraph at lines 361--362
 File: images/node_structure_node.png Graphic file (type png)
 
 <use images/node_structure_node.png>
-Package pdftex.def Info: images/node_structure_node.png used on input line 485.
+Package pdftex.def Info: images/node_structure_node.png used on input line 486.
 
 (pdftex.def)             Requested size: 122.85876pt x 85.8405pt.
 
-Underfull \hbox (badness 4872) in paragraph at lines 491--492
+Underfull \hbox (badness 4872) in paragraph at lines 492--493
 []\T1/ptm/m/n/10 Alle Un-ter-klas-sen von No-de (Ab-bil-dung 5[]) ent-hal-
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 491--492
+Underfull \hbox (badness 1960) in paragraph at lines 492--493
 \T1/ptm/m/n/10 ten in-tern ei-ne Listen-Struktur mit Kinder-Nodes. Je-der
  []
 
 
-Underfull \hbox (badness 2680) in paragraph at lines 491--492
+Underfull \hbox (badness 2680) in paragraph at lines 492--493
 \T1/ptm/m/n/10 No-de im-ple-men-tiert ei-ne \T1/pcr/m/n/10 renderCode()\T1/ptm/
 m/n/10 -Methode, die
  []
@@ -725,15 +724,15 @@ m/n/10 -Methode, die
 File: images/node_structure_ex.png Graphic file (type png)
 
 <use images/node_structure_ex.png>
-Package pdftex.def Info: images/node_structure_ex.png used on input line 496.
+Package pdftex.def Info: images/node_structure_ex.png used on input line 497.
 (pdftex.def)             Requested size: 252.94499pt x 192.2427pt.
 
-Overfull \hbox (0.94499pt too wide) in paragraph at lines 496--497
+Overfull \hbox (0.94499pt too wide) in paragraph at lines 497--498
  [][] 
  []
 
 [5 <./images/node_structure_node.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 531--533
+Underfull \hbox (badness 10000) in paragraph at lines 532--534
  \T1/ptm/m/it/10 3) Ein-bin-dung der ge-ne-rier-ten Klas-sen: [][] \T1/ptm/m/n/
 10 Klas-se
  []
@@ -741,28 +740,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 531--533
 <images/queries.png, id=34, 682.55pt x 592.2125pt>
 File: images/queries.png Graphic file (type png)
  <use images/queries.png>
-Package pdftex.def Info: images/queries.png used on input line 536.
+Package pdftex.def Info: images/queries.png used on input line 537.
 (pdftex.def)             Requested size: 238.49121pt x 206.92505pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 587--590
+Underfull \hbox (badness 4621) in paragraph at lines 588--591
  \T1/ptm/m/it/10 4) JavaScript-Datenstrukturen: [][] \T1/ptm/m/n/10 Ne-ben der 
 Ab-strak-ti-on
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 587--590
+Underfull \hbox (badness 10000) in paragraph at lines 588--591
 \T1/pcr/m/n/10 Random-Operators \T1/ptm/m/n/10 mit \T1/pcr/m/n/10 Filter-Free-O
 perator\T1/ptm/m/n/10 ,
  []
 
 [6 <./images/node_structure_ex.png (PNG copy)> <./images/queries.png (PNG copy)
 >]
-Underfull \hbox (badness 4266) in paragraph at lines 618--619
+Underfull \hbox (badness 4266) in paragraph at lines 619--620
 []\T1/ptm/m/n/10 In der Klas-se \T1/pcr/m/n/10 AiBaseListenerImplementation
  []
 
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 630.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 631.
 
 ** Conference Paper **
 Before submitting the final camera ready copy, remember to:
@@ -774,24 +773,28 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7] (./dsl_pacman_group_se.aux) ) 
+[7] (./dsl_pacman_group_se.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
  5140 strings out of 493033
  72271 string characters out of 6134140
- 278323 words of memory out of 5000000
+ 277393 words of memory out of 5000000
  8595 multiletter control sequences out of 15000+600000
  121745 words of font info for 128 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 37i,15n,42p,1021b,1616s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/
-dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/u
-crb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr
-/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/tex
-live/2015/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/urw/times/utmri8a.pfb>
-Output written on dsl_pacman_group_se.pdf (7 pages, 338318 bytes).
+ 37i,15n,42p,1021b,1534s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
+exlive/2015/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2015/texmf-dist/
+fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type
+1/urw/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/tim
+es/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a
+.pfb>
+Output written on dsl_pacman_group_se.pdf (7 pages, 338470 bytes).
 PDF statistics:
  68 PDF objects out of 1000 (max. 8388607)
  41 compressed objects within 1 object stream
