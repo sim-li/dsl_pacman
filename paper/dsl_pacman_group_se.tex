@@ -254,8 +254,8 @@ Die durch Intrepretation der AI DSL generierten JavaScript-Klassen ermittelt auf
 \end{tabular}
 \end{table}
 \label{dir_abstraction}
-Tabelle \ref{ai_directions} stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token \texttt{->} wird mit einem Wert aus der Menge \texttt{\{UP, DOWN, RIGHT, LEFT\}} belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welche Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt.
-Die entstehende Simplifizierung wird durch den Pseudocode in Listing \ref{direction_pseudo}, der das Laufen in die entgegengesetzte Richtung implementiert.
+Tabelle \ref{ai_directions} stellt die Richtungs-Tokens dar. Hier wird durch die DSL insofern eine Abstraktion vorgenommen, als das eine Richtung relativ angegeben wird. Token \texttt{->} wird mit einem Wert aus der Menge \texttt{\{UP, DOWN, RIGHT, LEFT\}} belegt. Beim Verfassen der AI muss nicht mehr beachtet werden, welcher Richtung dieser Token bei der Ausführung des Spiels entspricht. Relevant für die Entwicklerin oder den Entwickler ist es zu entscheiden, ob ein Geist in der bisherigen Richtung weiterläuft, in eine der alternativen Richtungen ausweicht oder umkehrt.
+Die entstehende Simplifizierung wird durch den Pseudocode in Listing \ref{direction_pseudo} demonstriert, der das Laufen in die entgegengesetzte Richtung ohne Abstraktionen der AI-DSL darstellt.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Umkehren der Richtung in Pseudocode, label=direction_pseudo]
 if DIRECTION == RIGHT:
@@ -270,7 +270,7 @@ elif DIRECTION == DOWN:
 
 Da die DSL die Notwendigkeit von Conditionals zur einzelnen Behandlung der Richtung entfernt, würde in Syntax der DSL ein \texttt{<-} Token genügen, um  die Logik des Pseudocodes abzubilden.
 
-\emph{Pac-Man AI DSLs} beginnen mit dem Namen der DSL in runden Klammern. Innerhalb dieses Blocks werden Operatoren erwartet. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz \ref{umsetz} beschrieben, ist im JavaScript-Spiel der Akteur \emph{Checkmove} dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle \ref{checkmove_operators_tbl} gelisteten Operatoren an, um Checkmove anzusteuern.
+\emph{Pac-Man AI DSLs} beginnen mit ihrem Namen in runden Klammern. Innerhalb dieses Blocks befinden sich Operatoren, die eine Richtung als Rückgabewert liefern. Entscheidend für das Auswählen einer Richtung ist oftmals, ob diese frei ist. Wie in Absatz \ref{umsetz} beschrieben, ist im JavaScript-Spiel der Akteur \emph{Checkmove} dafür zuständig, eine Auskunft darüber zu geben, ob eine Richtung frei ist. Die DSL bietet die in Tabelle \ref{checkmove_operators_tbl} gelisteten Operatoren an, die eine Prüfung durch Checkmove auslösen.
 
 %\begin{lstlisting}[language=Java, captionpos=b, caption=blabla, label=amb]
 \lstset{
@@ -358,11 +358,11 @@ Auswahl des n-ten Elements.} &
 \end{tabular}
 \end{table}
 
-Bei den Operatoren ist zu beachten, dass der \texttt{If-Free-} und \texttt{Filter-FreeN}-Operator jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts bildet sich auf aufgerufene JavaScript Methoden der von \texttt{ANTLR4} compilierten DSL ab.
+Bei den Operatoren ist zu beachten, dass die \texttt{If-Free-} und \texttt{Filter-FreeN}-Operatoren jeweils eine einzelne Richtung als Rückgabewert besitzen, wohingegen der \texttt{Filter-Free}-Operator eine Liste von Richtungen zurückgibt. Der Begriff des Rückgabewerts im Kontext der DSL bildet sich bei der Ausführung mit JavaScript Methoden ab.
 
-Der \texttt{Filter-Free}-Operator darf also beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
+Der \texttt{Filter-Free}-Operator darf beispielsweise nicht als äußerster Block einer DSL stehen, da mehrere Werte zurückgegeben werden aber nur eine einzige Richtung den Folgespielzug bestimmt. Da JavaScript eine dynamisch typisierte Sprache ist, würde ein Laufzeitfehler aufgrund eines unerwarteten Listen-Typs auftauchen. Dies ist unerwünscht, weil der Fehler spät in der Verarbeitungskette auftaucht und dessen Ursprung schwer zurückzuverfolgen ist. Eine entsprechende Validierung bei der Kompilierung der DSL wäre möglich und sinnvoll, wurde in der vorliegenden Implementierung jedoch nicht umgesetzt.
 
-Die DSL in Listing \ref{simpledsl} benutzt den \texttt{Filter-FreeN}-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Klar sichtbar ist, dass ein weiterlaufen in der aktuellen Richtung (\texttt{->}) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (\texttt{=>}, \texttt{<=}) auszuweichen, bevor umgekehrt wird (\texttt{<-}).
+Die DSL in Listing \ref{simpledsl} benutzt den \texttt{Filter-FreeN}-Operator um die erste der übergebenen Richtungen auszuwählen, die frei ist. Erkennbar ist, dass ein Weiterlaufen in der aktuellen Richtung (\texttt{->}) vorzuziehen ist, und versucht werden soll in eine der alternativen Richtungen (\texttt{=>}, \texttt{<=}) auszuweichen, bevor umgekehrt wird (\texttt{<-}).
 
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=AI DSL mit F\texttt{Filter-FreeN}-Operator, label=simpledsl]
@@ -441,7 +441,7 @@ random(
 )
 \end{lstlisting}
 
-In Listing \ref{if_free_dsl} ist sichtbar, dass der Filter-Free Operator mit dem Random Operator geschachtelt wurde. Die DSL erlaubt beliebige Schachtelungstiefen. Beispielsweise die Syntax von Listing \ref{dsl_complex_nesting} ebenfalls zulässig.
+In Listing \ref{if_free_dsl} ist der Filter-Free Operator mit dem Random Operator geschachtelt. Die DSL erlaubt beliebige Schachtelungstiefen. Die Syntax von Listing \ref{dsl_complex_nesting} ist deshalb ebenfalls zulässig.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Komplexere Verschachtelung in AI DSL, label=dsl_complex_nesting]
 if *(->) {
@@ -465,7 +465,7 @@ if *(->) {
 }
 \end{lstlisting}
 
-Eine beliebige Verschachtelungstiefe, wie durch Listing \ref{dsl_complex_nesting} demonstriert, wird  nicht \emph{direkt} durch die Grammatik definiert. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (Listing \ref{ai_grammar}).
+Die Verschachtelung von Operatoren wird nicht \emph{direkt} durch die Grammatik definiert. Die AI-Grammatik erkennt lediglich die notwendigen Tokens (Listing \ref{ai_grammar}).
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Ausschnitt der AI Grammatik, label=ai_grammar]
 ai_body: WS* (LINE_BREAK|COMMENT|bracket_close|block_declaration||direction_statement);
@@ -474,7 +474,7 @@ bracket_close: '}';
 block_declaration: (if_free_statement|else_free_statement|random_statement|leave_free_statement|get_nth_free_statement);
 \end{lstlisting}
 
-Das Aufbauen einer rekursiven Baumstruktur erfolgt in der Listener Implementation. Hierzu wird für jeden geparsten \emph{Operator} eine Klasse erstellt, die von der abstrakten Klasse \texttt{Node} erbt.
+Die Listener Implementation baut eine Baumstruktur auf. Hierzu wird für jeden geparsten \emph{Operator} eine Klasse erstellt, die von der abstrakten Klasse \texttt{Node} erbt.
 
 
 \begin{figure}[!htb]
@@ -485,7 +485,7 @@ Das Aufbauen einer rekursiven Baumstruktur erfolgt in der Listener Implementatio
 \label{node_class}
 \end{figure}
 
-Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine Listen-Struktur, in der Kinder-Nodes geführt werden. Jeder Node implementiert eine \texttt{renderCode()}-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode \texttt{childCode()} erzeugt, die über die Kinder-Nodes iteriert, jeweils \texttt{renderCode()} aufruft und die Ergebnisse konkateniert. Methode \texttt{childCode()} wird per Konvention in jeder Node-Klasse bei \texttt{renderCode()} aufgerufen. Eine Node Klasse, erzeugt beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Zum Erzeugen der kompletten AI-JavaScript Klasse reicht das Aufrufen von \texttt{renderCode()} auf dem Wurzelknoten, der im Listener als Instanzvariable \texttt{initialNode} geführt ist (siehe Abbildung \ref{antlr_classes}). Abbildung \ref{node_structure_ex} zeigt die entstehende Baumstruktur zur DSL von Listing \ref{if_free_dsl}.
+Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine Listen-Struktur mit Kinder-Nodes. Jeder Node implementiert eine \texttt{renderCode()}-Methode, die JavaScript-Quellcode erzeugt. Der Quellcode der Kinder-Nodes wird durch Methode \texttt{childCode()} erzeugt, die über die Kinder-Nodes iteriert, jeweils \texttt{renderCode()} aufruft und die Ergebnisse als String konkateniert. Methode \texttt{childCode()} wird per Konvention in jeder Node-Klasse bei \texttt{renderCode()} aufgerufen. Eine Node-Klasse erzeugt so beim Code-Generieren ebenfalls den JavaScript-Quellcode seiner Kinder. Beim Generieren einer AI-Strategie wird \texttt{renderCode()} auf dem Wurzelknoten aufgerufen, der im Listener als Instanzvariable \texttt{initialNode} geführt ist (siehe Abbildung \ref{antlr_classes}). Abbildung \ref{node_structure_ex} zeigt die Baumstruktur zur DSL von Listing \ref{if_free_dsl}, Listing \ref{if_free_output} den generierten JavaScript-Code.
 
 
 \begin{figure}[!htb]
@@ -494,8 +494,6 @@ Alle Unterklassen von Node (Abbildung  \ref{node_class}) enthalten intern eine L
 \caption{Schematische Darstellung der Datenstruktur beim Parsen einer AI DSL (Laufzeit).}
 \label{node_structure_ex}
 \end{figure}
-
-Der entstehende JavaScript-Code zur DSL in Listing \ref{if_free_dsl} ist in Listing \ref{if_free_output} aufgeführt.
 
 \begin{lstlisting}[language=Java, captionpos=b, caption=Beispiel zu generiertem JavaScript-Code einer AI DSL, label=if_free_output]
  define([], function() {
@@ -525,8 +523,18 @@ Der entstehende JavaScript-Code zur DSL in Listing \ref{if_free_dsl} ist in List
 });
 \end{lstlisting}
 
-Tabelle \ref{token_method_mapping} zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries, die der Funktion strategy der generierten AI-Klasse als Parameter queries übergeben wird. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgezeigt.
 
+Klasse \texttt{GhostQueries} dient als Mittler der generieten Strategie mit dem Ghost-Objekt. Sie ruft Methoden \texttt{currentDirection}, \texttt{gridX()}, \texttt{gridY()} und \texttt{checkMove()} auf. Der Aufruf von \texttt{checkMove()} wird von Klasse \texttt{Ghost} an \texttt{Gameboard} deligiert.
+Der Aufruf der generierten Strategie mit Übergabe des Parameters GhostQueries wird in Abbildung \ref{ai_call} dargestellt.
+
+\begin{figure}[!htb]
+\centering
+\includegraphics[width=3.3in]{queries.png}
+\caption{Aufruf der generierten Strategie-Methode durch Klasse Ghost.}
+\label{ai_call}
+\end{figure}
+
+Tabelle \ref{token_method_mapping} zeigt die Abbildung der Tokens der DSL auf JavaScript-Methoden der Klasse GhostQueries. In der Darstellung werden ebenfalls die Parameter- und Rückgabetypen dieser Methoden aufgeführt.
 
 
 \begin{table}[!htb]
@@ -570,16 +578,6 @@ if* & isFree(direction: String): \emph{Boolean} \\
 \hline
 \end{tabular}
 \end{table}
-
-Klasse \texttt{GhostQueries} dient als Mittler der generieten Strategie mit dem Ghost-Objekt. Sie ruft Methoden \texttt{currentDirection}, \texttt{gridX()}, \texttt{gridY()} und \texttt{checkMove()} auf. Der Aufruf von \texttt{checkMove()} wird von Klasse \texttt{Ghost} an \texttt{Gameboard} deligiert.
-Der Aufruf der generierten Strategie mit Übergabe des Parameters GhostQueries wird in Abbildung \ref{ai_call} dargestellt.
-
-\begin{figure}[!htb]
-\centering
-\includegraphics[width=3.3in]{queries.png}
-\caption{Aufruf der generierten Strategie-Methode durch Klasse Ghost.}
-\label{ai_call}
-\end{figure}
 
 Neben der Abstraktion bezüglich der Richtungen (siehe Absatz \ref{dir_abstraction}) sorgt Klasse GhostQueries dafür, dass Listenstrukturen bei verschachtelten Aufrufen korrekt vereint werden. Eine Verschachtlung des \texttt{Random-Operators} mit \texttt{Filter-Free-Operator}, wie in
 Abbildung \ref{node_structure_ex} gezeigt, hat zur Folge dass Parameter \emph{directions} der \texttt{randomWithDistributions()}-Methode mit einer verschachtelten Liste
